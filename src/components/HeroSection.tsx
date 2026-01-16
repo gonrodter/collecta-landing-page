@@ -121,31 +121,44 @@ const HeroSection = () => {
               </div>
               
               {/* Floating badges */}
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }} 
-                animate={{ opacity: 1, x: 0 }} 
-                whileInView={{ opacity: 1 }}
-                transition={{ duration: 0.5, delay: 0.6 }} 
-                className="absolute -left-4 top-1/4 bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              x: -20
+            }} animate={{
+              opacity: 1,
+              x: 0
+            }} whileInView={{
+              opacity: 1
+            }} transition={{
+              duration: 0.5,
+              delay: 0.6
+            }} className="absolute -left-4 top-1/4 bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
                 <span className="text-sm font-medium text-foreground">🍳 Recipes</span>
               </motion.div>
               
-              <motion.div 
-                initial={{ opacity: 0, x: 20 }} 
-                animate={{ opacity: 1, x: 0 }} 
-                transition={{ duration: 0.5, delay: 0.7 }} 
-                className="absolute -right-4 top-1/2 bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              x: 20
+            }} animate={{
+              opacity: 1,
+              x: 0
+            }} transition={{
+              duration: 0.5,
+              delay: 0.7
+            }} className="absolute -right-4 top-1/2 bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
                 <span className="text-sm font-medium text-foreground">📈 Marketing</span>
               </motion.div>
               
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }} 
-                animate={{ opacity: 1, y: 0 }} 
-                transition={{ duration: 0.5, delay: 0.8 }} 
-                className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-xl px-4 py-2 shadow-lg animate-float-slow"
-              >
+              <motion.div initial={{
+              opacity: 0,
+              y: 20
+            }} animate={{
+              opacity: 1,
+              y: 0
+            }} transition={{
+              duration: 0.5,
+              delay: 0.8
+            }} className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-xl px-4 py-2 shadow-lg animate-float-slow">
                 <span className="text-sm font-medium">✨ AI Sorted</span>
               </motion.div>
             </div>
