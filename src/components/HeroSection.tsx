@@ -143,44 +143,44 @@ const HeroSection = () => {
             </div>
 
             {/* Floating badges */}
-            <motion.div initial={{
-              opacity: 0,
-              x: -20
-            }} animate={{
-              opacity: 1,
-              x: 0
-            }} whileInView={{
-              opacity: 1
-            }} transition={{
-              duration: 0.5,
-              delay: 0.6
-            }} className="absolute -left-4 top-1/4 bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
+
+            {/* --- Left Side --- */}
+
+            {/* 2. Recipes (Left, closer) */}
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }}
+              className="absolute -left-2 top-[10%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed z-10">
               <span className="text-sm font-medium text-foreground">🍳 Recipes</span>
             </motion.div>
 
-            <motion.div initial={{
-              opacity: 0,
-              x: 20
-            }} animate={{
-              opacity: 1,
-              x: 0
-            }} transition={{
-              duration: 0.5,
-              delay: 0.7
-            }} className="absolute -right-4 top-1/2 bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
+            {/* 4. Tech (Left, bottom) */}
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.8 }}
+              className="absolute -left-4 bottom-[50%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
+              <span className="text-sm font-medium text-foreground">💻 Tech</span>
+            </motion.div>
+
+            {/* 5. Marketing (Left, bottom-far) */}
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.9 }}
+              className="absolute -left-2 bottom-[20%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
               <span className="text-sm font-medium text-foreground">📈 Marketing</span>
             </motion.div>
 
-            <motion.div initial={{
-              opacity: 0,
-              y: 20
-            }} animate={{
-              opacity: 1,
-              y: 0
-            }} transition={{
-              duration: 0.5,
-              delay: 0.8
-            }} className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-xl px-4 py-2 shadow-lg animate-float-slow">
+            {/* --- Right Side --- */}
+
+            {/* 7. Design (Right, upper-mid) */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }}
+              className="absolute -right-2 top-[30%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
+              <span className="text-sm font-medium text-foreground">🎨 Design</span>
+            </motion.div>
+
+            {/* 8. Fitness (Right, lower-mid) */}
+            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.7 }}
+              className="absolute -right-10 top-[55%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
+              <span className="text-sm font-medium text-foreground">💪 Fitness</span>
+            </motion.div>
+
+            {/* Center Bottom */}
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 1.1 }}
+              className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-xl px-4 py-2 shadow-lg animate-float-slow">
               <span className="text-sm font-medium">✨ AI Sorted</span>
             </motion.div>
           </div>

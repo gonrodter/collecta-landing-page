@@ -5,6 +5,8 @@ import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
 
+import { supabase } from "@/lib/supabaseClient";
+
 const CtaSection = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -15,7 +17,7 @@ const CtaSection = () => {
       toast.error("Please enter your email address");
       return;
     }
-    
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast.error("Please enter a valid email address");
@@ -23,10 +25,30 @@ const CtaSection = () => {
     }
 
     setIsSubmitting(true);
-    await new Promise(resolve => setTimeout(resolve, 1000));
-    setIsSubmitting(false);
-    toast.success("You're on the list! We'll notify you when we launch.");
-    setEmail("");
+
+    try {
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([{ email }]);
+
+      if (error) {
+        if (error.code === '23505') { // Unique violation
+          toast.error("This email is already on the waitlist!");
+        } else {
+          console.error('Error adding to waitlist:', error);
+          toast.error("Something went wrong. Please try again.");
+        }
+        return;
+      }
+
+      toast.success("You're on the list! We'll notify you when we launch.");
+      setEmail("");
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      toast.error("An unexpected error occurred.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
