@@ -1,59 +1,123 @@
 import { motion } from "framer-motion";
-import { LinkIcon, Share2, Sparkles } from "lucide-react";
+import { Sparkles, Share, FolderOpen } from "lucide-react";
 
-const features = [
+const useCases = [
   {
-    icon: LinkIcon,
-    title: "The Infinite Scroll Trap",
-    description: "You save things to read later, but 'later' never comes. Your bookmarks are buried across three different apps.",
+    emoji: "🍳",
+    category: "Recipes",
+    title: "That viral pasta recipe?",
+    description: "Found instantly. No more scrolling through 400 saved reels.",
   },
   {
-    icon: Share2,
-    title: "One-Tap Capture",
-    description: "Just use the native 'Share' button on your phone to send any post directly to Collecta. No clunky copy-pasting.",
+    emoji: "💡",
+    category: "Ideas",
+    title: "Startup ideas at 2am?",
+    description: "Captured and waiting for when inspiration calls again.",
   },
   {
-    icon: Sparkles,
-    title: "Auto-Organization",
-    description: "Don't waste time tagging. Collecta's AI intelligently categorizes posts into Recipes, Marketing, Tutorials, etc.",
+    emoji: "📍",
+    category: "Places",
+    title: "Hidden gem cafés?",
+    description: "Organized by city. Your future travels, planned.",
   },
 ];
 
 const FeaturesSection = () => {
   return (
-    <section className="py-24 px-6">
-      <div className="container mx-auto max-w-5xl">
-        <motion.h2
+    <section className="py-24 px-6 bg-muted/30">
+      <div className="container mx-auto max-w-6xl">
+        {/* Section Header */}
+        <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold text-foreground text-center mb-16"
+          className="text-center mb-20"
         >
-          Why Collecta?
-        </motion.h2>
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+            Stop <span className="italic text-primary">hoarding</span>.
+            <br />
+            Start <span className="italic">using</span>.
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
+            Your saved content finally works for you.
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8">
-          {features.map((feature, index) => (
+        {/* Use Cases Grid */}
+        <div className="grid md:grid-cols-3 gap-6 mb-24">
+          {useCases.map((useCase, index) => (
             <motion.div
-              key={feature.title}
+              key={useCase.category}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="text-center p-6"
+              className="bg-background border-2 border-border rounded-2xl p-8 hover:border-primary/50 transition-colors"
             >
-              <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary/10 mb-5">
-                <feature.icon className="w-6 h-6 text-primary" />
-              </div>
-              <h3 className="text-xl font-semibold text-foreground mb-3">
-                {feature.title}
+              <span className="text-4xl mb-4 block">{useCase.emoji}</span>
+              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
+                {useCase.category}
+              </span>
+              <h3 className="text-xl font-bold text-foreground mb-2">
+                {useCase.title}
               </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                {feature.description}
+              <p className="text-muted-foreground">
+                {useCase.description}
               </p>
             </motion.div>
           ))}
+        </div>
+
+        {/* How It Works */}
+        <div className="grid lg:grid-cols-3 gap-8">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="text-center lg:text-left"
+          >
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-foreground text-background mb-4">
+              <Share className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-foreground mb-2">1. Share</h3>
+            <p className="text-muted-foreground">
+              Use your phone's native share button. One tap, done.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="text-center lg:text-left"
+          >
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary text-primary-foreground mb-4">
+              <Sparkles className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-foreground mb-2">2. AI Sorts</h3>
+            <p className="text-muted-foreground">
+              Our AI reads, understands, and categorizes automatically.
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="text-center lg:text-left"
+          >
+            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-foreground text-background mb-4">
+              <FolderOpen className="w-6 h-6" />
+            </div>
+            <h3 className="text-lg font-bold text-foreground mb-2">3. Find</h3>
+            <p className="text-muted-foreground">
+              Search or browse by category. It's always there.
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>

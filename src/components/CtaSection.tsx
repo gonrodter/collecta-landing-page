@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
+import { ArrowRight } from "lucide-react";
 
 const CtaSection = () => {
   const [email, setEmail] = useState("");
@@ -29,39 +30,56 @@ const CtaSection = () => {
   };
 
   return (
-    <section className="py-24 px-6 surface-elevated">
-      <div className="container mx-auto max-w-2xl text-center">
+    <section className="py-32 px-6">
+      <div className="container mx-auto max-w-3xl text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-3xl sm:text-4xl font-bold text-foreground mb-8"
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4"
         >
-          Get notified when we launch the Beta.
+          Ready to <span className="italic text-primary">reclaim</span> your saves?
         </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-lg text-muted-foreground mb-10"
+        >
+          Join the waitlist. Be first to organize your digital chaos.
+        </motion.p>
 
         <motion.form
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-50px" }}
-          transition={{ duration: 0.6, delay: 0.1 }}
+          transition={{ duration: 0.6, delay: 0.15 }}
           onSubmit={handleSubmit}
-          className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto"
+          className="flex flex-col sm:flex-row gap-3 max-w-lg mx-auto"
         >
           <Input
             type="email"
-            placeholder="Enter your email address..."
+            placeholder="Enter your email..."
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="h-12 px-4 text-base bg-background border-border focus-visible:ring-primary"
+            className="h-14 px-5 text-base bg-background border-2 border-border focus-visible:border-primary focus-visible:ring-0 rounded-xl"
           />
           <Button
             type="submit"
             disabled={isSubmitting}
-            className="h-12 px-6 text-base font-medium bg-primary hover:bg-primary/90 text-primary-foreground rounded-lg whitespace-nowrap"
+            className="h-14 px-8 text-base font-semibold bg-foreground hover:bg-foreground/90 text-background rounded-xl whitespace-nowrap group"
           >
-            {isSubmitting ? "Joining..." : "Join Waitlist"}
+            {isSubmitting ? (
+              "Joining..."
+            ) : (
+              <>
+                Get Early Access
+                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
+              </>
+            )}
           </Button>
         </motion.form>
       </div>
