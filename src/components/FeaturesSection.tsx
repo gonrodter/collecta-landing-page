@@ -69,7 +69,22 @@ const FeaturesSection = () => {
           ))}
         </div>
 
-        {/* How It Works */}
+        {/* Divider with title */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center gap-6 mb-16"
+        >
+          <div className="flex-1 h-px bg-border" />
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
+            How it works
+          </h3>
+          <div className="flex-1 h-px bg-border" />
+        </motion.div>
+
+        {/* How It Works Steps */}
         <div className="grid lg:grid-cols-3 gap-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
