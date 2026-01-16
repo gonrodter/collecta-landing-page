@@ -6,7 +6,7 @@ const Navbar = () => {
       behavior: 'smooth'
     });
   };
-  return <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md">
+  return <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md shadow">
       <div className="container mx-auto px-6 py-4 flex items-center justify-between max-w-6xl">
         <span className="text-xl font-bold text-foreground tracking-tight">
           collecta
