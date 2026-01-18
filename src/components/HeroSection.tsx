@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
-import appMockup from "@/assets/app-mockup.png";
+import heroImage from "@/assets/hero.png";
 import { supabase } from "@/lib/supabaseClient";
 const HeroSection = () => {
   const [email, setEmail] = useState("");
@@ -46,7 +46,7 @@ const HeroSection = () => {
       setIsSubmitting(false);
     }
   };
-  return <section className="min-h-screen flex flex-col justify-center pt-20 pb-12 px-6">
+  return <section className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6">
     <div className="container mx-auto max-w-6xl">
       <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
         {/* Left Column - Content */}
@@ -81,7 +81,7 @@ const HeroSection = () => {
             delay: 0.15,
             ease: "easeOut"
           }} className="text-lg sm:text-xl text-muted-foreground max-w-lg mb-8 leading-relaxed">
-            Your saved posts from Instagram, TikTok & X — automatically organized by AI. No more endless scrolling through chaos.
+            Your saved posts from Instagram, TikTok, X, Pinterest & more — automatically organized by AI. No more endless scrolling through chaos.
           </motion.p>
 
           <motion.form initial={{
@@ -133,32 +133,32 @@ const HeroSection = () => {
           delay: 0.2,
           ease: "easeOut"
         }} className="order-1 lg:order-2 relative">
-          <div className="relative mx-auto max-w-sm lg:max-w-md">
+          <div className="relative mx-auto max-w-[280px] lg:max-w-[340px]">
             {/* Glow effect */}
             <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-primary/5 to-transparent rounded-[2rem] blur-2xl" />
 
             {/* Phone mockup */}
-            <div className="relative bg-foreground rounded-[2.5rem] p-3 shadow-2xl shadow-foreground/10">
-              <img src={appMockup} alt="Collecta app showing organized saved posts" className="w-full rounded-[2rem]" />
+            <div className="relative rounded-[2.5rem] p-10 shadow-2xl" style={{ backgroundColor: '#56ABA0' }}>
+              <img src={heroImage} alt="Collecta app showing organized saved posts" className="w-full rounded-[2rem]" />
             </div>
 
             {/* Floating badges */}
 
             {/* --- Left Side --- */}
 
-            {/* 2. Recipes (Left, closer) */}
+            {/* 1. Recipes (Left, closer) */}
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }}
-              className="absolute -left-2 top-[10%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed z-10">
+              className="absolute left-2 top-[5%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed z-10">
               <span className="text-sm font-medium text-foreground">🍳 Recipes</span>
             </motion.div>
 
-            {/* 4. Tech (Left, bottom) */}
+            {/* 2. Tech (Left, bottom) */}
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.8 }}
               className="absolute -left-4 bottom-[50%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
               <span className="text-sm font-medium text-foreground">💻 Tech</span>
             </motion.div>
 
-            {/* 5. Marketing (Left, bottom-far) */}
+            {/* 3. Marketing (Left, bottom-far) */}
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.9 }}
               className="absolute -left-2 bottom-[20%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
               <span className="text-sm font-medium text-foreground">📈 Marketing</span>
@@ -166,21 +166,21 @@ const HeroSection = () => {
 
             {/* --- Right Side --- */}
 
-            {/* 7. Design (Right, upper-mid) */}
+            {/* 4. Design (Right, upper-mid) */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }}
-              className="absolute -right-2 top-[30%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
+              className="absolute -right-2 top-[35%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
               <span className="text-sm font-medium text-foreground">🎨 Design</span>
             </motion.div>
 
-            {/* 8. Fitness (Right, lower-mid) */}
+            {/* 5. Fitness (Right, lower-mid) */}
             <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.7 }}
-              className="absolute -right-10 top-[55%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
+              className="absolute -right-10 top-[60%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
               <span className="text-sm font-medium text-foreground">💪 Fitness</span>
             </motion.div>
 
             {/* Center Bottom */}
             <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 1.1 }}
-              className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground rounded-xl px-4 py-2 shadow-lg animate-float-slow">
+              className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-primary-foreground rounded-xl px-4 py-2 shadow-lg animate-float-slow">
               <span className="text-sm font-medium">✨ AI Sorted</span>
             </motion.div>
           </div>

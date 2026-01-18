@@ -1,5 +1,8 @@
 import { motion } from "framer-motion";
-import { Sparkles, Share, FolderOpen } from "lucide-react";
+import addImage from "@/assets/add.png";
+import askCollectaImage from "@/assets/ask_collecta.png";
+import categoriesImage from "@/assets/categories.png";
+import profileImage from "@/assets/profile.png";
 
 const useCases = [
   {
@@ -84,55 +87,74 @@ const FeaturesSection = () => {
           <div className="flex-1 h-px bg-border" />
         </motion.div>
 
-        {/* How It Works Steps */}
-        <div className="grid lg:grid-cols-3 gap-8">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="text-center lg:text-left"
-          >
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-foreground text-background mb-4">
-              <Share className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">1. Share</h3>
-            <p className="text-muted-foreground">
-              Use your phone's native share button. One tap, done.
-            </p>
-          </motion.div>
+        {/* How It Works Steps - Alternating Layout */}
+        <div className="space-y-24">
+          {[
+            {
+              id: 1,
+              title: "Add Anything, Anywhere",
+              description: "Save content from any app using your phone's native share button. Just hit share and select Collecta, or simply paste a link or upload a screenshot.",
+              image: addImage,
+              alt: "Add content to Collecta via share menu, link, or screenshot"
+            },
+            {
+              id: 2,
+              title: "Ask Collecta",
+              description: "Just describe what you're looking for. Our AI understands context and finds exactly what you need.",
+              image: askCollectaImage,
+              alt: "Ask Collecta AI to find your posts"
+            },
+            {
+              id: 3,
+              title: "Browse by Category",
+              description: "Everything auto-organized into smart categories. Recipes, travel, fitness—perfectly sorted without lifting a finger.",
+              image: categoriesImage,
+              alt: "Browse posts organized by category"
+            },
+            {
+              id: 4,
+              title: "Track Your Collection",
+              description: "See your saving habits, discover patterns, and get insights on what you collect most.",
+              image: profileImage,
+              alt: "View your collection stats and insights"
+            }
+          ].map((step, index) => (
+            <motion.div
+              key={step.id}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.7, delay: index * 0.1 }}
+              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}
+            >
+              {/* Image Column */}
+              <div className="flex-1 w-full max-w-2xl">
+                <div className="relative group">
+                  <div className="absolute -inset-4 bg-primary/10 rounded-[2rem] blur-2xl group-hover:bg-primary/20 transition-colors duration-500" />
+                  <div className="relative rounded-2xl overflow-hidden border-2 border-border bg-background shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <img
+                      src={step.image}
+                      alt={step.alt}
+                      className="w-full h-auto"
+                    />
+                  </div>
+                </div>
+              </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="text-center lg:text-left"
-          >
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-primary text-primary-foreground mb-4">
-              <Sparkles className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">2. AI Sorts</h3>
-            <p className="text-muted-foreground">
-              Our AI reads, understands, and categorizes automatically.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="text-center lg:text-left"
-          >
-            <div className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-foreground text-background mb-4">
-              <FolderOpen className="w-6 h-6" />
-            </div>
-            <h3 className="text-lg font-bold text-foreground mb-2">3. Find</h3>
-            <p className="text-muted-foreground">
-              Search or browse by category. It's always there.
-            </p>
-          </motion.div>
+              {/* Text Column */}
+              <div className="flex-1 max-w-lg text-center lg:text-left">
+                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary font-bold text-xl mb-6">
+                  {step.id}
+                </span>
+                <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
+                  {step.title}
+                </h3>
+                <p className="text-lg text-muted-foreground leading-relaxed">
+                  {step.description}
+                </p>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
     </section>
