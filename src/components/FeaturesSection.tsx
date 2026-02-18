@@ -25,6 +25,11 @@ const useCases = [
   },
 ];
 
+const comparison = {
+  native: ["Scattered across apps", "No real search", "No structure", "Easy to forget"],
+  collecta: ["Centralized", "Searchable", "Organized", "Designed for output"],
+};
+
 const FeaturesSection = () => {
   return (
     <section className="py-24 px-6 bg-muted/30">
@@ -81,8 +86,8 @@ const FeaturesSection = () => {
           className="flex items-center gap-6 mb-16"
         >
           <div className="flex-1 h-px bg-border" />
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">
-            How it works
+          <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground text-center">
+            A workflow you'll actually keep.
           </h3>
           <div className="flex-1 h-px bg-border" />
         </motion.div>
@@ -156,6 +161,39 @@ const FeaturesSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Why not native saves */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{ duration: 0.6 }}
+          className="mt-24"
+        >
+          <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-8 text-center">
+            Why not just use native saves?
+          </h3>
+
+          <div className="grid md:grid-cols-2 overflow-hidden rounded-2xl border-2 border-border">
+            <div className="bg-muted/40 p-8 border-b-2 border-border md:border-b-0 md:border-r-2">
+              <h4 className="text-lg font-semibold mb-4">Native saves</h4>
+              <ul className="space-y-2 text-muted-foreground">
+                {comparison.native.map((item) => (
+                  <li key={item}>• {item}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="bg-background p-8">
+              <h4 className="text-lg font-semibold mb-4 text-primary">Collecta</h4>
+              <ul className="space-y-2 text-foreground">
+                {comparison.collecta.map((item) => (
+                  <li key={item}>• {item}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

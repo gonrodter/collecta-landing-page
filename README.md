@@ -60,6 +60,29 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
+## PostHog analytics setup
+
+PostHog is already integrated in the app code.
+
+1. Create or update your local env file (`.env.local`) with:
+
+```sh
+VITE_POSTHOG_KEY=phc_xxxxxxxxxxxxxxxxxxxxx
+VITE_POSTHOG_HOST=https://us.i.posthog.com
+```
+
+2. Restart the dev server:
+
+```sh
+npm run dev
+```
+
+3. Open your app and verify events in PostHog (you should see `$pageview` events).
+
+Notes:
+- Use `https://eu.i.posthog.com` if your PostHog project is in the EU region.
+- If `VITE_POSTHOG_KEY` is missing, PostHog stays disabled.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.
