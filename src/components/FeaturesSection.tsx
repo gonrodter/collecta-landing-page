@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { CheckCircle2, XCircle } from "lucide-react";
 import addImage from "@/assets/add.png";
 import askCollectaImage from "@/assets/ask_collecta.png";
 import categoriesImage from "@/assets/categories.png";
@@ -87,7 +88,7 @@ const FeaturesSection = () => {
         >
           <div className="flex-1 h-px bg-border" />
           <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground text-center">
-            A workflow you'll actually keep.
+            How it works
           </h3>
           <div className="flex-1 h-px bg-border" />
         </motion.div>
@@ -170,29 +171,51 @@ const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
           className="mt-24"
         >
-          <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-8 text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground text-center mb-3">
+            Comparison
+          </p>
+          <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 text-center">
             Why not just use native saves?
           </h3>
+          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
+            Built for creators who care about clarity, retrieval speed, and consistent output.
+          </p>
 
-          <div className="grid md:grid-cols-2 overflow-hidden rounded-2xl border-2 border-border">
-            <div className="bg-muted/40 p-8 border-b-2 border-border md:border-b-0 md:border-r-2">
-              <h4 className="text-lg font-semibold mb-4">Native saves</h4>
-              <ul className="space-y-2 text-muted-foreground">
-                {comparison.native.map((item) => (
-                  <li key={item}>• {item}</li>
-                ))}
-              </ul>
-            </div>
+          <div className="relative overflow-hidden rounded-3xl border-2 border-border bg-background">
+            <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-transparent pointer-events-none" />
+            <div className="relative grid md:grid-cols-2">
+              <div className="p-8 border-b-2 border-border bg-muted/40 md:border-b-0 md:border-r-2">
+                <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground mb-5">
+                  <XCircle className="w-3.5 h-3.5" />
+                  Native saves
+                </div>
+                <ul className="space-y-3 text-muted-foreground">
+                  {comparison.native.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <span className="mt-1 text-muted-foreground/70">-</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            <div className="bg-background p-8">
-              <h4 className="text-lg font-semibold mb-4 text-primary">Collecta</h4>
-              <ul className="space-y-2 text-foreground">
-                {comparison.collecta.map((item) => (
-                  <li key={item}>• {item}</li>
-                ))}
-              </ul>
+              <div className="p-8">
+                <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary mb-5">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  Collecta
+                </div>
+                <ul className="space-y-3 text-foreground">
+                  {comparison.collecta.map((item) => (
+                    <li key={item} className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 mt-0.5 text-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
           </div>
+
         </motion.div>
       </div>
     </section>
