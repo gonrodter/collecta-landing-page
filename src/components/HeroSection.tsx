@@ -81,7 +81,7 @@ const HeroSection = () => {
             delay: 0.15,
             ease: "easeOut"
           }} className="text-lg sm:text-xl text-muted-foreground max-w-lg mb-8 leading-relaxed">
-            Your saved posts from Instagram, TikTok, X, Pinterest & more — automatically organized by AI. No more endless scrolling through chaos.
+            All your saved ideas in one place — organized automatically so you can stop consuming and start creating.
           </motion.p>
 
           <motion.form initial={{
