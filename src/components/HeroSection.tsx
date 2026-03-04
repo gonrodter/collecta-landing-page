@@ -4,34 +4,38 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
-import heroImage from "@/assets/hero.png";
 import { supabase } from "@/lib/supabaseClient";
+
+const heroImage = "/images/hero-post-generator-mockup.png";
+
 const HeroSection = () => {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
     if (!email) {
       toast.error("Please enter your email address");
       return;
     }
+
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       toast.error("Please enter a valid email address");
       return;
     }
+
     setIsSubmitting(true);
 
     try {
-      const { error } = await supabase
-        .from('waitlist')
-        .insert([{ email }]);
+      const { error } = await supabase.from("waitlist").insert([{ email }]);
 
       if (error) {
-        if (error.code === '23505') { // Unique violation
+        if (error.code === "23505") {
           toast.error("This email is already on the waitlist!");
         } else {
-          console.error('Error adding to waitlist:', error);
+          console.error("Error adding to waitlist:", error);
           toast.error("Something went wrong. Please try again.");
         }
         return;
@@ -40,153 +44,163 @@ const HeroSection = () => {
       toast.success("You're on the list! We'll notify you when we launch.");
       setEmail("");
     } catch (err) {
-      console.error('Unexpected error:', err);
+      console.error("Unexpected error:", err);
       toast.error("An unexpected error occurred.");
     } finally {
       setIsSubmitting(false);
     }
   };
-  return <section className="min-h-screen flex flex-col justify-center pt-24 pb-12 px-6">
-    <div className="container mx-auto max-w-6xl">
-      <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
-        {/* Left Column - Content */}
-        <div className="order-2 lg:order-1">
-          <motion.div initial={{
-            opacity: 0,
-            y: 30
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.7,
-            ease: "easeOut"
-          }}>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-[1.1] tracking-tight mb-6">
-              Save it.
-              <br />
-              <span className="italic text-primary">Find</span> it.
-              <br />
-              <span className="text-muted-foreground/60">Actually use it.</span>
-            </h1>
-          </motion.div>
 
-          <motion.p initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.6,
-            delay: 0.15,
-            ease: "easeOut"
-          }} className="text-lg sm:text-xl text-muted-foreground max-w-lg mb-8 leading-relaxed">
-            All your saved ideas in one place — organized automatically so you can stop consuming and start creating.
-          </motion.p>
-
-          <motion.form initial={{
-            opacity: 0,
-            y: 20
-          }} animate={{
-            opacity: 1,
-            y: 0
-          }} transition={{
-            duration: 0.6,
-            delay: 0.25,
-            ease: "easeOut"
-          }} onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mb-6">
-            <Input type="email" placeholder="Enter your email..." value={email} onChange={e => setEmail(e.target.value)} className="h-14 px-5 text-base bg-background border-2 border-border focus-visible:border-primary focus-visible:ring-0 rounded-xl" />
-            <Button type="submit" disabled={isSubmitting} className="h-14 px-8 text-base font-semibold bg-foreground hover:bg-foreground/90 text-background rounded-xl whitespace-nowrap group">
-              {isSubmitting ? "Joining..." : <>
-                Join Waitlist
-                <ArrowRight className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </>}
-            </Button>
-          </motion.form>
-
-          <motion.p initial={{
-            opacity: 0
-          }} animate={{
-            opacity: 1
-          }} transition={{
-            duration: 0.6,
-            delay: 0.35
-          }} className="text-sm text-muted-foreground">
-            <span className="inline-flex items-center gap-2">
-              <span className="w-2 h-2 bg-primary rounded-full animate-pulse" />
-              100+ already on the waitlist
-            </span>
-          </motion.p>
-        </div>
-
-        {/* Right Column - App Mockup */}
-        <motion.div initial={{
-          opacity: 0,
-          scale: 0.95,
-          y: 20
-        }} animate={{
-          opacity: 1,
-          scale: 1,
-          y: 0
-        }} transition={{
-          duration: 0.8,
-          delay: 0.2,
-          ease: "easeOut"
-        }} className="order-1 lg:order-2 relative">
-          <div className="relative mx-auto max-w-[280px] lg:max-w-[340px]">
-            {/* Glow effect */}
-            <div className="absolute -inset-4 bg-gradient-to-br from-primary/20 via-primary/5 to-transparent rounded-[2rem] blur-2xl" />
-
-            {/* Phone mockup */}
-            <div className="relative rounded-[2.5rem] p-10 shadow-2xl" style={{ backgroundColor: '#56ABA0' }}>
-              <img src={heroImage} alt="Collecta app showing organized saved posts" className="w-full rounded-[2rem]" />
-            </div>
-
-            {/* Floating badges */}
-
-            {/* --- Left Side --- */}
-
-            {/* 1. Recipes (Left, closer) */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }}
-              className="absolute left-2 top-[5%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed z-10">
-              <span className="text-sm font-medium text-foreground">🍳 Recipes</span>
+  return (
+    <section className="flex min-h-screen flex-col justify-center px-6 pb-12 pt-24">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="order-2 lg:order-1">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, ease: "easeOut" }}
+            >
+              <h1 className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
+                Save it.
+                <br />
+                <span className="italic text-primary">Organize</span> it.
+                <br />
+                <span className="text-muted-foreground/60">Turn it into content.</span>
+              </h1>
             </motion.div>
 
-            {/* 2. Tech (Left, bottom) */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.8 }}
-              className="absolute -left-4 bottom-[50%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
-              <span className="text-sm font-medium text-foreground">💻 Tech</span>
-            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
+              className="mb-8 max-w-lg text-lg leading-relaxed text-muted-foreground sm:text-xl"
+            >
+              All your saved ideas in one place — structured so you can finally create from them.
+            </motion.p>
 
-            {/* 3. Marketing (Left, bottom-far) */}
-            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.9 }}
-              className="absolute -left-2 bottom-[20%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
-              <span className="text-sm font-medium text-foreground">📈 Marketing</span>
-            </motion.div>
+            <motion.form
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
+              onSubmit={handleSubmit}
+              className="mb-6 flex max-w-md flex-col gap-3 sm:flex-row"
+            >
+              <Input
+                type="email"
+                placeholder="Enter your email..."
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                className="h-14 rounded-xl border-2 border-border bg-background px-5 text-base focus-visible:border-primary focus-visible:ring-0"
+              />
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="group h-14 whitespace-nowrap rounded-xl bg-foreground px-8 text-base font-semibold text-background hover:bg-foreground/90"
+              >
+                {isSubmitting ? (
+                  "Joining..."
+                ) : (
+                  <>
+                    Join Waitlist
+                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </>
+                )}
+              </Button>
+            </motion.form>
 
-            {/* --- Right Side --- */}
-
-            {/* 4. Design (Right, upper-mid) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.6 }}
-              className="absolute -right-2 top-[35%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float">
-              <span className="text-sm font-medium text-foreground">🎨 Design</span>
-            </motion.div>
-
-            {/* 5. Fitness (Right, lower-mid) */}
-            <motion.div initial={{ opacity: 0, x: 20 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.7 }}
-              className="absolute -right-10 top-[60%] bg-background border-2 border-border rounded-xl px-4 py-2 shadow-lg animate-float-delayed">
-              <span className="text-sm font-medium text-foreground">💪 Fitness</span>
-            </motion.div>
-
-            {/* Center Bottom */}
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 1.1 }}
-              className="absolute -bottom-6 left-1/2 -translate-x-1/2 bg-foreground text-primary-foreground rounded-xl px-4 py-2 shadow-lg animate-float-slow">
-              <span className="text-sm font-medium">✨ AI Sorted</span>
-            </motion.div>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.35 }}
+              className="text-sm text-muted-foreground"
+            >
+              <span className="inline-flex items-center gap-2">
+                <span className="h-2 w-2 animate-pulse rounded-full bg-primary" />
+                100+ already on the waitlist
+              </span>
+            </motion.p>
           </div>
-        </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
+            className="order-1 relative lg:order-2"
+          >
+            <div className="relative mx-auto w-full max-w-[340px] lg:max-w-[420px]">
+              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-2xl" />
+
+              <div
+                className="relative flex h-[420px] items-center justify-center rounded-[2.5rem] p-4 shadow-2xl sm:h-[500px] lg:h-[620px] lg:p-5"
+                style={{ backgroundColor: "#56ABA0" }}
+              >
+                <img
+                  src={heroImage}
+                  alt="Collecta app showing Post Generator"
+                  className="mx-auto h-[100%] w-auto max-w-none rounded-[2rem] object-contain"
+                />
+              </div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="absolute left-2 top-[5%] z-10 animate-float-delayed rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+              >
+                <span className="text-sm font-medium text-foreground">🍳 Recipes</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.8 }}
+                className="absolute -left-4 bottom-[50%] animate-float rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+              >
+                <span className="text-sm font-medium text-foreground">💻 Tech</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.9 }}
+                className="absolute -left-2 bottom-[20%] animate-float-delayed rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+              >
+                <span className="text-sm font-medium text-foreground">📈 Marketing</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.6 }}
+                className="absolute -right-2 top-[35%] animate-float rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+              >
+                <span className="text-sm font-medium text-foreground">🎨 Design</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.7 }}
+                className="absolute -right-10 top-[60%] animate-float-delayed rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+              >
+                <span className="text-sm font-medium text-foreground">💪 Fitness</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 1.1 }}
+                className="absolute -bottom-6 left-1/2 -translate-x-1/2 animate-float-slow rounded-xl bg-foreground px-4 py-2 text-primary-foreground shadow-lg"
+              >
+                <span className="text-sm font-medium">✨ Post Ready</span>
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
       </div>
-    </div>
-  </section>;
+    </section>
+  );
 };
+
 export default HeroSection;

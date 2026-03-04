@@ -1,60 +1,52 @@
 import { motion } from "framer-motion";
 import { CheckCircle2, XCircle } from "lucide-react";
-import addImage from "@/assets/add.png";
-import askCollectaImage from "@/assets/ask_collecta.png";
-import categoriesImage from "@/assets/categories.png";
-import profileImage from "@/assets/profile.png";
 
 const useCases = [
   {
-    emoji: "🍳",
-    category: "Recipes",
-    title: "That viral pasta recipe?",
-    description: "Found instantly. No more scrolling through 400 saved reels.",
+    emoji: "💾",
+    category: "Save",
+    title: "Capture everything",
+    description: "Reels, threads, carousels, ideas — all in one place.",
   },
   {
-    emoji: "💡",
-    category: "Ideas",
-    title: "Startup ideas at 2am?",
-    description: "Captured and waiting for when inspiration calls again.",
+    emoji: "🗂️",
+    category: "Organize",
+    title: "Make sense of it",
+    description: "Structured into collections built for creators.",
   },
   {
-    emoji: "📍",
-    category: "Places",
-    title: "Hidden gem cafés?",
-    description: "Organized by city. Your future travels, planned.",
+    emoji: "✨",
+    category: "Generate",
+    title: "Turn saves into posts",
+    description: "Select inspirations and get a clear execution plan.",
   },
 ];
 
 const comparison = {
-  native: ["Scattered across apps", "No real search", "No structure", "Easy to forget"],
-  collecta: ["Centralized", "Searchable", "Organized", "Designed for output"],
+  native: ["Scattered across apps", "No structure", "Hard to reuse", "Built for consumption"],
+  collecta: ["Centralized", "Structured", "Built for creators", "Designed for output"],
 };
 
 const FeaturesSection = () => {
   return (
-    <section className="py-24 px-6 bg-muted/30">
+    <section className="bg-muted/30 px-6 py-24">
       <div className="container mx-auto max-w-6xl">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-20"
+          className="mb-20 text-center"
         >
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
+          <h2 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
             Stop <span className="italic text-primary">hoarding</span>.
             <br />
             Start <span className="italic">using</span>.
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto">
-            Your saved content finally works for you.
-          </p>
+          <p className="mx-auto max-w-xl text-lg text-muted-foreground">Your saved content finally works for you.</p>
         </motion.div>
 
-        {/* Use Cases Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-24">
+        <div className="mb-24 grid gap-6 md:grid-cols-3">
           {useCases.map((useCase, index) => (
             <motion.div
               key={useCase.category}
@@ -62,68 +54,61 @@ const FeaturesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="bg-background border-2 border-border rounded-2xl p-8 hover:border-primary/50 transition-colors"
+              className="rounded-2xl border-2 border-border bg-background p-8 transition-colors hover:border-primary/50"
             >
-              <span className="text-4xl mb-4 block">{useCase.emoji}</span>
-              <span className="text-xs font-semibold uppercase tracking-wider text-primary mb-2 block">
-                {useCase.category}
-              </span>
-              <h3 className="text-xl font-bold text-foreground mb-2">
-                {useCase.title}
-              </h3>
-              <p className="text-muted-foreground">
-                {useCase.description}
-              </p>
+              <span className="mb-4 block text-4xl">{useCase.emoji}</span>
+              <span className="mb-2 block text-xs font-semibold uppercase tracking-wider text-primary">{useCase.category}</span>
+              <h3 className="mb-2 text-xl font-bold text-foreground">{useCase.title}</h3>
+              <p className="text-muted-foreground">{useCase.description}</p>
             </motion.div>
           ))}
         </div>
 
-        {/* Divider with title */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="flex items-center gap-6 mb-16"
+          className="mb-16 flex items-center gap-6"
         >
-          <div className="flex-1 h-px bg-border" />
-          <h3 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground text-center">
-            How it works
-          </h3>
-          <div className="flex-1 h-px bg-border" />
+          <div className="h-px flex-1 bg-border" />
+          <h3 className="text-center text-sm font-semibold uppercase tracking-widest text-muted-foreground">How it works</h3>
+          <div className="h-px flex-1 bg-border" />
         </motion.div>
 
-        {/* How It Works Steps - Alternating Layout */}
         <div className="space-y-24">
           {[
             {
               id: 1,
               title: "Add Anything, Anywhere",
-              description: "Save content from any app using your phone's native share button. Just hit share and select Collecta, or simply paste a link or upload a screenshot.",
-              image: addImage,
-              alt: "Add content to Collecta via share menu, link, or screenshot"
+              description:
+                "Save content from any app using the share button. Paste links or upload screenshots.",
+              image: "/images/feature-save-mockup.png",
+              alt: "Add content to Collecta via share menu, link, or screenshot",
             },
             {
               id: 2,
-              title: "Ask Collecta",
-              description: "Just describe what you're looking for. Our AI understands context and finds exactly what you need.",
-              image: askCollectaImage,
-              alt: "Ask Collecta AI to find your posts"
+              title: "Automatically Organized",
+              description:
+                "Your saves are structured into clean collections so you can browse without chaos.",
+              image: "/images/feature-organize-mockup.png",
+              alt: "View organized collections in Collecta",
             },
             {
               id: 3,
-              title: "Browse by Category",
-              description: "Everything auto-organized into smart categories. Recipes, travel, fitness—perfectly sorted without lifting a finger.",
-              image: categoriesImage,
-              alt: "Browse posts organized by category"
+              title: "Post Generator",
+              description:
+                "Select up to 5 saved posts. Choose platform and format. Get a structured execution plan.",
+              image: "/images/feature-generate-mockup.png",
+              alt: "Use Post Generator to turn saved posts into content",
             },
             {
               id: 4,
-              title: "Track Your Collection",
-              description: "See your saving habits, discover patterns, and get insights on what you collect most.",
-              image: profileImage,
-              alt: "View your collection stats and insights"
-            }
+              title: "Execute",
+              description: "Stop overthinking. Follow the plan and publish.",
+              image: "/images/feature-execute-mockup.png",
+              alt: "Follow an execution plan and publish consistently",
+            },
           ].map((step, index) => (
             <motion.div
               key={step.id}
@@ -131,39 +116,30 @@ const FeaturesSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7, delay: index * 0.1 }}
-              className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} items-center gap-12 lg:gap-20`}
+              className={`flex flex-col items-center gap-12 lg:gap-20 ${
+                index % 2 === 0 ? "lg:flex-row" : "lg:flex-row-reverse"
+              }`}
             >
-              {/* Image Column */}
-              <div className="flex-1 w-full max-w-2xl">
-                <div className="relative group">
-                  <div className="absolute -inset-4 bg-primary/10 rounded-[2rem] blur-2xl group-hover:bg-primary/20 transition-colors duration-500" />
-                  <div className="relative rounded-2xl overflow-hidden border-2 border-border bg-background shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
-                    <img
-                      src={step.image}
-                      alt={step.alt}
-                      className="w-full h-auto"
-                    />
+              <div className="w-full max-w-2xl flex-1">
+                <div className="group relative">
+                  <div className="absolute -inset-4 rounded-[2rem] bg-[#56ABA0]/10 blur-2xl transition-colors duration-500 group-hover:bg-primary/20" />
+                  <div className="relative overflow-hidden rounded-2xl border-2 border-gray-200 bg-[#56ABA0] shadow-2xl transition-transform duration-500 group-hover:scale-[1.02]">
+                    <img src={step.image} alt={step.alt} className="h-auto w-full" />
                   </div>
                 </div>
               </div>
 
-              {/* Text Column */}
-              <div className="flex-1 max-w-lg text-center lg:text-left">
-                <span className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-primary/10 text-primary font-bold text-xl mb-6">
+              <div className="max-w-lg flex-1 text-center lg:text-left">
+                <span className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-xl font-bold text-primary">
                   {step.id}
                 </span>
-                <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-6">
-                  {step.title}
-                </h3>
-                <p className="text-lg text-muted-foreground leading-relaxed">
-                  {step.description}
-                </p>
+                <h3 className="mb-6 text-2xl font-bold text-foreground sm:text-3xl">{step.title}</h3>
+                <p className="text-lg leading-relaxed text-muted-foreground">{step.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Why not native saves */}
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -171,22 +147,18 @@ const FeaturesSection = () => {
           transition={{ duration: 0.6 }}
           className="mt-24"
         >
-          <p className="text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground text-center mb-3">
-            Comparison
-          </p>
-          <h3 className="text-2xl sm:text-3xl font-bold text-foreground mb-3 text-center">
-            Why not just use native saves?
-          </h3>
-          <p className="text-muted-foreground text-center max-w-2xl mx-auto mb-8">
+          <p className="mb-3 text-center text-xs font-semibold uppercase tracking-[0.18em] text-muted-foreground">Comparison</p>
+          <h3 className="mb-3 text-center text-2xl font-bold text-foreground sm:text-3xl">Why not just use native saves?</h3>
+          <p className="mx-auto mb-8 max-w-2xl text-center text-muted-foreground">
             Built for creators who care about clarity, retrieval speed, and consistent output.
           </p>
 
           <div className="relative overflow-hidden rounded-3xl border-2 border-border bg-background">
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-transparent pointer-events-none" />
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-primary/8 via-transparent to-transparent" />
             <div className="relative grid md:grid-cols-2">
-              <div className="p-8 border-b-2 border-border bg-muted/40 md:border-b-0 md:border-r-2">
-                <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground mb-5">
-                  <XCircle className="w-3.5 h-3.5" />
+              <div className="border-b-2 border-border bg-muted/40 p-8 md:border-b-0 md:border-r-2">
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-border bg-background px-3 py-1 text-xs font-medium text-muted-foreground">
+                  <XCircle className="h-3.5 w-3.5" />
                   Native saves
                 </div>
                 <ul className="space-y-3 text-muted-foreground">
@@ -200,14 +172,14 @@ const FeaturesSection = () => {
               </div>
 
               <div className="p-8">
-                <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary mb-5">
-                  <CheckCircle2 className="w-3.5 h-3.5" />
+                <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                  <CheckCircle2 className="h-3.5 w-3.5" />
                   Collecta
                 </div>
                 <ul className="space-y-3 text-foreground">
                   {comparison.collecta.map((item) => (
                     <li key={item} className="flex items-start gap-2.5">
-                      <CheckCircle2 className="w-4 h-4 mt-0.5 text-primary" />
+                      <CheckCircle2 className="mt-0.5 h-4 w-4 text-primary" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -215,7 +187,6 @@ const FeaturesSection = () => {
               </div>
             </div>
           </div>
-
         </motion.div>
       </div>
     </section>
