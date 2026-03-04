@@ -66,7 +66,7 @@ const HeroSection = () => {
                 <br />
                 <span className="text-muted-foreground/60">Organize</span> it.
                 <br />
-                <span>Turn it into <span className="italic text-primary ">content.</span></span>
+                <span><span className="italic text-primary">Turn it</span> into content.</span>
               </h1>
             </motion.div>
 
