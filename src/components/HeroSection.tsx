@@ -52,7 +52,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="flex min-h-screen flex-col justify-center px-6 pb-12 pt-24">
+    <section className="flex min-h-screen flex-col justify-center overflow-x-clip px-4 pb-12 pt-24 sm:px-6">
       <div className="container mx-auto max-w-6xl">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
           <div className="order-2 lg:order-1">
@@ -64,9 +64,9 @@ const HeroSection = () => {
               <h1 className="mb-6 text-4xl font-bold leading-[1.1] tracking-tight text-foreground sm:text-5xl lg:text-6xl xl:text-7xl">
                 Save it.
                 <br />
-                <span className="italic text-primary">Organize</span> it.
+                <span className="text-muted-foreground/60">Organize</span> it.
                 <br />
-                <span className="text-muted-foreground/60">Turn it into content.</span>
+                <span>Turn it into <span className="italic text-primary ">content.</span></span>
               </h1>
             </motion.div>
 
@@ -128,8 +128,8 @@ const HeroSection = () => {
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
             className="order-1 relative lg:order-2"
           >
-            <div className="relative mx-auto w-full max-w-[340px] lg:max-w-[420px]">
-              <div className="absolute -inset-4 rounded-[2rem] bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-2xl" />
+            <div className="relative mx-auto w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[420px]">
+              <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-2xl sm:-inset-4" />
 
               <div
                 className="relative flex h-[420px] items-center justify-center rounded-[2.5rem] p-4 shadow-2xl sm:h-[500px] lg:h-[620px] lg:p-5"
@@ -146,43 +146,43 @@ const HeroSection = () => {
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
-                className="absolute left-2 top-[5%] z-10 animate-float-delayed rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+                className="absolute left-1 top-[5%] z-10 animate-float-delayed rounded-xl border-2 border-border bg-background px-3 py-1.5 shadow-lg sm:left-2 sm:px-4 sm:py-2"
               >
-                <span className="text-sm font-medium text-foreground">🍳 Recipes</span>
+                <span className="text-xs font-medium text-foreground sm:text-sm">🍳 Recipes</span>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.8 }}
-                className="absolute -left-4 bottom-[50%] animate-float rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+                className="absolute left-0 bottom-[50%] animate-float rounded-xl border-2 border-border bg-background px-3 py-1.5 shadow-lg sm:-left-4 sm:px-4 sm:py-2"
               >
-                <span className="text-sm font-medium text-foreground">💻 Tech</span>
+                <span className="text-xs font-medium text-foreground sm:text-sm">💻 Tech</span>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.9 }}
-                className="absolute -left-2 bottom-[20%] animate-float-delayed rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+                className="absolute left-0 bottom-[20%] animate-float-delayed rounded-xl border-2 border-border bg-background px-3 py-1.5 shadow-lg sm:-left-2 sm:px-4 sm:py-2"
               >
-                <span className="text-sm font-medium text-foreground">📈 Marketing</span>
+                <span className="text-xs font-medium text-foreground sm:text-sm">📈 Marketing</span>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.6 }}
-                className="absolute -right-2 top-[35%] animate-float rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+                className="absolute right-0 top-[35%] animate-float rounded-xl border-2 border-border bg-background px-3 py-1.5 shadow-lg sm:-right-2 sm:px-4 sm:py-2"
               >
-                <span className="text-sm font-medium text-foreground">🎨 Design</span>
+                <span className="text-xs font-medium text-foreground sm:text-sm">🎨 Design</span>
               </motion.div>
 
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.5, delay: 0.7 }}
-                className="absolute -right-10 top-[60%] animate-float-delayed rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg"
+                className="absolute right-0 top-[60%] animate-float-delayed rounded-xl border-2 border-border bg-background px-4 py-2 shadow-lg sm:-right-10"
               >
                 <span className="text-sm font-medium text-foreground">💪 Fitness</span>
               </motion.div>
