@@ -52,10 +52,10 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="flex min-h-screen flex-col justify-center overflow-x-clip px-4 pb-12 pt-24 sm:px-6">
+    <section className="flex min-h-screen flex-col justify-center overflow-x-clip px-4 pb-12 pt-24 sm:px-5">
       <div className="container mx-auto max-w-6xl">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          <div className="order-2 lg:order-1">
+          <div className="order-2 mx-auto w-full max-w-xl lg:order-1 lg:mx-0 lg:max-w-none">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -132,13 +132,13 @@ const HeroSection = () => {
               <div className="absolute -inset-3 rounded-[2rem] bg-gradient-to-br from-primary/20 via-primary/5 to-transparent blur-2xl sm:-inset-4" />
 
               <div
-                className="relative flex h-[420px] items-center justify-center rounded-[2.5rem] p-4 shadow-2xl sm:h-[500px] lg:h-[620px] lg:p-5"
+                className="relative flex h-[420px] items-center justify-center overflow-hidden rounded-[2.5rem] p-4 shadow-2xl sm:h-[500px] lg:h-[620px] lg:p-5"
                 style={{ backgroundColor: "#56ABA0" }}
               >
                 <img
                   src={heroImage}
                   alt="Collecta app showing Post Generator"
-                  className="mx-auto h-[100%] w-auto max-w-none rounded-[2rem] object-contain"
+                  className="mx-auto h-full w-full rounded-[2rem] object-cover object-top sm:w-auto sm:max-w-none sm:object-contain"
                 />
               </div>
 

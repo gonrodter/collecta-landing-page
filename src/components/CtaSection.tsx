@@ -50,7 +50,7 @@ const CtaSection = () => {
   };
 
   return (
-    <section className="px-6 py-32">
+    <section id="waitlist" className="px-5 py-32">
       <div className="container mx-auto max-w-3xl text-center">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}

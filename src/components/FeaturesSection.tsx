@@ -29,7 +29,7 @@ const comparison = {
 
 const FeaturesSection = () => {
   return (
-    <section className="bg-muted/30 px-6 py-24">
+    <section className="bg-muted/30 px-5 py-24">
       <div className="container mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
