@@ -4,6 +4,18 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script>
+    (() => {
+      const redirectPath = sessionStorage.getItem("spa-redirect-path");
+
+      if (!redirectPath) {
+        return;
+      }
+
+      sessionStorage.removeItem("spa-redirect-path");
+      window.history.replaceState(null, "", redirectPath);
+    })();
+  </script>
   <!-- TODO: Set the document title to the name of your application -->
   <title>Collecta - Save, Organize, Turn It Into Content</title>
   <meta name="description"

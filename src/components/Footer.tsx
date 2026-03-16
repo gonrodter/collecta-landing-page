@@ -2,13 +2,13 @@ import { NavLink } from "@/components/NavLink";
 
 const Footer = () => {
   return (
-    <footer className="border-t border-border px-5 py-12">
-      <div className="container mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 sm:flex-row">
-        <div className="flex items-center gap-6">
+    <footer className="border-t border-border px-5 py-10 sm:py-12">
+      <div className="container mx-auto max-w-6xl">
+        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-between">
           <NavLink to="/" className="text-lg font-bold tracking-tight text-foreground transition-opacity hover:opacity-80">
             collecta
           </NavLink>
-          <nav className="flex items-center gap-4 text-sm text-muted-foreground">
+          <nav className="grid w-full max-w-xs grid-cols-2 gap-4 text-center text-sm text-muted-foreground sm:w-auto sm:max-w-none sm:flex sm:items-center sm:gap-6 sm:text-left">
             <NavLink
               to="/privacy"
               className="transition-colors hover:text-foreground"
@@ -26,7 +26,7 @@ const Footer = () => {
           </nav>
         </div>
 
-        <p className="text-center text-xs text-muted-foreground">© 2026 Collecta. Built for organized minds.</p>
+        <p className="mt-5 text-center text-xs text-muted-foreground">© 2026 Collecta. Built for organized minds.</p>
       </div>
     </footer>
   );
