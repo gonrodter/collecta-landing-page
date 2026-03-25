@@ -6,9 +6,9 @@ const Privacy = () => {
       <article className="space-y-10 text-left">
         <div className="space-y-6 text-base leading-8 text-foreground/90 sm:text-lg">
           <p>
-            Collecta (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;) respects your privacy and is committed to protecting the personal
-            information you share with us. This Privacy Policy explains how we collect, use, and safeguard your
-            information when you use the Collecta mobile application and related services.
+            Collecta, operated by Terron Studio (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;), respects your privacy and is committed to protecting
+            the personal information you share with us. This Privacy Policy explains how we collect, use, and safeguard
+            your information when you use the Collecta mobile application and related services.
           </p>
           <p>By using Collecta, you agree to the collection and use of information in accordance with this policy.</p>
         </div>
@@ -100,6 +100,7 @@ const Privacy = () => {
               <li>Cloud infrastructure</li>
               <li>Analytics services</li>
               <li>AI processing services</li>
+              <li>Subscription and billing providers</li>
             </ul>
             <p>
               These third parties may process limited data only to perform their services and are required to protect
@@ -127,6 +128,7 @@ const Privacy = () => {
               If you delete your account, we will delete or anonymize your personal data within a reasonable period of
               time, unless retention is required for legal obligations.
             </p>
+            <p>You can request deletion of your account and associated data from within the app or by contacting us at the email below.</p>
           </div>
         </section>
 
@@ -163,6 +165,7 @@ const Privacy = () => {
         <section className="space-y-5 text-left">
           <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">9. Contact</h2>
           <div className="space-y-4 text-base leading-8 text-foreground/90 sm:text-lg">
+            <p>For subscriptions purchased through Apple, payment processing is handled by Apple. We do not store your full payment information.</p>
             <p>If you have questions about this Privacy Policy, you can contact us at:</p>
             <p className="font-medium text-foreground">contact@terron-studio.com</p>
           </div>

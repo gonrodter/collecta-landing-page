@@ -65,13 +65,16 @@ const sections = [
   {
     heading: "7. Subscription and Payments",
     paragraphs: [
-      "Some features of Collecta may require a paid subscription.",
-      "If subscriptions are offered:",
+      "Some features of Collecta may require a paid auto-renewable subscription.",
+      "If you purchase a subscription through the Apple App Store:",
     ],
     lines: [
-      "Payments will be processed through the Apple App Store.",
-      "Subscriptions renew automatically unless canceled.",
-      "Billing terms will follow Apple’s App Store policies.",
+      "Payment will be charged to your Apple Account at confirmation of purchase.",
+      "Subscriptions renew automatically unless canceled at least 24 hours before the end of the current billing period.",
+      "You can manage or cancel your subscription at any time in your Apple Account settings.",
+      "Any free trial, if offered, will convert to a paid subscription unless canceled before the trial ends.",
+      "Pricing and subscription terms displayed in the app are part of these Terms.",
+      "Billing and refunds are subject to Apple’s App Store policies.",
     ],
   },
   {
@@ -113,10 +116,10 @@ const sections = [
 
 const Terms = () => {
   return (
-    <LegalPageLayout title="Terms of Service" subtitle="Last updated: March 13, 2026">
+    <LegalPageLayout title="Terms of Use" subtitle="Last updated: March 13, 2026">
       <article className="space-y-10 text-left">
         <div className="space-y-6 text-base leading-8 text-foreground/90 sm:text-lg">
-          <p>These Terms of Service ("Terms") govern your use of the Collecta mobile application and related services ("Service") operated by Collecta ("we", "our", or "us").</p>
+          <p>These Terms of Use (&quot;Terms&quot;) govern your use of the Collecta mobile application and related services (&quot;Service&quot;) operated by Terron Studio through Collecta (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;).</p>
           <p>By accessing or using Collecta, you agree to be bound by these Terms.</p>
         </div>
 

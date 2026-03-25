@@ -21,7 +21,7 @@ const Footer = () => {
               className="transition-colors hover:text-foreground"
               activeClassName="text-foreground"
             >
-              Terms of Service
+              Terms of Use
             </NavLink>
           </nav>
         </div>
