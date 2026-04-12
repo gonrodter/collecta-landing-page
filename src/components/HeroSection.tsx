@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 
 import AppStoreBadge from "@/components/AppStoreBadge";
+import ProductHuntBadge from "@/components/ProductHuntBadge";
 import { APP_STORE_URL } from "@/lib/appConfig";
 
 const heroImage = "/images/hero-post-generator-mockup.png";
@@ -31,16 +32,17 @@ const HeroSection = () => {
               transition={{ duration: 0.6, delay: 0.15, ease: "easeOut" }}
               className="mb-8 max-w-lg text-lg leading-relaxed text-muted-foreground sm:text-xl"
             >
-              All your saved ideas in one place — structured so you can finally create from them.
+              Save posts from social media, organize them by topic, and turn them into content you can actually publish.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.25, ease: "easeOut" }}
-              className="mb-6"
+              className="mb-6 flex flex-col items-start gap-4"
             >
               <AppStoreBadge href={APP_STORE_URL || undefined} className="h-[52px] sm:h-[58px]" />
+              <ProductHuntBadge className="w-[220px] sm:w-[250px]" />
             </motion.div>
 
             <motion.p
