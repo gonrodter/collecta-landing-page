@@ -1,10 +1,9 @@
 import { motion } from "framer-motion";
 
+import heroImage from "@/assets/hero-post-generator-mockup.png";
 import AppStoreBadge from "@/components/AppStoreBadge";
 import ProductHuntBadge from "@/components/ProductHuntBadge";
 import { APP_STORE_URL } from "@/lib/appConfig";
-
-const heroImage = "/images/hero-post-generator-mockup.png";
 
 const HeroSection = () => {
   return (
