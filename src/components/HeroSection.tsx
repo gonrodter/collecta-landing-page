@@ -1,11 +1,9 @@
 import { motion } from "framer-motion";
 
 import AppleLogo from "@/components/AppleLogo";
+import firstMockupVideo from "@/assets/collecta-first-mockup.mp4";
 import heroPoster from "@/assets/hero-post-generator-mockup.png";
 import { APP_STORE_URL } from "@/lib/appConfig";
-
-const FIRST_MOCKUP_VIDEO_WEBM = "/assets/collecta-first-mockup.webm";
-const FIRST_MOCKUP_VIDEO_MP4 = "/assets/collecta-first-mockup.mp4";
 
 const HeroSection = () => {
   return (
@@ -59,22 +57,28 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 28 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.32, ease: "easeOut" }}
-          className="flex h-[500px] w-full items-center justify-center overflow-hidden sm:h-[680px] sm:py-6 lg:h-[760px]"
+          className="flex h-[530px] w-full items-center justify-center overflow-hidden sm:h-[650px] sm:py-8 md:h-[600px] md:py-6 lg:h-[640px] xl:h-[680px]"
         >
-          <video
-            className="aspect-[5/4] h-auto w-[164vw] max-w-none shrink-0 object-contain drop-shadow-[0_18px_18px_rgba(0,0,0,0.28)] sm:w-[820px] lg:w-[960px] xl:w-[1040px]"
-            poster={heroPoster}
-            muted
-            loop
-            playsInline
-            autoPlay
-            preload="metadata"
-            aria-label="Collecta first mockup video showing how content is saved"
-          >
-            <source src={FIRST_MOCKUP_VIDEO_WEBM} type="video/webm" />
-            <source src={FIRST_MOCKUP_VIDEO_MP4} type="video/mp4" />
-            <img src={heroPoster} alt="Collecta app showing saved posts" />
-          </video>
+          <div className="relative aspect-[5/4] h-auto w-[680px] max-w-none shrink-0 sm:w-[740px] md:w-[800px] lg:w-[860px] xl:w-[920px]">
+            <img
+              src={heroPoster}
+              alt="Collecta app showing saved posts"
+              className="relative z-10 h-auto w-full drop-shadow-[0_18px_18px_rgba(0,0,0,0.28)]"
+            />
+            <div className="absolute left-[36.25%] top-[calc(12.8%-2px)] z-20 h-[calc(75.15%-1px)] w-[27.5%] overflow-hidden rounded-[28px] md:rounded-[36px]">
+              <video
+                className="h-[calc(100%+2px)] w-full object-cover object-top"
+                muted
+                loop
+                playsInline
+                autoPlay
+                preload="metadata"
+                aria-label="Collecta first mockup video showing how content is saved"
+              >
+                <source src={firstMockupVideo} type="video/mp4" />
+              </video>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

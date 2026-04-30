@@ -52,11 +52,11 @@ const FeaturesSection = () => {
               {section.description}
             </p>
 
-            <div className="mt-2 flex h-[500px] w-full items-center justify-center overflow-hidden sm:mt-4 sm:h-[680px] sm:py-6 lg:h-[760px]">
+            <div className="mt-2 flex h-[530px] w-full items-center justify-center overflow-hidden sm:mt-4 sm:h-[650px] sm:py-8 md:h-[600px] md:py-6 lg:h-[640px] xl:h-[680px]">
               <img
                 src={section.image}
                 alt={section.alt}
-                className="aspect-[5/4] h-auto w-[164vw] max-w-none shrink-0 object-contain drop-shadow-[0_18px_18px_rgba(0,0,0,0.28)] sm:w-[820px] lg:w-[960px] xl:w-[1040px]"
+                className="aspect-[5/4] h-auto w-[680px] max-w-none shrink-0 object-contain drop-shadow-[0_18px_18px_rgba(0,0,0,0.28)] sm:w-[740px] md:w-[800px] lg:w-[860px] xl:w-[920px]"
               />
             </div>
           </motion.div>
