@@ -1,40 +1,41 @@
 import { motion } from "framer-motion";
 
-import AppStoreBadge from "@/components/AppStoreBadge";
-import { APP_NAME, APP_STORE_URL } from "@/lib/appConfig";
+import AppleLogo from "@/components/AppleLogo";
+import { APP_STORE_URL } from "@/lib/appConfig";
 
 const CtaSection = () => {
   return (
-    <section id="download" className="px-5 py-32">
-      <div className="container mx-auto max-w-5xl">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="relative overflow-hidden rounded-[2rem] border border-border bg-[radial-gradient(circle_at_top_left,_rgba(86,171,160,0.2),_transparent_42%),linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] px-6 py-10 shadow-[0_36px_110px_-60px_rgba(15,23,42,0.45)] sm:px-10 sm:py-14"
+    <section id="download" className="flex min-h-[48vh] items-center justify-center bg-[#56ABA0] px-5 py-14 text-center text-white">
+      <motion.div
+        initial={{ opacity: 1, y: 0 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.6 }}
+        className="mx-auto flex max-w-3xl flex-col items-center"
+      >
+        <h2 className="text-[2.8rem] font-extrabold uppercase leading-[0.9] tracking-normal sm:text-[4rem] lg:text-[5rem]">
+          Start
+        </h2>
+
+        <p className="mt-2 text-xl font-bold uppercase leading-tight tracking-normal sm:text-2xl lg:text-3xl">
+          turning saves into content
+        </p>
+
+        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/84 sm:text-lg">
+          Collect what inspires you, organize it, and create from it when you are ready.
+        </p>
+
+        <motion.a
+          href={APP_STORE_URL || undefined}
+          whileHover={{ y: -5, scale: 1.04 }}
+          whileTap={{ y: 0, scale: 0.97 }}
+          transition={{ type: "spring", stiffness: 420, damping: 24 }}
+          className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-base font-semibold text-[#111312] shadow-[0_18px_34px_-18px_rgba(0,0,0,0.66)] transition-shadow duration-200 hover:bg-white hover:shadow-[0_28px_46px_-22px_rgba(0,0,0,0.76)]"
         >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-
-          <div className="mx-auto max-w-3xl text-center">
-            <p className="mb-4 text-[0.7rem] font-semibold uppercase tracking-[0.32em] text-primary/75">
-              App Store Release
-            </p>
-
-            <h2 className="mb-4 text-3xl font-bold text-foreground sm:text-4xl lg:text-5xl">
-              {APP_NAME} is live.
-            </h2>
-
-            <p className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground">
-              Download the app, capture what you want to keep, and turn saved inspiration into ready-to-publish posts.
-            </p>
-
-            <div className="flex justify-center">
-              <AppStoreBadge href={APP_STORE_URL || undefined} className="h-[52px] sm:h-[58px]" />
-            </div>
-          </div>
-        </motion.div>
-      </div>
+          <AppleLogo className="h-5 w-5" />
+          Download on the App Store
+        </motion.a>
+      </motion.div>
     </section>
   );
 };
