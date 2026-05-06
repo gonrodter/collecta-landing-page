@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
 import AppleLogo from "@/components/AppleLogo";
@@ -6,6 +7,37 @@ import heroPoster from "@/assets/hero-post-generator-mockup.png";
 import { APP_STORE_URL } from "@/lib/appConfig";
 
 const HeroSection = () => {
+  const heroVideoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const video = heroVideoRef.current;
+
+    if (!video) {
+      return;
+    }
+
+    video.muted = true;
+    video.defaultMuted = true;
+    video.volume = 0;
+    video.controls = false;
+
+    const keepPlaying = () => {
+      video.muted = true;
+      video.volume = 0;
+      void video.play();
+    };
+
+    video.addEventListener("pause", keepPlaying);
+    video.addEventListener("volumechange", keepPlaying);
+
+    keepPlaying();
+
+    return () => {
+      video.removeEventListener("pause", keepPlaying);
+      video.removeEventListener("volumechange", keepPlaying);
+    };
+  }, []);
+
   return (
     <section className="flex min-h-[86vh] flex-col items-center justify-start overflow-x-clip bg-[#56ABA0] px-5 pb-8 pt-16 text-center text-white">
       <div className="mx-auto flex w-full max-w-4xl flex-col items-center">
@@ -67,8 +99,10 @@ const HeroSection = () => {
             />
             <div className="absolute left-[36.25%] top-[calc(12.8%-2px)] z-20 h-[calc(75.15%-1px)] w-[27.5%] overflow-hidden rounded-[28px] md:rounded-[36px]">
               <video
-                className="h-[calc(100%+2px)] w-full object-cover object-top"
+                ref={heroVideoRef}
+                className="pointer-events-none h-[calc(100%+2px)] w-full object-cover object-top"
                 muted
+                defaultMuted
                 loop
                 playsInline
                 autoPlay
