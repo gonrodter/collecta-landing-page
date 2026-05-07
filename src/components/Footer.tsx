@@ -59,22 +59,6 @@ const Footer = () => {
             </a>
           </div>
 
-          <a
-            href="https://launchigniter.com/product/collecta?ref=badge-collecta"
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="Featured on LaunchIgniter"
-            className="inline-flex shrink-0 transition-opacity hover:opacity-85"
-          >
-            <img
-              src="https://launchigniter.com/api/badge/collecta?theme=dark"
-              alt="Featured on LaunchIgniter"
-              width={212}
-              height={55}
-              className="h-auto w-[132px] sm:w-[148px]"
-            />
-          </a>
-
           <p className="text-sm text-white/72">© 2026 Collecta. All rights reserved.</p>
         </div>
       </div>
