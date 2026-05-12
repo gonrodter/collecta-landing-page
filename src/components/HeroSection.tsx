@@ -10,18 +10,18 @@ const HeroSection = () => {
   return (
     <section className="overflow-hidden bg-[#fbfcf7] px-5 pb-14 pt-24 text-left text-[#111312] sm:pb-20 sm:pt-28">
       <div className="container mx-auto max-w-7xl">
-        <div className="grid items-center gap-10 md:gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-32">
+        <div className="grid justify-center items-center gap-10 md:gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-32">
           <motion.div
             initial={{ opacity: 0, y: 22 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
             className="max-w-[620px]"
           >
-            <div className="inline-flex items-center rounded-full border border-[#56ABA0] bg-[#56ABA0] px-4 py-2 text-sm font-semibold text-[#fbfcf7] shadow-[0_12px_28px_-24px_rgba(17,19,18,0.5)]">
+            <div className="hidden sm:inline-flex lg:hidden xl:inline-flex items-center rounded-full border border-[#56ABA0] bg-[#56ABA0] px-4 py-2 text-sm font-semibold text-[#fbfcf7] shadow-[0_12px_28px_-24px_rgba(17,19,18,0.5)]">
               Built for creators who save more ideas than they publish
             </div>
 
-            <h1 className="mt-6 text-[2.35rem] font-extrabold leading-[1.04] tracking-normal sm:text-[3.15rem] lg:text-[3.75rem]">
+            <h1 className="mt-6 text-[2.35rem] font-extrabold leading-[1.04] tracking-normal sm:text-[3.15rem] xl:text-[3.75rem]">
               Turn saved inspiration into posts you can actually publish
             </h1>
 
@@ -30,7 +30,7 @@ const HeroSection = () => {
             </p>
 
             <div className="mt-7 flex justify-start">
-              <AppStoreBadge href={ctaHref} className="h-14 sm:h-16" />
+              <AppStoreBadge href={ctaHref} className="h-10 sm:h-12 lg:h-16" />
             </div>
           </motion.div>
 
@@ -43,8 +43,8 @@ const HeroSection = () => {
             {/* TODO: Replace with the final rectangular hero mockup showing saved inspiration -> Post Generator -> publish-ready output. */}
             <img
               src={heroMockup}
-              alt="Collecta app mockup showing saved inspiration"
-              className="w-[118%] max-w-none -translate-x-[7%] drop-shadow-[0_28px_44px_rgba(17,19,18,0.18)]"
+              alt="Collecta app mockup showing saved inspiration turning into publish-ready content."
+              className="w-[118%] max-w-none md:max-w-[700px] lg:max-w-none -translate-x-[7%] drop-shadow-[0_28px_44px_rgba(17,19,18,0.18)]"
             />
           </motion.div>
         </div>

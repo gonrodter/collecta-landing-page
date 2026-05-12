@@ -48,10 +48,10 @@ const Navbar = () => {
           href={ctaHref}
           target={HAS_APP_STORE_URL ? "_blank" : undefined}
           rel={HAS_APP_STORE_URL ? "noreferrer" : undefined}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-[#111312] px-3.5 py-2 text-xs font-extrabold text-white sm:hidden"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-[#111312] px-3.5 py-2 text-xs font-extrabold leading-none text-white sm:hidden"
         >
-          <AppleLogo className="h-4 w-4" />
-          Get app
+          <AppleLogo className="h-4 w-4 shrink-0" />
+          <span className="translate-y-[0.5px]">Get app</span>
         </a>
 
       </div>

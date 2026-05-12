@@ -190,7 +190,7 @@ const ProductHuntLogo = () => (
 );
 
 const TwitterResponseCard = ({ tweet }: { tweet: (typeof tweets)[number] }) => (
-  <article className="relative flex min-h-[320px] flex-col rounded-[28px] bg-white p-5 text-left font-sans text-[#0f1419] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
+  <article className="relative flex min-h-[320px] w-full min-w-0 max-w-full flex-col overflow-hidden rounded-[28px] bg-white p-5 text-left font-sans text-[#0f1419] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
     <a href={tweet.href} target="_blank" rel="noreferrer" aria-label={`Open ${tweet.author}'s tweet`} className="absolute inset-0 z-0 rounded-[28px]" />
     <div className="relative z-10 flex items-start justify-between gap-4">
       <div className="flex min-w-0 items-center gap-3">
@@ -255,9 +255,6 @@ const ProductHuntCommentCard = () => (
     />
     <span className="absolute right-5 top-5 z-10">
       <ProductHuntLogo />
-    </span>
-    <span className="absolute -left-2 bottom-16 hidden h-4 w-4 items-center justify-center rounded-full border border-[#94a3b8] bg-white text-[#64748b] sm:flex">
-      <span className="h-px w-2 bg-current" />
     </span>
 
     <span className="relative z-10 block h-fit shrink-0 rounded-full">
@@ -401,13 +398,11 @@ const FeaturesSection = () => {
 
   return (
     <div className="bg-[#fbfcf7] text-left text-[#111312]">
-      <section id="proof" className="scroll-mt-6 px-5 py-14 sm:py-20">
-        <div className="container mx-auto max-w-7xl">
-          <SectionHeading
-            title="Creators are already talking about the problem"
-          />
+      <section id="proof" className="scroll-mt-6 py-14 sm:py-20">
+        <div className="mx-auto max-w-7xl px-5">
+          <SectionHeading title="Creators are already talking about the problem" />
 
-          <div className="mt-9 grid gap-5 lg:grid-cols-3">
+          <div className="mt-9 grid w-full min-w-0 grid-cols-1 gap-5 lg:grid-cols-3">
             {tweets.map((tweet) => (
               <TwitterResponseCard key={tweet.href} tweet={tweet} />
             ))}
@@ -418,7 +413,7 @@ const FeaturesSection = () => {
       </section>
 
       <section id="include" className="scroll-mt-6 px-5 py-14 sm:py-20">
-        <div className="container mx-auto max-w-7xl">
+        <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading title="What does Collecta include" />
 
           <div className="mt-10 grid items-start gap-9 lg:grid-cols-[0.95fr_1.05fr]">
@@ -456,7 +451,7 @@ const FeaturesSection = () => {
       </section>
 
       <section id="why" className="scroll-mt-6 px-5 py-14 sm:py-20">
-        <div className="container mx-auto max-w-7xl">
+        <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading
             title="Why choose Collecta?"
             copy="Collecta turns scattered inspiration into publish-ready content."
@@ -481,7 +476,7 @@ const FeaturesSection = () => {
       </section>
 
       <section id="pipeline" className="scroll-mt-6 px-5 py-14 sm:py-20">
-        <div className="container mx-auto max-w-7xl">
+        <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading
             title="Turn saved inspiration into a content pipeline"
             copy="Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish."
