@@ -1,119 +1,53 @@
-import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 
-import AppleLogo from "@/components/AppleLogo";
-import firstMockupVideo from "@/assets/collecta-first-mockup.mp4";
-import heroPoster from "@/assets/hero-post-generator-mockup.png";
-import { APP_STORE_URL } from "@/lib/appConfig";
+import AppStoreBadge from "@/components/AppStoreBadge";
+import heroMockup from "@/assets/hero-image.webp";
+import { APP_STORE_URL, HAS_APP_STORE_URL } from "@/lib/appConfig";
 
 const HeroSection = () => {
-  const heroVideoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    const video = heroVideoRef.current;
-
-    if (!video) {
-      return;
-    }
-
-    video.muted = true;
-    video.defaultMuted = true;
-    video.volume = 0;
-    video.controls = false;
-
-    const keepPlaying = () => {
-      video.muted = true;
-      video.volume = 0;
-      void video.play();
-    };
-
-    video.addEventListener("pause", keepPlaying);
-    video.addEventListener("volumechange", keepPlaying);
-
-    keepPlaying();
-
-    return () => {
-      video.removeEventListener("pause", keepPlaying);
-      video.removeEventListener("volumechange", keepPlaying);
-    };
-  }, []);
+  const ctaHref = HAS_APP_STORE_URL ? APP_STORE_URL : "#download";
 
   return (
-    <section className="flex min-h-[86vh] flex-col items-center justify-start overflow-x-clip bg-[#56ABA0] px-5 pb-8 pt-16 text-center text-white">
-      <div className="mx-auto flex w-full max-w-4xl flex-col items-center">
-        <motion.h1
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.65, ease: "easeOut" }}
-          className="text-[3.2rem] font-extrabold uppercase leading-[0.88] tracking-normal sm:text-[4.6rem] lg:text-[6rem]"
-        >
-          Save
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.08, ease: "easeOut" }}
-          className="mt-2 text-xl font-bold uppercase leading-tight tracking-normal sm:text-2xl lg:text-3xl"
-        >
-          Organize it. Turn it into content.
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.55, delay: 0.16, ease: "easeOut" }}
-          className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/84 sm:text-lg"
-        >
-          Save posts from social media, organize them by topic, and turn them into content you can actually publish.
-        </motion.p>
-
-        <motion.a
-          initial={{ opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          whileHover={{ y: -5, scale: 1.04 }}
-          whileTap={{ y: 0, scale: 0.97 }}
-          transition={{
-            opacity: { duration: 0.55, delay: 0.24, ease: "easeOut" },
-            y: { type: "spring", stiffness: 420, damping: 24 },
-            scale: { type: "spring", stiffness: 420, damping: 24 },
-          }}
-          href={APP_STORE_URL || "#download"}
-          className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-base font-semibold text-[#111312] shadow-[0_18px_34px_-18px_rgba(0,0,0,0.66)] transition-shadow duration-200 hover:bg-white hover:shadow-[0_28px_46px_-22px_rgba(0,0,0,0.76)]"
-        >
-          <AppleLogo className="h-5 w-5" />
-          Download on the App Store
-        </motion.a>
-
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.32, ease: "easeOut" }}
-          className="flex h-[530px] w-full items-center justify-center overflow-hidden sm:h-[650px] sm:py-8 md:h-[600px] md:py-6 lg:h-[640px] xl:h-[680px]"
-        >
-          <div className="relative aspect-[5/4] h-auto w-[680px] max-w-none shrink-0 sm:w-[740px] md:w-[800px] lg:w-[860px] xl:w-[920px]">
-            <img
-              src={heroPoster}
-              alt="Collecta app showing saved posts"
-              className="relative z-10 h-auto w-full drop-shadow-[0_18px_18px_rgba(0,0,0,0.28)]"
-            />
-            <div className="absolute left-[36.25%] top-[calc(12.8%-2px)] z-20 h-[calc(75.15%-1px)] w-[27.5%] overflow-hidden rounded-[28px] md:rounded-[36px]">
-              <video
-                ref={heroVideoRef}
-                className="pointer-events-none h-[calc(100%+2px)] w-full object-cover object-top"
-                muted
-                defaultMuted
-                loop
-                playsInline
-                autoPlay
-                preload="metadata"
-                aria-label="Collecta first mockup video showing how content is saved"
-              >
-                <source src={firstMockupVideo} type="video/mp4" />
-              </video>
+    <section className="overflow-hidden bg-[#fbfcf7] px-5 pb-14 pt-24 text-left text-[#111312] sm:pb-20 sm:pt-28">
+      <div className="container mx-auto max-w-7xl">
+        <div className="grid items-center gap-10 md:gap-16 lg:grid-cols-[0.9fr_1.1fr] lg:gap-32">
+          <motion.div
+            initial={{ opacity: 0, y: 22 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
+            className="max-w-[620px]"
+          >
+            <div className="inline-flex items-center rounded-full border border-[#56ABA0] bg-[#56ABA0] px-4 py-2 text-sm font-semibold text-[#fbfcf7] shadow-[0_12px_28px_-24px_rgba(17,19,18,0.5)]">
+              Built for creators who save more ideas than they publish
             </div>
-          </div>
-        </motion.div>
+
+            <h1 className="mt-6 text-[2.35rem] font-extrabold leading-[1.04] tracking-normal sm:text-[3.15rem] lg:text-[3.75rem]">
+              Turn saved inspiration into posts you can actually publish
+            </h1>
+
+            <p className="mt-5 max-w-[560px] text-base leading-7 text-[#5f6360]">
+              Collecta helps creators transform saved posts, links and rough ideas into clear content plans, hooks, scripts and publishing checklists, so you never have to start from a blank page.
+            </p>
+
+            <div className="mt-7 flex justify-start">
+              <AppStoreBadge href={ctaHref} className="h-14 sm:h-16" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.12, ease: "easeOut" }}
+            className="relative"
+          >
+            {/* TODO: Replace with the final rectangular hero mockup showing saved inspiration -> Post Generator -> publish-ready output. */}
+            <img
+              src={heroMockup}
+              alt="Collecta app mockup showing saved inspiration"
+              className="w-[118%] max-w-none -translate-x-[7%] drop-shadow-[0_28px_44px_rgba(17,19,18,0.18)]"
+            />
+          </motion.div>
+        </div>
       </div>
     </section>
   );

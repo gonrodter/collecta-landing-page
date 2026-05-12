@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
 
+import AppStoreBadge from "@/components/AppStoreBadge";
 import AppleLogo from "@/components/AppleLogo";
 import { APP_STORE_URL, HAS_APP_STORE_URL } from "@/lib/appConfig";
 
@@ -10,9 +10,7 @@ const Navbar = () => {
   const [hasScrolled, setHasScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setHasScrolled(window.scrollY > 48);
-    };
+    const handleScroll = () => setHasScrolled(window.scrollY > 32);
 
     handleScroll();
     window.addEventListener("scroll", handleScroll, { passive: true });
@@ -21,30 +19,43 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav
-      className={`fixed left-0 right-0 top-0 z-50 bg-[#56ABA0]/95 text-white backdrop-blur-md transition-colors ${
-        hasScrolled ? "border-b border-white/25" : "border-b border-transparent"
-      }`}
-    >
-      <div className="container mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-        <Link to="/" className="text-base font-bold tracking-tight transition-opacity hover:opacity-80 sm:text-lg">
+    <header className={`fixed left-0 right-0 top-0 z-50 bg-[#fbfcf7]/88 px-5 backdrop-blur-xl transition-shadow ${hasScrolled ? "shadow-[0_10px_34px_-30px_rgba(17,19,18,0.65)]" : ""}`}>
+      <div className="container mx-auto flex max-w-7xl items-center justify-between py-4">
+        <a href="/#" className="text-2xl font-extrabold tracking-normal text-[#111312] transition-opacity hover:opacity-70">
           collecta
-        </Link>
+        </a>
 
-        <motion.a
+        <nav className="hidden items-center gap-8 text-sm font-extrabold text-[#111312] lg:flex">
+          <a href="/#proof" className="transition-opacity hover:opacity-65">
+            Proof
+          </a>
+          <a href="/#include" className="transition-opacity hover:opacity-65">
+            Features
+          </a>
+          <a href="/#why" className="transition-opacity hover:opacity-65">
+            Why Collecta
+          </a>
+          <a href="/#pipeline" className="transition-opacity hover:opacity-65">
+            Pipeline
+          </a>
+        </nav>
+
+        <div className="hidden sm:block">
+          <AppStoreBadge href={ctaHref} className="h-10" />
+        </div>
+
+        <a
           href={ctaHref}
           target={HAS_APP_STORE_URL ? "_blank" : undefined}
           rel={HAS_APP_STORE_URL ? "noreferrer" : undefined}
-          whileHover={{ y: -3, scale: 1.05 }}
-          whileTap={{ y: 0, scale: 0.96 }}
-          transition={{ type: "spring", stiffness: 440, damping: 24 }}
-          className="inline-flex items-center gap-1.5 rounded-lg bg-white px-3.5 py-1.5 text-xs font-semibold text-[#111312] shadow-[0_10px_24px_-14px_rgba(0,0,0,0.65)] transition-shadow duration-200 hover:bg-white hover:shadow-[0_18px_32px_-16px_rgba(0,0,0,0.74)] sm:text-sm"
+          className="inline-flex items-center gap-1.5 rounded-lg bg-[#111312] px-3.5 py-2 text-xs font-extrabold text-white sm:hidden"
         >
           <AppleLogo className="h-4 w-4" />
-          Download
-        </motion.a>
+          Get app
+        </a>
+
       </div>
-    </nav>
+    </header>
   );
 };
 

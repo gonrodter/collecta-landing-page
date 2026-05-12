@@ -1,41 +1,34 @@
-import { motion } from "framer-motion";
-
 import AppleLogo from "@/components/AppleLogo";
-import { APP_STORE_URL } from "@/lib/appConfig";
+import { APP_STORE_URL, HAS_APP_STORE_URL } from "@/lib/appConfig";
 
 const CtaSection = () => {
+  const ctaHref = HAS_APP_STORE_URL ? APP_STORE_URL : undefined;
+
   return (
-    <section id="download" className="flex min-h-[48vh] items-center justify-center bg-[#56ABA0] px-5 py-14 text-center text-white">
-      <motion.div
-        initial={{ opacity: 1, y: 0 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6 }}
-        className="mx-auto flex max-w-3xl flex-col items-center"
-      >
-        <h2 className="text-[2.8rem] font-extrabold uppercase leading-[0.9] tracking-normal sm:text-[4rem] lg:text-[5rem]">
-          Start
-        </h2>
+    <section id="download" className="scroll-mt-6 bg-[linear-gradient(180deg,#fbfcf7_0%,#edf7f3_45%,#fbfcf7_100%)] px-5 py-16 text-[#111312] sm:py-20">
+      <div className="container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="text-5xl font-extrabold uppercase leading-[0.95] tracking-normal sm:text-6xl">
+            Start
+          </h2>
+          <p className="mt-3 text-2xl font-extrabold uppercase leading-tight">
+            Turning saves into content
+          </p>
+          <p className="mx-auto mt-7 max-w-2xl text-lg leading-8 text-[#646865]">
+            Collect what inspires you, organize it, and turn it into content even before you feel ready.
+          </p>
 
-        <p className="mt-2 text-xl font-bold uppercase leading-tight tracking-normal sm:text-2xl lg:text-3xl">
-          turning saves into content
-        </p>
-
-        <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-white/84 sm:text-lg">
-          Collect what inspires you, organize it, and create from it when you are ready.
-        </p>
-
-        <motion.a
-          href={APP_STORE_URL || undefined}
-          whileHover={{ y: -5, scale: 1.04 }}
-          whileTap={{ y: 0, scale: 0.97 }}
-          transition={{ type: "spring", stiffness: 420, damping: 24 }}
-          className="mt-7 inline-flex items-center gap-2 rounded-xl bg-white px-6 py-3 text-base font-semibold text-[#111312] shadow-[0_18px_34px_-18px_rgba(0,0,0,0.66)] transition-shadow duration-200 hover:bg-white hover:shadow-[0_28px_46px_-22px_rgba(0,0,0,0.76)]"
-        >
-          <AppleLogo className="h-5 w-5" />
-          Download on the App Store
-        </motion.a>
-      </motion.div>
+          <a
+            href={ctaHref}
+            target={HAS_APP_STORE_URL ? "_blank" : undefined}
+            rel={HAS_APP_STORE_URL ? "noreferrer" : undefined}
+            className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#56ABA0] px-6 py-3 text-base font-bold text-[#fbfcf7] shadow-[0_18px_34px_-18px_rgba(17,19,18,0.46)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_46px_-22px_rgba(17,19,18,0.56)]"
+          >
+            <AppleLogo className="h-5 w-5" />
+            Download on the App Store
+          </a>
+        </div>
+      </div>
     </section>
   );
 };
