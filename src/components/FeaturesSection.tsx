@@ -370,12 +370,13 @@ const RedditEmbedCard = () => {
 };
 
 const MockupImage = ({ src, alt }: { src: string; alt: string }) => (
-  <img
-    key={src}
-    src={src}
-    alt={alt}
-    className="mx-auto w-full max-w-[240px] object-contain drop-shadow-[0_28px_44px_rgba(17,19,18,0.14)] transition-all duration-500 ease-out hover:-translate-y-1 hover:drop-shadow-[0_34px_52px_rgba(17,19,18,0.18)]"
-  />
+  <div className="relative mx-auto w-full max-w-[140px] aspect-[9/19] sm:max-w-[240px]">
+    <img
+      src={src}
+      alt={alt}
+      className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_28px_44px_rgba(17,19,18,0.14)] transition-all duration-500 ease-out hover:-translate-y-1 hover:drop-shadow-[0_34px_52px_rgba(17,19,18,0.18)]"
+    />
+  </div>
 );
 
 const PipelineStepContent = ({ step }: { step: (typeof pipelineSteps)[number] }) => (
@@ -429,17 +430,23 @@ const FeaturesSection = () => {
                     key={item.title}
                     type="button"
                     onClick={() => setActiveInclude(index)}
-                    className={`rounded-[26px] bg-white p-6 text-left shadow-[0_16px_50px_-42px_rgba(17,19,18,0.5)] ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)] ${
+                    className={`rounded-[20px] bg-white p-4 text-left shadow-[0_16px_50px_-42px_rgba(17,19,18,0.5)] ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)] sm:rounded-[26px] sm:p-6 ${
                       isActive ? "ring-[#111312]/45" : "ring-[#e6e9e2] hover:ring-[#cfd6ce]"
                     }`}
                   >
-                    <div className="flex gap-4">
-                      <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-[16px] bg-[#eef7f4] text-[#56ABA0]">
-                        <Icon className="h-6 w-6" />
+                    <div className="flex gap-3 sm:gap-4">
+                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-[#eef7f4] text-[#56ABA0] sm:h-12 sm:w-12 sm:rounded-[16px]">
+                        <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
                       </span>
+
                       <span>
-                        <span className="block text-xl font-extrabold tracking-normal sm:text-2xl">{item.title}</span>
-                        <span className="mt-2 block text-base leading-7 text-[#646865]">{item.copy}</span>
+                        <span className="block text-lg font-extrabold tracking-normal leading-tight sm:text-2xl">
+                          {item.title}
+                        </span>
+
+                        <span className="mt-1.5 block text-sm leading-6 text-[#646865] sm:mt-2 sm:text-base sm:leading-7">
+                          {item.copy}
+                        </span>
                       </span>
                     </div>
                   </button>
@@ -451,23 +458,32 @@ const FeaturesSection = () => {
       </section>
 
       <section id="why" className="scroll-mt-6 px-5 py-14 sm:py-20">
-        <div className="sm:container mx-auto max-w-7xl">
+        <div className="mx-auto max-w-7xl">
           <SectionHeading
             title="Why choose Collecta?"
             copy="Collecta turns scattered inspiration into publish-ready content."
           />
 
-          <div className="mt-10 grid gap-6 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 lg:grid-cols-3">
             {benefits.map((benefit) => {
               const Icon = benefit.Icon;
 
               return (
-                <div key={benefit.title} className="rounded-[34px] bg-white p-8 shadow-[0_22px_70px_-50px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_78px_-50px_rgba(17,19,18,0.62)]">
-                  <div className="flex h-16 w-16 items-center justify-center rounded-[22px] bg-[#eef7f4] text-[#56ABA0]">
-                    <Icon className="h-8 w-8" />
+                <div
+                  key={benefit.title}
+                  className="rounded-[24px] bg-white p-5 shadow-[0_22px_70px_-50px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_78px_-50px_rgba(17,19,18,0.62)] sm:rounded-[34px] sm:p-8"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-[16px] bg-[#eef7f4] text-[#56ABA0] sm:h-16 sm:w-16 sm:rounded-[22px]">
+                    <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
                   </div>
-                  <h3 className="mt-8 text-2xl font-extrabold leading-tight tracking-normal">{benefit.title}</h3>
-                  <p className="mt-4 text-base leading-7 text-[#646865]">{benefit.copy}</p>
+
+                  <h3 className="mt-6 text-xl font-extrabold leading-tight tracking-normal sm:mt-8 sm:text-2xl">
+                    {benefit.title}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-6 text-[#646865] sm:mt-4 sm:text-base sm:leading-7">
+                    {benefit.copy}
+                  </p>
                 </div>
               );
             })}
