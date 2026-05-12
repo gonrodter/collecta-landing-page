@@ -1,4 +1,4 @@
-import { Children, useEffect, useRef, useState, type ReactNode } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import { BookMarked, Database, FileText, Heart, Link2, MessageCircle, Repeat2, Route, Tags, WandSparkles } from "lucide-react";
 
 import contentReadyMockup from "@/assets/content-ready-mockup.png";
@@ -6,7 +6,6 @@ import generateMockup from "@/assets/feature-generate-mockup.png";
 import heroMockup from "@/assets/saves-mockup.png";
 import organizeMockup from "@/assets/feature-organize-mockup.png";
 import selectInspoMockup from "@/assets/feature-select-inspo-mockup.png";
-import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 const REDDIT_WIDGET_SCRIPT_ID = "reddit-widgets-script";
 
@@ -188,24 +187,6 @@ const ProductHuntLogo = () => (
       <path d="M22.667 20H17v-6h5.667c1.656 0 3 1.343 3 3s-1.344 3-3 3m0-10H13v20h4v-6h5.667c3.866 0 7-3.134 7-7s-3.134-7-7-7" fill="#FFF" />
     </g>
   </svg>
-);
-
-const MobileCardCarousel = ({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) => (
-  <Carousel opts={{ align: "start", containScroll: "trimSnaps" }} className={`lg:hidden ${className}`}>
-    <CarouselContent>
-      {Children.map(children, (child, index) => (
-        <CarouselItem key={index} className="sm:max-w-[48%]" style={{ flexBasis: "86%", maxWidth: "86%" }}>
-          {child}
-        </CarouselItem>
-      ))}
-    </CarouselContent>
-  </Carousel>
 );
 
 const TwitterResponseCard = ({ tweet }: { tweet: (typeof tweets)[number] }) => (
@@ -436,7 +417,7 @@ const IncludeOptionCard = ({
           <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
         </span>
 
-        <span className="min-w-0 max-w-[calc(100vw-132px)] sm:max-w-none">
+        <span className="min-w-0">
           <span className="block text-lg font-extrabold leading-tight tracking-normal sm:text-2xl">
             {item.title}
           </span>
@@ -487,15 +468,7 @@ const FeaturesSection = () => {
         <div className="mx-auto max-w-7xl px-5">
           <SectionHeading title="Creators are already talking about the problem" />
 
-          <MobileCardCarousel className="mt-9">
-            {tweets.map((tweet) => (
-              <TwitterResponseCard key={tweet.href} tweet={tweet} />
-            ))}
-            <ProductHuntCommentCard />
-            <RedditEmbedCard />
-          </MobileCardCarousel>
-
-          <div className="mt-9 hidden w-full min-w-0 grid-cols-1 gap-5 lg:grid lg:grid-cols-3">
+          <div className="mt-9 grid w-full min-w-0 grid-cols-1 gap-5 lg:grid-cols-3">
             {tweets.map((tweet) => (
               <TwitterResponseCard key={tweet.href} tweet={tweet} />
             ))}
@@ -512,28 +485,15 @@ const FeaturesSection = () => {
           <div className="mt-10 grid items-start gap-9 lg:grid-cols-[0.95fr_1.05fr]">
             <MockupImage src={activeFeature.image} alt={activeFeature.alt} />
 
-            <div>
-              <MobileCardCarousel>
-                {includes.map((item, index) => (
-                  <IncludeOptionCard
-                    key={item.title}
-                    item={item}
-                    isActive={activeInclude === index}
-                    onClick={() => setActiveInclude(index)}
-                  />
-                ))}
-              </MobileCardCarousel>
-
-              <div className="hidden gap-4 lg:grid">
-                {includes.map((item, index) => (
-                  <IncludeOptionCard
-                    key={item.title}
-                    item={item}
-                    isActive={activeInclude === index}
-                    onClick={() => setActiveInclude(index)}
-                  />
-                ))}
-              </div>
+            <div className="grid gap-4">
+              {includes.map((item, index) => (
+                <IncludeOptionCard
+                  key={item.title}
+                  item={item}
+                  isActive={activeInclude === index}
+                  onClick={() => setActiveInclude(index)}
+                />
+              ))}
             </div>
           </div>
         </div>
@@ -546,13 +506,7 @@ const FeaturesSection = () => {
             copy="Collecta turns scattered inspiration into publish-ready content."
           />
 
-          <MobileCardCarousel className="mt-8 sm:mt-10">
-            {benefits.map((benefit) => (
-              <BenefitCard key={benefit.title} benefit={benefit} />
-            ))}
-          </MobileCardCarousel>
-
-          <div className="mt-8 hidden gap-4 sm:mt-10 sm:gap-6 lg:grid lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 lg:grid-cols-3">
             {benefits.map((benefit) => (
               <BenefitCard key={benefit.title} benefit={benefit} />
             ))}
@@ -567,13 +521,7 @@ const FeaturesSection = () => {
             copy="Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish."
           />
 
-          <MobileCardCarousel className="mt-8">
-            {pipelineStats.map((stat) => (
-              <PipelineStatCard key={stat.label} stat={stat} />
-            ))}
-          </MobileCardCarousel>
-
-          <div className="mt-8 hidden gap-4 lg:grid lg:grid-cols-4">
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {pipelineStats.map((stat) => (
               <PipelineStatCard key={stat.label} stat={stat} />
             ))}
