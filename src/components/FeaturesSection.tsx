@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { Children, useEffect, useRef, useState, type ReactNode } from "react";
 import { BookMarked, Database, FileText, Heart, Link2, MessageCircle, Repeat2, Route, Tags, WandSparkles } from "lucide-react";
 
 import contentReadyMockup from "@/assets/content-ready-mockup.png";
@@ -6,6 +6,7 @@ import generateMockup from "@/assets/feature-generate-mockup.png";
 import heroMockup from "@/assets/saves-mockup.png";
 import organizeMockup from "@/assets/feature-organize-mockup.png";
 import selectInspoMockup from "@/assets/feature-select-inspo-mockup.png";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 const REDDIT_WIDGET_SCRIPT_ID = "reddit-widgets-script";
 
@@ -42,13 +43,13 @@ const tweets = [
     time: "7:35 PM · Apr 16, 2026",
   },
   {
-    bodyLines: ["I'm literally in need of this 🤭🤭🤭"],
-    author: "Business Solutions & Consulting",
-    handle: "@ambeethltd",
-    avatarUrl: "https://pbs.twimg.com/profile_images/1825302253055414273/JCpH7ZqC_400x400.jpg",
+    bodyLines: ["this is exactly the bridge most people miss. execution is the only thing that separates a hobby from a business."],
+    author: "Sridhar",
+    handle: "@sridharfyi",
+    avatarUrl: "https://pbs.twimg.com/profile_images/1774608801800339456/GIawSjxp_400x400.jpg",
     avatarClassName: "bg-[linear-gradient(135deg,#0f172a,#475569_50%,#94a3b8)]",
-    href: "https://twitter.com/ambeethltd/status/2044840976233984460?ref_src=twsrc%5Etfw",
-    time: "7:37 PM · Apr 16, 2026",
+    href: "https://x.com/sridharfyi/status/2054243765351600586?s=20",
+    time: "May 12, 2026",
   },
 ];
 
@@ -187,6 +188,24 @@ const ProductHuntLogo = () => (
       <path d="M22.667 20H17v-6h5.667c1.656 0 3 1.343 3 3s-1.344 3-3 3m0-10H13v20h4v-6h5.667c3.866 0 7-3.134 7-7s-3.134-7-7-7" fill="#FFF" />
     </g>
   </svg>
+);
+
+const MobileCardCarousel = ({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) => (
+  <Carousel opts={{ align: "start", containScroll: "trimSnaps" }} className={`lg:hidden ${className}`}>
+    <CarouselContent>
+      {Children.map(children, (child, index) => (
+        <CarouselItem key={index} className="sm:max-w-[48%]" style={{ flexBasis: "86%", maxWidth: "86%" }}>
+          {child}
+        </CarouselItem>
+      ))}
+    </CarouselContent>
+  </Carousel>
 );
 
 const TwitterResponseCard = ({ tweet }: { tweet: (typeof tweets)[number] }) => (
@@ -393,6 +412,71 @@ const PipelineStepContent = ({ step }: { step: (typeof pipelineSteps)[number] })
   </>
 );
 
+const IncludeOptionCard = ({
+  item,
+  isActive,
+  onClick,
+}: {
+  item: (typeof includes)[number];
+  isActive: boolean;
+  onClick: () => void;
+}) => {
+  const Icon = item.Icon;
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className={`h-full w-full rounded-[20px] bg-white p-4 text-left shadow-[0_16px_50px_-42px_rgba(17,19,18,0.5)] ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)] sm:rounded-[26px] sm:p-6 ${
+        isActive ? "ring-[#111312]/45" : "ring-[#e6e9e2] hover:ring-[#cfd6ce]"
+      }`}
+    >
+      <div className="flex gap-3 sm:gap-4">
+        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-[#eef7f4] text-[#56ABA0] sm:h-12 sm:w-12 sm:rounded-[16px]">
+          <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
+        </span>
+
+        <span className="min-w-0 max-w-[calc(100vw-132px)] sm:max-w-none">
+          <span className="block text-lg font-extrabold leading-tight tracking-normal sm:text-2xl">
+            {item.title}
+          </span>
+
+          <span className="mt-1.5 block text-sm leading-6 text-[#646865] sm:mt-2 sm:text-base sm:leading-7">
+            {item.copy}
+          </span>
+        </span>
+      </div>
+    </button>
+  );
+};
+
+const BenefitCard = ({ benefit }: { benefit: (typeof benefits)[number] }) => {
+  const Icon = benefit.Icon;
+
+  return (
+    <div className="h-full rounded-[24px] bg-white p-5 shadow-[0_22px_70px_-50px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_78px_-50px_rgba(17,19,18,0.62)] sm:rounded-[34px] sm:p-8">
+      <div className="flex h-12 w-12 items-center justify-center rounded-[16px] bg-[#eef7f4] text-[#56ABA0] sm:h-16 sm:w-16 sm:rounded-[22px]">
+        <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
+      </div>
+
+      <h3 className="mt-6 text-xl font-extrabold leading-tight tracking-normal sm:mt-8 sm:text-2xl">
+        {benefit.title}
+      </h3>
+
+      <p className="mt-3 text-sm leading-6 text-[#646865] sm:mt-4 sm:text-base sm:leading-7">
+        {benefit.copy}
+      </p>
+    </div>
+  );
+};
+
+const PipelineStatCard = ({ stat }: { stat: (typeof pipelineStats)[number] }) => (
+  <div className="h-full rounded-[24px] bg-white p-5 shadow-[0_16px_48px_-38px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_64px_-42px_rgba(17,19,18,0.62)]">
+    <p className="text-4xl font-extrabold tracking-normal text-[#56ABA0]">{stat.value}</p>
+    <p className="mt-1 text-sm font-bold text-[#646865]">{stat.label}</p>
+  </div>
+);
+
 const FeaturesSection = () => {
   const [activeInclude, setActiveInclude] = useState(0);
   const activeFeature = includes[activeInclude];
@@ -403,7 +487,15 @@ const FeaturesSection = () => {
         <div className="mx-auto max-w-7xl px-5">
           <SectionHeading title="Creators are already talking about the problem" />
 
-          <div className="mt-9 grid w-full min-w-0 grid-cols-1 gap-5 lg:grid-cols-3">
+          <MobileCardCarousel className="mt-9">
+            {tweets.map((tweet) => (
+              <TwitterResponseCard key={tweet.href} tweet={tweet} />
+            ))}
+            <ProductHuntCommentCard />
+            <RedditEmbedCard />
+          </MobileCardCarousel>
+
+          <div className="mt-9 hidden w-full min-w-0 grid-cols-1 gap-5 lg:grid lg:grid-cols-3">
             {tweets.map((tweet) => (
               <TwitterResponseCard key={tweet.href} tweet={tweet} />
             ))}
@@ -420,38 +512,28 @@ const FeaturesSection = () => {
           <div className="mt-10 grid items-start gap-9 lg:grid-cols-[0.95fr_1.05fr]">
             <MockupImage src={activeFeature.image} alt={activeFeature.alt} />
 
-            <div className="grid gap-4">
-              {includes.map((item, index) => {
-                const Icon = item.Icon;
-                const isActive = activeInclude === index;
-
-                return (
-                  <button
+            <div>
+              <MobileCardCarousel>
+                {includes.map((item, index) => (
+                  <IncludeOptionCard
                     key={item.title}
-                    type="button"
+                    item={item}
+                    isActive={activeInclude === index}
                     onClick={() => setActiveInclude(index)}
-                    className={`rounded-[20px] bg-white p-4 text-left shadow-[0_16px_50px_-42px_rgba(17,19,18,0.5)] ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)] sm:rounded-[26px] sm:p-6 ${
-                      isActive ? "ring-[#111312]/45" : "ring-[#e6e9e2] hover:ring-[#cfd6ce]"
-                    }`}
-                  >
-                    <div className="flex gap-3 sm:gap-4">
-                      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[14px] bg-[#eef7f4] text-[#56ABA0] sm:h-12 sm:w-12 sm:rounded-[16px]">
-                        <Icon className="h-5 w-5 sm:h-6 sm:w-6" />
-                      </span>
+                  />
+                ))}
+              </MobileCardCarousel>
 
-                      <span>
-                        <span className="block text-lg font-extrabold tracking-normal leading-tight sm:text-2xl">
-                          {item.title}
-                        </span>
-
-                        <span className="mt-1.5 block text-sm leading-6 text-[#646865] sm:mt-2 sm:text-base sm:leading-7">
-                          {item.copy}
-                        </span>
-                      </span>
-                    </div>
-                  </button>
-                );
-              })}
+              <div className="hidden gap-4 lg:grid">
+                {includes.map((item, index) => (
+                  <IncludeOptionCard
+                    key={item.title}
+                    item={item}
+                    isActive={activeInclude === index}
+                    onClick={() => setActiveInclude(index)}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -464,29 +546,16 @@ const FeaturesSection = () => {
             copy="Collecta turns scattered inspiration into publish-ready content."
           />
 
-          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 lg:grid-cols-3">
-            {benefits.map((benefit) => {
-              const Icon = benefit.Icon;
+          <MobileCardCarousel className="mt-8 sm:mt-10">
+            {benefits.map((benefit) => (
+              <BenefitCard key={benefit.title} benefit={benefit} />
+            ))}
+          </MobileCardCarousel>
 
-              return (
-                <div
-                  key={benefit.title}
-                  className="rounded-[24px] bg-white p-5 shadow-[0_22px_70px_-50px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_78px_-50px_rgba(17,19,18,0.62)] sm:rounded-[34px] sm:p-8"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-[16px] bg-[#eef7f4] text-[#56ABA0] sm:h-16 sm:w-16 sm:rounded-[22px]">
-                    <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
-                  </div>
-
-                  <h3 className="mt-6 text-xl font-extrabold leading-tight tracking-normal sm:mt-8 sm:text-2xl">
-                    {benefit.title}
-                  </h3>
-
-                  <p className="mt-3 text-sm leading-6 text-[#646865] sm:mt-4 sm:text-base sm:leading-7">
-                    {benefit.copy}
-                  </p>
-                </div>
-              );
-            })}
+          <div className="mt-8 hidden gap-4 sm:mt-10 sm:gap-6 lg:grid lg:grid-cols-3">
+            {benefits.map((benefit) => (
+              <BenefitCard key={benefit.title} benefit={benefit} />
+            ))}
           </div>
         </div>
       </section>
@@ -498,12 +567,15 @@ const FeaturesSection = () => {
             copy="Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish."
           />
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <MobileCardCarousel className="mt-8">
             {pipelineStats.map((stat) => (
-              <div key={stat.label} className="rounded-[24px] bg-white p-5 shadow-[0_16px_48px_-38px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_64px_-42px_rgba(17,19,18,0.62)]">
-                <p className="text-4xl font-extrabold tracking-normal text-[#56ABA0]">{stat.value}</p>
-                <p className="mt-1 text-sm font-bold text-[#646865]">{stat.label}</p>
-              </div>
+              <PipelineStatCard key={stat.label} stat={stat} />
+            ))}
+          </MobileCardCarousel>
+
+          <div className="mt-8 hidden gap-4 lg:grid lg:grid-cols-4">
+            {pipelineStats.map((stat) => (
+              <PipelineStatCard key={stat.label} stat={stat} />
             ))}
           </div>
 
