@@ -6,6 +6,7 @@ import generateMockup from "@/assets/feature-generate-mockup.png";
 import heroMockup from "@/assets/saves-mockup.png";
 import organizeMockup from "@/assets/feature-organize-mockup.png";
 import selectInspoMockup from "@/assets/feature-select-inspo-mockup.png";
+import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 
 const REDDIT_WIDGET_SCRIPT_ID = "reddit-widgets-script";
 
@@ -190,7 +191,7 @@ const ProductHuntLogo = () => (
 );
 
 const TwitterResponseCard = ({ tweet }: { tweet: (typeof tweets)[number] }) => (
-  <article className="relative flex min-h-[320px] w-full min-w-0 max-w-full flex-col overflow-hidden rounded-[28px] bg-white p-5 text-left font-sans text-[#0f1419] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
+  <article className="relative flex h-full min-h-[320px] w-full min-w-0 max-w-full flex-col overflow-hidden rounded-[28px] bg-white p-5 text-left font-sans text-[#0f1419] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
     <a href={tweet.href} target="_blank" rel="noreferrer" aria-label={`Open ${tweet.author}'s tweet`} className="absolute inset-0 z-0 rounded-[28px]" />
     <div className="relative z-10 flex items-start justify-between gap-4">
       <div className="flex min-w-0 items-center gap-3">
@@ -244,7 +245,7 @@ const ProductHuntCommentCard = () => (
   <article
     id="comment-5337848"
     data-test="comment-5337848"
-    className="relative flex min-h-[320px] flex-row gap-3 rounded-[28px] bg-white p-5 text-left font-sans text-[#111827] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]"
+    className="relative flex h-full min-h-[320px] w-full flex-row gap-3 rounded-[28px] bg-white p-5 text-left font-sans text-[#111827] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]"
   >
     <a
       href="https://www.producthunt.com/products/collecta-2?comment=5337848"
@@ -354,7 +355,7 @@ const RedditEmbedCard = () => {
   }, []);
 
   return (
-    <article className="flex min-h-[320px] items-start justify-center overflow-hidden rounded-[28px] bg-white p-5 shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
+    <article className="flex h-full min-h-[320px] w-full items-start justify-center overflow-hidden rounded-[28px] bg-white p-5 shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
       <blockquote ref={redditRef} className="reddit-embed-bq" data-embed-height="280">
         <a href="https://www.reddit.com/r/buildinpublic/comments/1t9ytwc/comment/ol6gvng/">Comment</a>
         <br /> by{" "}
@@ -408,7 +409,7 @@ const IncludeOptionCard = ({
     <button
       type="button"
       onClick={onClick}
-      className={`h-full w-full rounded-[20px] bg-white p-4 text-left shadow-[0_16px_50px_-42px_rgba(17,19,18,0.5)] ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)] sm:rounded-[26px] sm:p-6 ${
+      className={`flex h-full w-full items-start rounded-[20px] bg-white p-4 text-left shadow-[0_16px_50px_-42px_rgba(17,19,18,0.5)] ring-1 transition-all duration-300 ease-out hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)] sm:rounded-[26px] sm:p-6 ${
         isActive ? "ring-[#111312]/45" : "ring-[#e6e9e2] hover:ring-[#cfd6ce]"
       }`}
     >
@@ -435,7 +436,7 @@ const BenefitCard = ({ benefit }: { benefit: (typeof benefits)[number] }) => {
   const Icon = benefit.Icon;
 
   return (
-    <div className="h-full rounded-[24px] bg-white p-5 shadow-[0_22px_70px_-50px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_78px_-50px_rgba(17,19,18,0.62)] sm:rounded-[34px] sm:p-8">
+    <div className="flex h-full flex-col items-start rounded-[24px] bg-white p-5 shadow-[0_22px_70px_-50px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_78px_-50px_rgba(17,19,18,0.62)] sm:rounded-[34px] sm:p-8">
       <div className="flex h-12 w-12 items-center justify-center rounded-[16px] bg-[#eef7f4] text-[#56ABA0] sm:h-16 sm:w-16 sm:rounded-[22px]">
         <Icon className="h-6 w-6 sm:h-8 sm:w-8" />
       </div>
@@ -458,42 +459,167 @@ const PipelineStatCard = ({ stat }: { stat: (typeof pipelineStats)[number] }) =>
   </div>
 );
 
+const alignFirstStartRestCenter = (viewSize: number, snapSize: number, index: number) =>
+  index === 0 ? 0 : (viewSize - snapSize) / 2;
+
+const equalizeHeights = (elements: Array<HTMLDivElement | null>) => {
+  const visibleElements = elements.filter(
+    (element): element is HTMLDivElement => Boolean(element && element.getClientRects().length),
+  );
+
+  if (!visibleElements.length) {
+    return;
+  }
+
+  visibleElements.forEach((element) => {
+    element.style.height = "auto";
+  });
+
+  const maxHeight = Math.ceil(Math.max(...visibleElements.map((element) => element.getBoundingClientRect().height)));
+
+  visibleElements.forEach((element) => {
+    element.style.height = `${maxHeight}px`;
+  });
+};
+
 const FeaturesSection = () => {
   const [activeInclude, setActiveInclude] = useState(0);
   const activeFeature = includes[activeInclude];
+  const proofCarouselCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const proofGridCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const includeCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const includeGridCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const benefitCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const benefitGridCardRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const proofCards = [
+    { key: tweets[0].href, content: <TwitterResponseCard tweet={tweets[0]} /> },
+    { key: "product-hunt-comment", content: <ProductHuntCommentCard /> },
+    { key: "reddit-comment", content: <RedditEmbedCard /> },
+    { key: tweets[3].href, content: <TwitterResponseCard tweet={tweets[3]} /> },
+    { key: tweets[2].href, content: <TwitterResponseCard tweet={tweets[2]} /> },
+    { key: tweets[1].href, content: <TwitterResponseCard tweet={tweets[1]} /> },
+  ];
+
+  useEffect(() => {
+    const measureCards = () => {
+      equalizeHeights(proofCarouselCardRefs.current);
+      equalizeHeights(proofGridCardRefs.current);
+      equalizeHeights(includeCardRefs.current);
+      equalizeHeights(includeGridCardRefs.current);
+      equalizeHeights(benefitCardRefs.current);
+      equalizeHeights(benefitGridCardRefs.current);
+    };
+
+    measureCards();
+    window.addEventListener("resize", measureCards);
+    document.fonts?.ready.then(measureCards);
+    const timers = [window.setTimeout(measureCards, 500), window.setTimeout(measureCards, 1500)];
+
+    return () => {
+      window.removeEventListener("resize", measureCards);
+      timers.forEach((timer) => window.clearTimeout(timer));
+    };
+  }, []);
 
   return (
-    <div className="bg-[#fbfcf7] text-left text-[#111312]">
+    <div className="overflow-x-hidden bg-[#fbfcf7] text-left text-[#111312]">
       <section id="proof" className="scroll-mt-6 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-5">
           <SectionHeading title="Creators are already talking about the problem" />
 
-          <div className="mt-9 grid w-full min-w-0 grid-cols-1 gap-5 lg:grid-cols-3">
-            {tweets.map((tweet) => (
-              <TwitterResponseCard key={tweet.href} tweet={tweet} />
+          <Carousel opts={{ align: alignFirstStartRestCenter }} className="-mx-5 mt-9 lg:hidden">
+            <CarouselContent className="-ml-0 py-10">
+              {proofCards.map((card, index) => (
+                <CarouselItem key={card.key} className="h-full basis-[88vw] pl-0 sm:basis-[58vw]">
+                  <div
+                    className={`flex h-full px-2 ${
+                      index === 0 ? "justify-start" : "justify-center"
+                    }`}
+                  >
+                    <div
+                      ref={(element) => {
+                        proofCarouselCardRefs.current[index] = element;
+                      }}
+                      className="h-full w-[82vw] sm:w-[54vw]"
+                    >
+                      {card.content}
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          <div className="mt-9 hidden w-full min-w-0 grid-cols-1 gap-5 lg:grid lg:grid-cols-3">
+            {proofCards.map((card, index) => (
+              <div
+                key={card.key}
+                ref={(element) => {
+                  proofGridCardRefs.current[index] = element;
+                }}
+                className="h-full"
+              >
+                {card.content}
+              </div>
             ))}
-            <ProductHuntCommentCard />
-            <RedditEmbedCard />
           </div>
         </div>
       </section>
 
-      <section id="include" className="scroll-mt-6 px-5 py-14 sm:py-20">
+      <section id="include" className="scroll-mt-6 px-5 sm:px-0 py-14 sm:py-20">
         <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading title="What does Collecta include" />
 
-          <div className="mt-10 grid items-start gap-9 lg:grid-cols-[0.95fr_1.05fr]">
-            <MockupImage src={activeFeature.image} alt={activeFeature.alt} />
+          <div className="mt-10 grid min-w-0 items-start gap-9 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="min-w-0">
+              <MockupImage src={activeFeature.image} alt={activeFeature.alt} />
+            </div>
 
-            <div className="grid gap-4">
-              {includes.map((item, index) => (
-                <IncludeOptionCard
-                  key={item.title}
-                  item={item}
-                  isActive={activeInclude === index}
-                  onClick={() => setActiveInclude(index)}
-                />
-              ))}
+            <div className="min-w-0">
+              <Carousel opts={{ align: alignFirstStartRestCenter }} className="-mx-5 -my-5 lg:hidden">
+                <CarouselContent className="-ml-0 py-10">
+                  {includes.map((item, index) => (
+                    <CarouselItem key={item.title} className="h-full basis-[80vw] pl-0 sm:basis-[54vw] lg:basis-[80vw]">
+                      <div
+                        className={`flex h-full px-2 ${
+                          index === 0 ? "justify-start" : "justify-center"
+                        }`}
+                      >
+                        <div
+                          ref={(element) => {
+                            includeCardRefs.current[index] = element;
+                          }}
+                          className="h-full w-[74vw] sm:w-[54vw] lg:w-[74vw]"
+                        >
+                          <IncludeOptionCard
+                            item={item}
+                            isActive={activeInclude === index}
+                            onClick={() => setActiveInclude(index)}
+                          />
+                        </div>
+                      </div>
+                    </CarouselItem>
+                  ))}
+                </CarouselContent>
+              </Carousel>
+
+              <div className="hidden auto-rows-fr gap-4 lg:grid">
+                {includes.map((item, index) => (
+                  <div
+                    key={item.title}
+                    ref={(element) => {
+                      includeGridCardRefs.current[index] = element;
+                    }}
+                    className="h-full"
+                  >
+                    <IncludeOptionCard
+                      item={item}
+                      isActive={activeInclude === index}
+                      onClick={() => setActiveInclude(index)}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
@@ -506,9 +632,40 @@ const FeaturesSection = () => {
             copy="Collecta turns scattered inspiration into publish-ready content."
           />
 
-          <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-6 lg:grid-cols-3">
-            {benefits.map((benefit) => (
-              <BenefitCard key={benefit.title} benefit={benefit} />
+          <Carousel opts={{ align: alignFirstStartRestCenter }} className="-mx-5 my-3 sm:my-5 lg:hidden">
+            <CarouselContent className="-ml-0 py-10">
+              {benefits.map((benefit, index) => (
+                <CarouselItem key={benefit.title} className="h-full basis-[80vw] pl-0 sm:basis-[54vw] lg:basis-[80vw]">
+                  <div
+                    className={`flex h-full px-2 ${
+                      benefit === benefits[0] ? "justify-start" : "justify-center"
+                    }`}
+                  >
+                    <div
+                      ref={(element) => {
+                        benefitCardRefs.current[index] = element;
+                      }}
+                      className="h-full w-[74vw] sm:w-[54vw] lg:w-[74vw]"
+                    >
+                      <BenefitCard benefit={benefit} />
+                    </div>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+          </Carousel>
+
+          <div className="mt-8 hidden auto-rows-fr gap-4 sm:mt-10 sm:gap-6 lg:grid lg:grid-cols-3">
+            {benefits.map((benefit, index) => (
+              <div
+                key={benefit.title}
+                ref={(element) => {
+                  benefitGridCardRefs.current[index] = element;
+                }}
+                className="h-full"
+              >
+                <BenefitCard benefit={benefit} />
+              </div>
             ))}
           </div>
         </div>
@@ -521,7 +678,7 @@ const FeaturesSection = () => {
             copy="Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish."
           />
 
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-8 hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
             {pipelineStats.map((stat) => (
               <PipelineStatCard key={stat.label} stat={stat} />
             ))}
