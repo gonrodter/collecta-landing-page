@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import AppStoreBadge from "@/components/AppStoreBadge";
 import AppleLogo from "@/components/AppleLogo";
 import { APP_STORE_URL, HAS_APP_STORE_URL } from "@/lib/appConfig";
+import { useI18n } from "@/lib/i18n";
 
 const Navbar = () => {
+  const { t } = useI18n();
   const ctaHref = HAS_APP_STORE_URL ? APP_STORE_URL : "/#download";
   const [hasScrolled, setHasScrolled] = useState(false);
 
@@ -27,16 +29,16 @@ const Navbar = () => {
 
         <nav className="hidden items-center gap-8 text-sm font-extrabold text-[#111312] lg:flex">
           <a href="/#proof" className="transition-opacity hover:opacity-65">
-            Proof
+            {t("Proof")}
           </a>
           <a href="/#include" className="transition-opacity hover:opacity-65">
-            Features
+            {t("Features")}
           </a>
           <a href="/#why" className="transition-opacity hover:opacity-65">
-            Why Collecta
+            {t("Why Collecta")}
           </a>
           <a href="/#pipeline" className="transition-opacity hover:opacity-65">
-            Pipeline
+            {t("Pipeline")}
           </a>
         </nav>
 
@@ -51,7 +53,7 @@ const Navbar = () => {
           className="inline-flex items-center gap-1.5 rounded-lg bg-[#111312] px-3.5 py-2 text-xs font-extrabold leading-none text-white sm:hidden"
         >
           <AppleLogo className="h-4 w-4 shrink-0" />
-          <span className="translate-y-[0.5px]">Get app</span>
+          <span className="translate-y-[0.5px]">{t("Get app")}</span>
         </a>
 
       </div>

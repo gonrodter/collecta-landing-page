@@ -1,6 +1,7 @@
 import { Instagram } from "lucide-react";
 
 import { NavLink } from "@/components/NavLink";
+import { useI18n } from "@/lib/i18n";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg aria-hidden="true" viewBox="3.75 1 15.571 16.295" fill="currentColor" className={className}>
@@ -9,6 +10,8 @@ const TikTokIcon = ({ className }: { className?: string }) => (
 );
 
 const Footer = () => {
+  const { t } = useI18n();
+
   return (
     <footer className="bg-[#fbfcf7] px-5 py-8 text-[#111312]">
       <div className="container mx-auto flex max-w-7xl flex-col items-center justify-between gap-6 border-t border-[#e3e6df] pt-8 text-center md:flex-row md:text-left">
@@ -18,10 +21,10 @@ const Footer = () => {
 
         <nav className="flex flex-wrap items-center justify-center gap-6 text-sm font-medium text-[#70756f]">
           <NavLink to="/privacy" className="transition-all duration-300 hover:-translate-y-0.5 hover:text-[#111312]" activeClassName="text-[#111312]">
-            Privacy Policy
+            {t("Privacy Policy")}
           </NavLink>
           <NavLink to="/terms" className="transition-all duration-300 hover:-translate-y-0.5 hover:text-[#111312]" activeClassName="text-[#111312]">
-            Terms of Use
+            {t("Terms of Use")}
           </NavLink>
         </nav>
 
@@ -30,7 +33,7 @@ const Footer = () => {
             href="https://www.instagram.com/usecollecta/"
             target="_blank"
             rel="noreferrer"
-            aria-label="Collecta on Instagram"
+            aria-label={t("Collecta on Instagram")}
             className="transition-all duration-300 hover:-translate-y-0.5 hover:text-[#111312]"
           >
             <Instagram className="h-5 w-5" />
@@ -39,14 +42,14 @@ const Footer = () => {
             href="https://www.tiktok.com/@collecta.app"
             target="_blank"
             rel="noreferrer"
-            aria-label="Collecta on TikTok"
+            aria-label={t("Collecta on TikTok")}
             className="transition-all duration-300 hover:-translate-y-0.5 hover:text-[#111312]"
           >
             <TikTokIcon className="h-[18px] w-[18px]" />
           </a>
         </div>
 
-        <p className="text-sm text-[#70756f]">© 2026 Collecta. All rights reserved.</p>
+        <p className="text-sm text-[#70756f]">{t("© 2026 Collecta. All rights reserved.")}</p>
       </div>
     </footer>
   );

@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { useI18n } from "@/lib/i18n";
 
 interface ProductHuntBadgeProps {
   className?: string;
@@ -10,16 +11,18 @@ const PRODUCT_HUNT_IMAGE_URL =
   "https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1122016&theme=light&t=1776018019039";
 
 const ProductHuntBadge = ({ className }: ProductHuntBadgeProps) => {
+  const { t } = useI18n();
+
   return (
     <a
       href={PRODUCT_HUNT_URL}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="View Collecta on Product Hunt"
+      aria-label={t("View Collecta on Product Hunt")}
       className="inline-flex shrink-0"
     >
       <img
-        alt="Collecta - Turn saved content into posts you actually publish | Product Hunt"
+        alt={t("Collecta - Turn saved content into posts you actually publish | Product Hunt")}
         src={PRODUCT_HUNT_IMAGE_URL}
         width={250}
         height={54}

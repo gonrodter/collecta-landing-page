@@ -7,6 +7,7 @@ import heroMockup from "@/assets/saves-mockup.png";
 import organizeMockup from "@/assets/feature-organize-mockup.png";
 import selectInspoMockup from "@/assets/feature-select-inspo-mockup.png";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
+import { useI18n } from "@/lib/i18n";
 
 const REDDIT_WIDGET_SCRIPT_ID = "reddit-widgets-script";
 
@@ -190,100 +191,107 @@ const ProductHuntLogo = () => (
   </svg>
 );
 
-const TwitterResponseCard = ({ tweet }: { tweet: (typeof tweets)[number] }) => (
-  <article className="relative flex h-full min-h-[320px] w-full min-w-0 max-w-full flex-col overflow-hidden rounded-[28px] bg-white p-5 text-left font-sans text-[#0f1419] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
-    <a href={tweet.href} target="_blank" rel="noreferrer" aria-label={`Open ${tweet.author}'s tweet`} className="absolute inset-0 z-0 rounded-[28px]" />
-    <div className="relative z-10 flex items-start justify-between gap-4">
-      <div className="flex min-w-0 items-center gap-3">
-        <span className={`flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full ${tweet.avatarClassName}`}>
-          <img src={tweet.avatarUrl} alt={tweet.author} className="h-full w-full object-cover" loading="lazy" />
-        </span>
-        <div className="min-w-0">
-          <div className="flex min-w-0 items-center gap-1">
-            <p className="truncate text-base font-extrabold leading-tight">{tweet.author}</p>
-            <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#1d9bf0] text-[10px] font-extrabold leading-none text-white">
-              ✓
-            </span>
+const TwitterResponseCard = ({ tweet }: { tweet: (typeof tweets)[number] }) => {
+  const { t } = useI18n();
+
+  return (
+    <article className="relative flex h-full min-h-[260px] w-full min-w-0 max-w-full flex-col overflow-hidden rounded-[28px] bg-white p-5 text-left font-sans text-[#0f1419] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
+      <a href={tweet.href} target="_blank" rel="noreferrer" aria-label={`${t("Open tweet by")} ${tweet.author}`} className="absolute inset-0 z-0 rounded-[28px]" />
+      <div className="relative z-10 flex items-start justify-between gap-4">
+        <div className="flex min-w-0 items-center gap-3">
+          <span className={`flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full ${tweet.avatarClassName}`}>
+            <img src={tweet.avatarUrl} alt={tweet.author} className="h-full w-full object-cover" loading="lazy" />
+          </span>
+          <div className="min-w-0">
+            <div className="flex min-w-0 items-center gap-1">
+              <p className="truncate text-base font-extrabold leading-tight">{tweet.author}</p>
+              <span className="flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[#1d9bf0] text-[10px] font-extrabold leading-none text-white">
+                ✓
+              </span>
+            </div>
+            <p className="truncate text-sm font-medium leading-tight text-[#536471]">{tweet.handle}</p>
           </div>
-          <p className="truncate text-sm font-medium leading-tight text-[#536471]">{tweet.handle}</p>
+        </div>
+        <XLogo />
+      </div>
+
+      <div className="relative z-10 mt-5 space-y-4 text-base leading-6">
+        {tweet.bodyLines.map((line) => (
+          <p key={line}>{line}</p>
+        ))}
+      </div>
+
+      <div className="relative z-10 mt-auto pt-5">
+        <p className="text-sm font-medium text-[#536471]">{tweet.time}</p>
+        <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-[#cfd9de] pt-3 text-sm font-bold text-[#536471]">
+          <XActionLink href={tweet.href} label={t("Like on X")} className="text-[#f91880] hover:bg-[#f91880]/10">
+            <Heart className="h-4 w-4 fill-current stroke-current" />
+          </XActionLink>
+          <XActionLink href={tweet.href} label={t("Reply on X")} className="text-[#1d9bf0] hover:bg-[#1d9bf0]/10">
+            <MessageCircle className="h-4 w-4 fill-[#1d9bf0] stroke-current" />
+          </XActionLink>
+          <XActionLink href={tweet.href} label={t("Retweet on X")} className="text-[#00ba7c] hover:bg-[#00ba7c]/10">
+            <Repeat2 className="h-4 w-4 stroke-current" />
+          </XActionLink>
+          <a href={tweet.href} target="_blank" rel="noreferrer" className="inline-flex h-7 items-center transition-colors hover:text-[#1d9bf0]">
+            Reply
+          </a>
+          <a href={tweet.href} target="_blank" rel="noreferrer" className="inline-flex h-7 items-center gap-1 transition-colors hover:text-[#1d9bf0]">
+            <Link2 className="h-4 w-4" />
+            Copy link
+          </a>
         </div>
       </div>
-      <XLogo />
-    </div>
+    </article>
+  );
+};
 
-    <div className="relative z-10 mt-5 space-y-4 text-base leading-6">
-      {tweet.bodyLines.map((line) => (
-        <p key={line}>{line}</p>
-      ))}
-    </div>
+const ProductHuntCommentCard = () => {
+  const { t } = useI18n();
 
-    <div className="relative z-10 mt-auto pt-5">
-      <p className="text-sm font-medium text-[#536471]">{tweet.time}</p>
-      <div className="mt-3 flex flex-wrap items-center gap-3 border-t border-[#cfd9de] pt-3 text-sm font-bold text-[#536471]">
-        <XActionLink href={tweet.href} label="Like on X" className="text-[#f91880] hover:bg-[#f91880]/10">
-          <Heart className="h-4 w-4 fill-current stroke-current" />
-        </XActionLink>
-        <XActionLink href={tweet.href} label="Reply on X" className="text-[#1d9bf0] hover:bg-[#1d9bf0]/10">
-          <MessageCircle className="h-4 w-4 fill-[#1d9bf0] stroke-current" />
-        </XActionLink>
-        <XActionLink href={tweet.href} label="Retweet on X" className="text-[#00ba7c] hover:bg-[#00ba7c]/10">
-          <Repeat2 className="h-4 w-4 stroke-current" />
-        </XActionLink>
-        <a href={tweet.href} target="_blank" rel="noreferrer" className="inline-flex h-7 items-center transition-colors hover:text-[#1d9bf0]">
-          Reply
-        </a>
-        <a href={tweet.href} target="_blank" rel="noreferrer" className="inline-flex h-7 items-center gap-1 transition-colors hover:text-[#1d9bf0]">
-          <Link2 className="h-4 w-4" />
-          Copy link
-        </a>
-      </div>
-    </div>
-  </article>
-);
-
-const ProductHuntCommentCard = () => (
-  <article
-    id="comment-5337848"
-    data-test="comment-5337848"
-    className="relative flex h-full min-h-[320px] w-full flex-row gap-3 rounded-[28px] bg-white p-5 text-left font-sans text-[#111827] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]"
-  >
-    <a
-      href="https://www.producthunt.com/products/collecta-2?comment=5337848"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Open Product Hunt comment"
-      className="absolute inset-0 z-0 rounded-[28px]"
-    />
-    <span className="absolute right-5 top-5 z-10">
-      <ProductHuntLogo />
-    </span>
-
-    <span className="relative z-10 block h-fit shrink-0 rounded-full">
-      <img
-        loading="lazy"
-        alt="Sarah Porter"
-        className="h-8 w-8 rounded-full"
-        src="https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1"
-        srcSet="https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=1 1x, https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=2 2x, https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=3 3x"
+  return (
+    <article
+      id="comment-5337848"
+      data-test="comment-5337848"
+      className="relative flex h-full min-h-[260px] w-full flex-row gap-3 rounded-[28px] bg-white p-5 text-left font-sans text-[#111827] shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]"
+    >
+      <a
+        href="https://www.producthunt.com/products/collecta-2?comment=5337848"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label={t("Open Product Hunt comment")}
+        className="absolute inset-0 z-0 rounded-[28px]"
       />
-    </span>
+      <span className="absolute right-5 top-5 z-10">
+        <ProductHuntLogo />
+      </span>
 
-    <div className="relative z-10 flex min-w-0 flex-1 flex-col gap-2 pr-7">
-      <p className="line-clamp-1 w-fit text-base font-semibold text-gray-900">
-        Sarah Porter
-      </p>
+      <span className="relative z-10 block h-fit shrink-0 rounded-full">
+        <img
+          loading="lazy"
+          alt="Sarah Porter"
+          className="h-8 w-8 rounded-full"
+          src="https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1"
+          srcSet="https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=1 1x, https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=2 2x, https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=3 3x"
+        />
+      </span>
 
-      <p className="block text-base leading-6 text-[#111827]">
-        I’m sure I have 100s of screenshots from my socials that I grabbed with the best intentions of returning to later, but forgot about the next day. Very nice to be able to keep all those fleeting thoughts in one place.
-      </p>
+      <div className="relative z-10 flex min-w-0 flex-1 flex-col gap-2 pr-7">
+        <p className="line-clamp-1 w-fit text-base font-semibold text-gray-900">
+          Sarah Porter
+        </p>
 
-      <div className="mt-auto flex flex-row flex-wrap items-center gap-3 pt-3 text-sm font-semibold text-gray-600">
+        <p className="block text-base leading-6 text-[#111827]">
+          I’m sure I have 100s of screenshots from my socials that I grabbed with the best intentions of returning to later, but forgot about the next day. Very nice to be able to keep all those fleeting thoughts in one place.
+        </p>
+
+        <div className="mt-auto flex flex-row flex-wrap items-center gap-3 pt-3 text-sm font-semibold text-gray-600">
         <a
           href="https://www.producthunt.com/products/collecta-2?comment=5337848"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-1 text-[#ff6154] transition-colors hover:text-[#DA552F]"
-          aria-label="Upvoted"
+          aria-label={t("Upvoted (1)")}
         >
           <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16" className="stroke-[1.5px] stroke-current">
             <path d="M2 5.2c0-1.12 0-1.68.218-2.108a2 2 0 0 1 .874-.874C3.52 2 4.08 2 5.2 2h5.6c1.12 0 1.68 0 2.108.218a2 2 0 0 1 .874.874C14 3.52 14 4.08 14 5.2v5.6c0 1.12 0 1.68-.218 2.108a2 2 0 0 1-.874.874C12.48 14 11.92 14 10.8 14H5.2c-1.12 0-1.68 0-2.108-.218a2 2 0 0 1-.874-.874C2 12.48 2 11.92 2 10.8z" />
@@ -331,8 +339,9 @@ const ProductHuntCommentCard = () => (
         <span className="text-lg leading-none text-gray-400">...</span>
       </div>
     </div>
-  </article>
-);
+    </article>
+  );
+};
 
 const RedditEmbedCard = () => {
   const redditRef = useRef<HTMLQuoteElement>(null);
@@ -355,8 +364,8 @@ const RedditEmbedCard = () => {
   }, []);
 
   return (
-    <article className="flex h-full min-h-[320px] w-full items-start justify-center overflow-hidden rounded-[28px] bg-white p-5 shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
-      <blockquote ref={redditRef} className="reddit-embed-bq" data-embed-height="280">
+    <article className="flex h-full min-h-[260px] w-full items-start justify-center overflow-hidden rounded-[28px] bg-white p-5 shadow-[0_18px_60px_-46px_rgba(17,19,18,0.52)] ring-1 ring-[#e8ebe4] transition hover:-translate-y-0.5 hover:shadow-[0_24px_70px_-46px_rgba(17,19,18,0.62)]">
+      <blockquote ref={redditRef} className="reddit-embed-bq" data-embed-height="220">
         <a href="https://www.reddit.com/r/buildinpublic/comments/1t9ytwc/comment/ol6gvng/">Comment</a>
         <br /> by{" "}
         <a href="https://www.reddit.com/user/Terr0nzz/">u/Terr0nzz</a> from discussion{" "}
@@ -380,19 +389,23 @@ const MockupImage = ({ src, alt }: { src: string; alt: string }) => (
   </div>
 );
 
-const PipelineStepContent = ({ step }: { step: (typeof pipelineSteps)[number] }) => (
-  <>
-    <img
-      src={step.image}
-      alt={step.alt}
-      className="mx-auto h-56 w-full object-contain drop-shadow-[0_20px_34px_rgba(17,19,18,0.14)] transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-[0_26px_42px_rgba(17,19,18,0.18)]"
-    />
-    <div className="mt-4 text-center">
-      <p className="text-xl font-extrabold">{step.title}</p>
-      <p className="mx-auto mt-2 max-w-[230px] text-sm leading-6 text-[#646865]">{step.copy}</p>
-    </div>
-  </>
-);
+const PipelineStepContent = ({ step }: { step: (typeof pipelineSteps)[number] }) => {
+  const { t } = useI18n();
+
+  return (
+    <>
+      <img
+        src={step.image}
+        alt={t(step.alt)}
+        className="mx-auto h-56 w-full object-contain drop-shadow-[0_20px_34px_rgba(17,19,18,0.14)] transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-[0_26px_42px_rgba(17,19,18,0.18)]"
+      />
+      <div className="mt-4 text-center">
+        <p className="text-xl font-extrabold">{t(step.title)}</p>
+        <p className="mx-auto mt-2 max-w-[230px] text-sm leading-6 text-[#646865]">{t(step.copy)}</p>
+      </div>
+    </>
+  );
+};
 
 const IncludeOptionCard = ({
   item,
@@ -403,6 +416,7 @@ const IncludeOptionCard = ({
   isActive: boolean;
   onClick: () => void;
 }) => {
+  const { t } = useI18n();
   const Icon = item.Icon;
 
   return (
@@ -420,11 +434,11 @@ const IncludeOptionCard = ({
 
         <span className="min-w-0">
           <span className="block text-lg font-extrabold leading-tight tracking-normal sm:text-2xl">
-            {item.title}
+            {t(item.title)}
           </span>
 
           <span className="mt-1.5 block text-sm leading-6 text-[#646865] sm:mt-2 sm:text-base sm:leading-7">
-            {item.copy}
+            {t(item.copy)}
           </span>
         </span>
       </div>
@@ -433,6 +447,7 @@ const IncludeOptionCard = ({
 };
 
 const BenefitCard = ({ benefit }: { benefit: (typeof benefits)[number] }) => {
+  const { t } = useI18n();
   const Icon = benefit.Icon;
 
   return (
@@ -442,22 +457,26 @@ const BenefitCard = ({ benefit }: { benefit: (typeof benefits)[number] }) => {
       </div>
 
       <h3 className="mt-6 text-xl font-extrabold leading-tight tracking-normal sm:mt-8 sm:text-2xl">
-        {benefit.title}
+        {t(benefit.title)}
       </h3>
 
       <p className="mt-3 text-sm leading-6 text-[#646865] sm:mt-4 sm:text-base sm:leading-7">
-        {benefit.copy}
+        {t(benefit.copy)}
       </p>
     </div>
   );
 };
 
-const PipelineStatCard = ({ stat }: { stat: (typeof pipelineStats)[number] }) => (
-  <div className="h-full rounded-[24px] bg-white p-5 shadow-[0_16px_48px_-38px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_64px_-42px_rgba(17,19,18,0.62)]">
-    <p className="text-4xl font-extrabold tracking-normal text-[#56ABA0]">{stat.value}</p>
-    <p className="mt-1 text-sm font-bold text-[#646865]">{stat.label}</p>
-  </div>
-);
+const PipelineStatCard = ({ stat }: { stat: (typeof pipelineStats)[number] }) => {
+  const { t } = useI18n();
+
+  return (
+    <div className="h-full rounded-[24px] bg-white p-5 shadow-[0_16px_48px_-38px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_64px_-42px_rgba(17,19,18,0.62)]">
+      <p className="text-4xl font-extrabold tracking-normal text-[#56ABA0]">{stat.value}</p>
+      <p className="mt-1 text-sm font-bold text-[#646865]">{t(stat.label)}</p>
+    </div>
+  );
+};
 
 const alignFirstStartRestCenter = (viewSize: number, snapSize: number, index: number) =>
   index === 0 ? 0 : (viewSize - snapSize) / 2;
@@ -483,6 +502,7 @@ const equalizeHeights = (elements: Array<HTMLDivElement | null>) => {
 };
 
 const FeaturesSection = () => {
+  const { language, t } = useI18n();
   const [activeInclude, setActiveInclude] = useState(0);
   const activeFeature = includes[activeInclude];
   const proofCarouselCardRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -519,13 +539,13 @@ const FeaturesSection = () => {
       window.removeEventListener("resize", measureCards);
       timers.forEach((timer) => window.clearTimeout(timer));
     };
-  }, []);
+  }, [language]);
 
   return (
     <div className="overflow-x-hidden bg-[#fbfcf7] text-left text-[#111312]">
       <section id="proof" className="scroll-mt-6 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl px-5">
-          <SectionHeading title="Creators are already talking about the problem" />
+          <SectionHeading title={t("Creators are already talking about the problem")} />
 
           <Carousel opts={{ align: alignFirstStartRestCenter }} className="-mx-5 mt-9 lg:hidden">
             <CarouselContent className="-ml-0 py-10">
@@ -568,11 +588,11 @@ const FeaturesSection = () => {
 
       <section id="include" className="scroll-mt-6 px-5 sm:px-0 py-14 sm:py-20">
         <div className="sm:container mx-auto max-w-7xl">
-          <SectionHeading title="What does Collecta include" />
+          <SectionHeading title={t("What does Collecta include")} />
 
           <div className="mt-10 grid min-w-0 items-start gap-9 lg:grid-cols-[0.95fr_1.05fr]">
             <div className="min-w-0">
-              <MockupImage src={activeFeature.image} alt={activeFeature.alt} />
+              <MockupImage src={activeFeature.image} alt={t(activeFeature.alt)} />
             </div>
 
             <div className="min-w-0">
@@ -628,8 +648,8 @@ const FeaturesSection = () => {
       <section id="why" className="scroll-mt-6 px-5 py-14 sm:py-20">
         <div className="mx-auto max-w-7xl">
           <SectionHeading
-            title="Why choose Collecta?"
-            copy="Collecta turns scattered inspiration into publish-ready content."
+            title={t("Why choose Collecta?")}
+            copy={t("Collecta turns scattered inspiration into publish-ready content.")}
           />
 
           <Carousel opts={{ align: alignFirstStartRestCenter }} className="-mx-5 my-3 sm:my-5 lg:hidden">
@@ -674,8 +694,8 @@ const FeaturesSection = () => {
       <section id="pipeline" className="scroll-mt-6 px-5 py-14 sm:py-20">
         <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading
-            title="Turn saved inspiration into a content pipeline"
-            copy="Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish."
+            title={t("Turn saved inspiration into a content pipeline")}
+            copy={t("Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish.")}
           />
 
           <div className="mt-8 hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">

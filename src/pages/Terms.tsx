@@ -1,4 +1,5 @@
 import LegalPageLayout from "@/components/LegalPageLayout";
+import { useI18n } from "@/lib/i18n";
 
 const sections = [
   {
@@ -115,25 +116,27 @@ const sections = [
 ];
 
 const Terms = () => {
+  const { t } = useI18n();
+
   return (
-    <LegalPageLayout title="Terms of Use" subtitle="Last updated: March 13, 2026">
+    <LegalPageLayout title={t("Terms of Use")} subtitle={t("Last updated: March 13, 2026")} pageTitle={t("Terms of Use | Collecta")}>
       <article className="space-y-10 text-left">
         <div className="space-y-6 text-base leading-8 text-foreground/90 sm:text-lg">
-          <p>These Terms of Use (&quot;Terms&quot;) govern your use of the Collecta mobile application and related services (&quot;Service&quot;) operated by Terron Studio through Collecta (&quot;we&quot;, &quot;our&quot;, or &quot;us&quot;).</p>
-          <p>By accessing or using Collecta, you agree to be bound by these Terms.</p>
+          <p>{t("These Terms of Use (\"Terms\") govern your use of the Collecta mobile application and related services (\"Service\") operated by Terron Studio through Collecta (\"we\", \"our\", or \"us\").")}</p>
+          <p>{t("By accessing or using Collecta, you agree to be bound by these Terms.")}</p>
         </div>
 
         {sections.map((section) => (
           <section key={section.heading} className="space-y-5 text-left">
-            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{section.heading}</h2>
+            <h2 className="text-2xl font-semibold tracking-tight text-foreground sm:text-3xl">{t(section.heading)}</h2>
 
             <div className="space-y-4 text-base leading-8 text-foreground/90 sm:text-lg">
-              {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+              {section.paragraphs?.map((paragraph) => <p key={paragraph}>{t(paragraph)}</p>)}
 
               {section.lines ? (
                 <div className="space-y-2">
                   {section.lines.map((line) => (
-                    <p key={line}>{line}</p>
+                    <p key={line}>{t(line)}</p>
                   ))}
                 </div>
               ) : null}

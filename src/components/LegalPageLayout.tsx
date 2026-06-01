@@ -1,7 +1,8 @@
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
+import { useDocumentMetadata } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 
 interface LegalPageLayoutProps {
   title: string;
@@ -12,9 +13,7 @@ interface LegalPageLayoutProps {
 }
 
 const LegalPageLayout = ({ title, subtitle, children, pageTitle, className }: LegalPageLayoutProps) => {
-  useEffect(() => {
-    document.title = pageTitle ?? `${title} | Collecta`;
-  }, [pageTitle, title]);
+  useDocumentMetadata({ title: pageTitle ?? `${title} | Collecta` });
 
   return (
     <div className="min-h-screen bg-background">
