@@ -4,9 +4,9 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 export type Language = "en" | "es";
 
 const spanishCopy: Record<string, string> = {
-  "Collecta - Save social posts and turn them into content": "Collecta - Guarda publicaciones sociales y conviértelas en contenido",
-  "Save posts from social media, organize them by topic, and turn them into content you can actually publish.": "Guarda publicaciones de redes sociales, organízalas por tema y conviértelas en contenido que puedas publicar de verdad.",
-  "Screenshot of the Collecta landing page hero with the app preview, App Store badge, and Product Hunt badge.": "Captura de la sección principal de Collecta con vista previa de la app, insignia de App Store e insignia de Product Hunt.",
+  "Collecta - Save social posts and turn them into content": "Collecta - Convierte tus guardados en contenido listo para publicar",
+  "Save posts from social media, organize them by topic, and turn them into content you can actually publish.": "Guarda posts, enlaces e ideas de redes sociales, organízalos por tema y conviértelos en contenido listo para publicar.",
+  "Screenshot of the Collecta landing page hero with the app preview, App Store badge, and Product Hunt badge.": "Vista previa de Collecta con la app, el botón de App Store y el badge de Product Hunt.",
   "Proof": "Testimonios",
   "Features": "Funciones",
   "Why Collecta": "Por qué Collecta",
@@ -21,7 +21,7 @@ const spanishCopy: Record<string, string> = {
   "Terms of Use": "Términos de uso",
   "© 2026 Collecta. All rights reserved.": "© 2026 Collecta. Todos los derechos reservados.",
   "View Collecta on Product Hunt": "Ver Collecta en Product Hunt",
-  "Collecta - Turn saved content into posts you actually publish | Product Hunt": "Collecta - Convierte contenido guardado en publicaciones que sí puedes publicar | Product Hunt",
+  "Collecta - Turn saved content into posts you actually publish | Product Hunt": "Collecta - Convierte tus guardados en contenido listo para publicar | Product Hunt",
 
   "Built for creators who save more ideas than they publish": "Creado para creadores que guardan más ideas de las que publican",
   "Turn saved inspiration into posts you can actually publish": "Convierte tu inspiración guardada en contenido listo para publicar",
