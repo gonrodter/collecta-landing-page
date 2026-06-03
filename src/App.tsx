@@ -9,7 +9,9 @@ import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
+import ResetPassword from "./pages/ResetPassword";
 import Terms from "./pages/Terms";
+import { initialPasswordRecovery } from "./lib/passwordRecovery";
 
 const queryClient = new QueryClient();
 
@@ -38,6 +40,7 @@ const App = () => (
           <PostHogPageView />
           <Routes>
             <Route path="/" element={<Index />} />
+            <Route path="/reset-password" element={<ResetPassword recovery={initialPasswordRecovery} />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
