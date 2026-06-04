@@ -1,0 +1,2 @@
+[functions.track-attribution]
+verify_jwt = false

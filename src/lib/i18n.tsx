@@ -4,13 +4,12 @@ import { createContext, useContext, useEffect, useMemo, useState, type ReactNode
 export type Language = "en" | "es";
 
 const spanishCopy: Record<string, string> = {
-  "Collecta - Save social posts and turn them into content": "Collecta - Convierte tus guardados en contenido listo para publicar",
-  "Save posts from social media, organize them by topic, and turn them into content you can actually publish.": "Guarda posts, enlaces e ideas de redes sociales, organízalos por tema y conviértelos en contenido listo para publicar.",
-  "Screenshot of the Collecta landing page hero with the app preview, App Store badge, and Product Hunt badge.": "Vista previa de Collecta con la app, el botón de App Store y el badge de Product Hunt.",
-  "Proof": "Testimonios",
+  "Collecta - Turn saved inspiration into content plans": "Collecta - Convierte inspiración guardada en planes de contenido",
+  "Collecta helps content creators turn saved posts, links and rough ideas into hooks, scripts, checklists and content plans so they can publish faster.": "Collecta ayuda a creadores de contenido a convertir publicaciones guardadas, enlaces e ideas sueltas en ganchos, guiones, checklists y planes de contenido para publicar más rápido.",
+  "Collecta mobile app showing a content plan generated from saved inspiration.": "App móvil Collecta mostrando un plan de contenido generado a partir de inspiración guardada.",
   "Features": "Funciones",
   "Why Collecta": "Por qué Collecta",
-  "Pipeline": "Flujo",
+  "FAQ": "Preguntas",
   "Get app": "Descargar",
   "Download on the App Store": "Descargar en App Store",
   "Download Collecta on the App Store": "Descargar Collecta en App Store",
@@ -24,9 +23,45 @@ const spanishCopy: Record<string, string> = {
   "Collecta - Turn saved content into posts you actually publish | Product Hunt": "Collecta - Convierte tus guardados en contenido listo para publicar | Product Hunt",
 
   "Built for creators who save more ideas than they publish": "Creado para creadores que guardan más ideas de las que publican",
-  "Turn saved inspiration into posts you can actually publish": "Convierte tu inspiración guardada en contenido listo para publicar",
-  "Collecta helps creators transform saved posts, links and rough ideas into clear content plans, hooks, scripts and publishing checklists, so you never have to start from a blank page.": "Collecta ayuda a los creadores a transformar publicaciones guardadas, enlaces e ideas sueltas en planes de contenido claros, ganchos, guiones y checklists de tareas a completar, para que nunca tengas que empezar desde una página en blanco.",
-  "Collecta app mockup showing saved inspiration turning into publish-ready content.": "Mockup de la app Collecta que muestra inspiración guardada convertida en contenido listo para publicar.",
+  "Turn saved inspiration into content you can actually publish": "Convierte inspiración guardada en contenido que realmente puedes publicar",
+  "Collecta helps creators turn saved posts, links and rough ideas into clear content plans, hooks, scripts and publishing checklists, so you stop starting from a blank page.": "Collecta ayuda a creadores a convertir publicaciones guardadas, enlaces e ideas sueltas en planes de contenido claros, ganchos, guiones y checklists de publicación para dejar de empezar desde una página en blanco.",
+  "See how it works": "Ver cómo funciona",
+  "Collecta app mockup showing a content plan generated from saved inspiration.": "Mockup de la app Collecta mostrando un plan de contenido generado desde inspiración guardada.",
+
+  "How it works": "Cómo funciona",
+  "How Collecta works": "Cómo funciona Collecta",
+  "Save your inspiration": "Guarda tu inspiración",
+  "Bring together the posts, links and ideas you want to use for future content.": "Reúne las publicaciones, enlaces e ideas que quieres usar para contenido futuro.",
+  "Choose what you want to create": "Elige qué quieres crear",
+  "Pick the platform, format and saved references you are working from.": "Elige la plataforma, el formato y las referencias guardadas desde las que vas a trabajar.",
+  "Get a content plan": "Obtén un plan de contenido",
+  "Generate hooks, structure, script ideas, checklists and clear next steps.": "Genera ganchos, estructura, ideas de guion, checklists y próximos pasos claros.",
+  "Publish without starting from scratch": "Publica sin empezar desde cero",
+  "Use the plan to record, write and publish faster.": "Usa el plan para grabar, escribir y publicar más rápido.",
+  "Who it is for": "Para quién es",
+  "For creators who save more ideas than they publish": "Para creadores que guardan más ideas de las que publican",
+  "Collecta is built for independent creators, founders and solo creators who need a practical way to move from idea collection to execution.": "Collecta está creada para creadores independientes, founders y creadores en solitario que necesitan una forma práctica de pasar de recopilar ideas a ejecutarlas.",
+  "Independent creators": "Creadores independientes",
+  "Save useful content every day but need a system for turning references into posts.": "Guardan contenido útil cada día pero necesitan un sistema para convertir referencias en publicaciones.",
+  "Founders": "Fundadores",
+  "Have ideas scattered across platforms and need repeatable content workflows.": "Tienen ideas dispersas entre plataformas y necesitan flujos de contenido repetibles.",
+  "Solo creators": "Creadores en solitario",
+  "Want hooks, scripts, checklists and clear next steps without starting from a blank prompt.": "Quieren ganchos, guiones, checklists y próximos pasos sin empezar desde un prompt vacío.",
+  "Most AI writing tools start with a blank prompt. Collecta starts with the ideas you already saved, so the output is grounded in your taste, references and content direction.": "La mayoría de herramientas de escritura con IA empiezan con un prompt vacío. Collecta empieza con las ideas que ya guardaste, por eso el resultado se basa en tu criterio, tus referencias y tu dirección de contenido.",
+  "Collecta FAQ": "Preguntas frecuentes",
+  "Straight answers for creators deciding if Collecta fits their content workflow.": "Respuestas directas para creadores que deciden si Collecta encaja en su flujo de contenido.",
+  "What is Collecta?": "¿Qué es Collecta?",
+  "Collecta is a mobile app that helps creators turn saved inspiration, links and rough ideas into executable content plans.": "Collecta es una app móvil que ayuda a creadores a convertir inspiración guardada, enlaces e ideas sueltas en planes de contenido ejecutables.",
+  "Who is Collecta for?": "¿Para quién es Collecta?",
+  "Collecta is for independent creators, founders and solo creators who save a lot of content but struggle to turn it into posts.": "Collecta es para creadores independientes, founders y creadores en solitario que guardan mucho contenido pero tienen dificultades para convertirlo en publicaciones.",
+  "How does Collecta help me create content?": "¿Cómo me ayuda Collecta a crear contenido?",
+  "Collecta can generate hooks, post structures, scripts, checklists and clear next steps based on the inspiration and context you provide.": "Collecta puede generar ganchos, estructuras de posts, guiones, checklists y próximos pasos claros basados en la inspiración y el contexto que aportas.",
+  "Is Collecta just another AI writing tool?": "¿Collecta es solo otra herramienta de escritura con IA?",
+  "No. Collecta is focused on turning saved inspiration into executable content plans, instead of asking you to start from a blank prompt.": "No. Collecta se centra en convertir inspiración guardada en planes de contenido ejecutables, en vez de pedirte que empieces desde un prompt vacío.",
+  "Can I use Collecta for Instagram, TikTok, LinkedIn and X?": "¿Puedo usar Collecta para Instagram, TikTok, LinkedIn y X?",
+  "Yes, Collecta is designed to help creators plan content for platforms like Instagram, TikTok, LinkedIn and X.": "Sí, Collecta está diseñada para ayudar a creadores a planificar contenido para plataformas como Instagram, TikTok, LinkedIn y X.",
+  "Is Collecta available on the App Store?": "¿Collecta está disponible en App Store?",
+  "Yes, Collecta is available on the App Store.": "Sí, Collecta está disponible en App Store.",
 
   "nice.": "bien.",
   "idea hoarding is a form of procrastination.": "acumular ideas es una forma de procrastinar.",
@@ -94,6 +129,7 @@ const spanishCopy: Record<string, string> = {
   "Collecta turns scattered inspiration into publish-ready content.": "Collecta convierte inspiración dispersa en contenido listo para publicar.",
   "Turn saved inspiration into a content pipeline": "Convierte tu inspiración guardada en un flujo de contenido",
   "Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish.": "Collecta ayuda a que tu inspiración avance desde referencias guardadas a ideas generadas, borradores y publicaciones listas para publicar.",
+  "Collecta helps your inspiration move forward, from saved references to hooks, scripts, checklists and posts ready to publish.": "Collecta ayuda a que tu inspiración avance desde referencias guardadas a ganchos, guiones, checklists y publicaciones listas para publicar.",
 
   "Start": "Empieza",
   "Turning saves into content": "A convertir guardados en contenido",
@@ -283,6 +319,11 @@ const setMetaContent = (attribute: "name" | "property", key: string, content: st
   element?.setAttribute("content", content);
 };
 
+const setLinkHref = (rel: string, href: string) => {
+  const element = document.head.querySelector<HTMLLinkElement>(`link[rel="${rel}"]`);
+  element?.setAttribute("href", href);
+};
+
 export const I18nProvider = ({ children }: { children: ReactNode }) => {
   const [language, setLanguage] = useState<Language>(getBrowserLanguage);
 
@@ -323,10 +364,12 @@ export const useDocumentMetadata = ({
   title,
   description,
   imageAlt,
+  canonical,
 }: {
   title: string;
   description?: string;
   imageAlt?: string;
+  canonical?: string;
 }) => {
   const { language } = useI18n();
 
@@ -343,9 +386,14 @@ export const useDocumentMetadata = ({
     setMetaContent("property", "og:title", title);
     setMetaContent("name", "twitter:title", title);
 
+    if (canonical) {
+      setLinkHref("canonical", canonical);
+      setMetaContent("property", "og:url", canonical);
+    }
+
     if (imageAlt) {
       setMetaContent("property", "og:image:alt", imageAlt);
       setMetaContent("name", "twitter:image:alt", imageAlt);
     }
-  }, [description, imageAlt, language, title]);
+  }, [canonical, description, imageAlt, language, title]);
 };

@@ -24,14 +24,14 @@ const HeroSection = () => {
             </div>
 
             <h1 className="mt-6 text-[2.35rem] font-extrabold leading-[1.04] tracking-normal sm:text-[3.15rem] xl:text-[3.75rem]">
-              {t("Turn saved inspiration into posts you can actually publish")}
+              {t("Turn saved inspiration into content you can actually publish")}
             </h1>
 
             <p className="mt-5 max-w-[560px] text-base leading-7 text-[#5f6360]">
-              {t("Collecta helps creators transform saved posts, links and rough ideas into clear content plans, hooks, scripts and publishing checklists, so you never have to start from a blank page.")}
+              {t("Collecta helps creators turn saved posts, links and rough ideas into clear content plans, hooks, scripts and publishing checklists, so you stop starting from a blank page.")}
             </p>
 
-            <div className="mt-7 flex justify-start">
+            <div className="mt-7 flex flex-wrap items-center gap-4">
               <AppStoreBadge href={ctaHref} className="h-10 sm:h-12 lg:h-16" />
             </div>
           </motion.div>
@@ -45,7 +45,11 @@ const HeroSection = () => {
             {/* TODO: Replace with the final rectangular hero mockup showing saved inspiration -> Post Generator -> publish-ready output. */}
             <img
               src={heroMockup}
-              alt={t("Collecta app mockup showing saved inspiration turning into publish-ready content.")}
+              alt={t("Collecta app mockup showing a content plan generated from saved inspiration.")}
+              width="1448"
+              height="1383"
+              decoding="async"
+              loading="eager"
               className="w-[118%] max-w-none md:max-w-[700px] lg:max-w-none -translate-x-[7%] drop-shadow-[0_28px_44px_rgba(17,19,18,0.18)]"
             />
           </motion.div>

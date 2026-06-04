@@ -6,6 +6,7 @@ import generateMockup from "@/assets/feature-generate-mockup.png";
 import heroMockup from "@/assets/saves-mockup.png";
 import organizeMockup from "@/assets/feature-organize-mockup.png";
 import selectInspoMockup from "@/assets/feature-select-inspo-mockup.png";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Carousel, CarouselContent, CarouselItem } from "@/components/ui/carousel";
 import { useI18n } from "@/lib/i18n";
 
@@ -105,32 +106,74 @@ const pipelineStats = [
 
 const pipelineSteps = [
   {
-    title: "Saves",
-    copy: "Centralize saved posts, links and rough ideas in one place",
+    title: "Save your inspiration",
+    copy: "Bring together the posts, links and ideas you want to use for future content.",
     image: heroMockup,
     alt: "Collecta saved inspiration screen",
     desktopClassName: "left-0 top-[260px] w-[260px]",
   },
   {
-    title: "Select saves",
-    copy: "Choose the references you want to create from",
+    title: "Choose what you want to create",
+    copy: "Pick the platform, format and saved references you are working from.",
     image: selectInspoMockup,
     alt: "Collecta select saves screen",
     desktopClassName: "left-[28%] top-[80px] w-[260px]",
   },
   {
-    title: "Full execution plan",
-    copy: "Generate angle, hooks, script and checklist",
+    title: "Get a content plan",
+    copy: "Generate hooks, structure, script ideas, checklists and clear next steps.",
     image: generateMockup,
     alt: "Collecta post generation screen",
     desktopClassName: "left-[54%] top-[300px] w-[260px]",
   },
   {
-    title: "Content ready",
-    copy: "Use the plan to record, write and publish",
+    title: "Publish without starting from scratch",
+    copy: "Use the plan to record, write and publish faster.",
     image: contentReadyMockup,
     alt: "Collecta execution checklist screen",
     desktopClassName: "right-0 top-[170px] w-[260px]",
+  },
+];
+
+const audienceItems = [
+  {
+    title: "Independent creators",
+    copy: "Save useful content every day but need a system for turning references into posts.",
+  },
+  {
+    title: "Founders",
+    copy: "Have ideas scattered across platforms and need repeatable content workflows.",
+  },
+  {
+    title: "Solo creators",
+    copy: "Want hooks, scripts, checklists and clear next steps without starting from a blank prompt.",
+  },
+];
+
+const faqs = [
+  {
+    question: "What is Collecta?",
+    answer: "Collecta is a mobile app that helps creators turn saved inspiration, links and rough ideas into executable content plans.",
+  },
+  {
+    question: "Who is Collecta for?",
+    answer: "Collecta is for independent creators, founders and solo creators who save a lot of content but struggle to turn it into posts.",
+  },
+  {
+    question: "How does Collecta help me create content?",
+    answer: "Collecta can generate hooks, post structures, scripts, checklists and clear next steps based on the inspiration and context you provide.",
+  },
+  {
+    question: "Is Collecta just another AI writing tool?",
+    answer: "No. Collecta is focused on turning saved inspiration into executable content plans, instead of asking you to start from a blank prompt.",
+  },
+  {
+    question: "Can I use Collecta for Instagram, TikTok, LinkedIn and X?",
+    answer: "Yes, Collecta is designed to help creators plan content for platforms like Instagram, TikTok, LinkedIn and X.",
+  },
+  {
+    question: "Is Collecta available on the App Store?",
+    answer: "Yes, Collecta is available on the App Store.",
   },
 ];
 
@@ -200,7 +243,7 @@ const TwitterResponseCard = ({ tweet }: { tweet: (typeof tweets)[number] }) => {
       <div className="relative z-10 flex items-start justify-between gap-4">
         <div className="flex min-w-0 items-center gap-3">
           <span className={`flex h-11 w-11 shrink-0 items-center justify-center overflow-hidden rounded-full ${tweet.avatarClassName}`}>
-            <img src={tweet.avatarUrl} alt={tweet.author} className="h-full w-full object-cover" loading="lazy" />
+            <img src={tweet.avatarUrl} alt={tweet.author} width="44" height="44" className="h-full w-full object-cover" loading="lazy" decoding="async" />
           </span>
           <div className="min-w-0">
             <div className="flex min-w-0 items-center gap-1">
@@ -270,6 +313,8 @@ const ProductHuntCommentCard = () => {
         <img
           loading="lazy"
           alt="Sarah Porter"
+          width="32"
+          height="32"
           className="h-8 w-8 rounded-full"
           src="https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1"
           srcSet="https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=1 1x, https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=2 2x, https://ph-avatars.imgix.net/9558477/14bd1c9c-df1f-4fc3-9858-59888c0a32fb.jpeg?auto=compress&codec=mozjpeg&cs=strip&auto=format&w=32&h=32&fit=crop&frame=1&dpr=3 3x"
@@ -384,6 +429,10 @@ const MockupImage = ({ src, alt }: { src: string; alt: string }) => (
     <img
       src={src}
       alt={alt}
+      width="578"
+      height="1190"
+      loading="lazy"
+      decoding="async"
       className="absolute inset-0 h-full w-full object-contain drop-shadow-[0_28px_44px_rgba(17,19,18,0.14)] transition-all duration-500 ease-out hover:-translate-y-1 hover:drop-shadow-[0_34px_52px_rgba(17,19,18,0.18)]"
     />
   </div>
@@ -397,6 +446,10 @@ const PipelineStepContent = ({ step }: { step: (typeof pipelineSteps)[number] })
       <img
         src={step.image}
         alt={t(step.alt)}
+        width="578"
+        height="1190"
+        loading="lazy"
+        decoding="async"
         className="mx-auto h-56 w-full object-contain drop-shadow-[0_20px_34px_rgba(17,19,18,0.14)] transition-all duration-300 hover:-translate-y-1 hover:drop-shadow-[0_26px_42px_rgba(17,19,18,0.18)]"
       />
       <div className="mt-4 text-center">
@@ -475,6 +528,28 @@ const PipelineStatCard = ({ stat }: { stat: (typeof pipelineStats)[number] }) =>
       <p className="text-4xl font-extrabold tracking-normal text-[#56ABA0]">{stat.value}</p>
       <p className="mt-1 text-sm font-bold text-[#646865]">{t(stat.label)}</p>
     </div>
+  );
+};
+
+const AudienceItem = ({ item, index }: { item: (typeof audienceItems)[number]; index: number }) => {
+  const { t } = useI18n();
+
+  return (
+    <li className="py-3 sm:py-3 lg:py-3">
+      <div className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-x-2 text-[#56ABA0] sm:gap-x-4">
+        <span className="shrink-0 text-[1.85rem] font-extrabold leading-none tracking-normal sm:text-[2.05rem] lg:text-[2.25rem] xl:text-[2.45rem]">
+          ({index + 1})
+        </span>
+        <div className="min-w-0">
+          <h3 className="min-w-0 text-[1.85rem] font-extrabold uppercase leading-[0.98] tracking-normal sm:text-[2.05rem] lg:text-[2.25rem] xl:text-[2.45rem]">
+            {t(item.title)}
+          </h3>
+          <p className="mt-1.5 max-w-2xl text-[0.72rem] font-extrabold uppercase leading-[1.14] tracking-normal text-[#3f8f85] sm:text-[0.78rem]">
+            {t(item.copy)}
+          </p>
+        </div>
+      </div>
+    </li>
   );
 };
 
@@ -586,6 +661,25 @@ const FeaturesSection = () => {
         </div>
       </section>
 
+      <section id="who-for" className="scroll-mt-6 px-5 py-14 sm:py-20">
+        <div className="mx-auto grid max-w-7xl items-center gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:gap-14">
+          <div className="mx-auto max-w-2xl text-center lg:mx-0 lg:text-left">
+            <h2 className="mx-auto mt-3 max-w-xl text-3xl font-extrabold leading-[1.08] tracking-normal text-[#111312] sm:text-4xl lg:mx-0 lg:text-5xl">
+              {t("For creators who save more ideas than they publish")}
+            </h2>
+            <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#646865] sm:text-lg sm:leading-8 lg:mx-0">
+              {t("Collecta is built for independent creators, founders and solo creators who need a practical way to move from idea collection to execution.")}
+            </p>
+          </div>
+
+          <ul className="mx-auto w-full max-w-2xl text-left lg:max-w-none">
+            {audienceItems.map((item, index) => (
+              <AudienceItem key={item.title} item={item} index={index} />
+            ))}
+          </ul>
+        </div>
+      </section>
+
       <section id="include" className="scroll-mt-6 px-5 sm:px-0 py-14 sm:py-20">
         <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading title={t("What does Collecta include")} />
@@ -649,7 +743,7 @@ const FeaturesSection = () => {
         <div className="mx-auto max-w-7xl">
           <SectionHeading
             title={t("Why choose Collecta?")}
-            copy={t("Collecta turns scattered inspiration into publish-ready content.")}
+            copy={t("Most AI writing tools start with a blank prompt. Collecta starts with the ideas you already saved, so the output is grounded in your taste, references and content direction.")}
           />
 
           <Carousel opts={{ align: alignFirstStartRestCenter }} className="-mx-5 my-3 sm:my-5 lg:hidden">
@@ -694,8 +788,8 @@ const FeaturesSection = () => {
       <section id="pipeline" className="scroll-mt-6 px-5 py-14 sm:py-20">
         <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading
-            title={t("Turn saved inspiration into a content pipeline")}
-            copy={t("Collecta helps your inspiration move forward, from saved references to generated ideas, drafts and posts ready to publish.")}
+            title={t("How Collecta works")}
+            copy={t("Collecta helps your inspiration move forward, from saved references to hooks, scripts, checklists and posts ready to publish.")}
           />
 
           <div className="mt-8 hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
@@ -738,6 +832,28 @@ const FeaturesSection = () => {
               ))}
             </div>
           </div>
+        </div>
+      </section>
+
+      <section id="faq" className="scroll-mt-6 px-5 py-14 sm:py-20">
+        <div className="mx-auto max-w-5xl">
+          <SectionHeading
+            title={t("Collecta FAQ")}
+            copy={t("Straight answers for creators deciding if Collecta fits their content workflow.")}
+          />
+
+          <Accordion type="single" collapsible className="mt-10 overflow-hidden rounded-[24px] bg-white shadow-[0_20px_60px_-48px_rgba(17,19,18,0.55)] ring-1 ring-[#e8ebe4]">
+            {faqs.map((faq) => (
+              <AccordionItem key={faq.question} value={faq.question} className="border-[#e3e6df] px-5 sm:px-7">
+                <AccordionTrigger className="py-5 text-left text-lg font-extrabold leading-tight tracking-normal text-[#111312] hover:no-underline sm:text-xl">
+                  {t(faq.question)}
+                </AccordionTrigger>
+                <AccordionContent className="max-w-3xl pb-6 text-base leading-7 text-[#646865]">
+                  {t(faq.answer)}
+                </AccordionContent>
+              </AccordionItem>
+            ))}
+          </Accordion>
         </div>
       </section>
     </div>

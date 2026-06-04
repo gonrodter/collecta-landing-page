@@ -3,15 +3,21 @@ import HeroSection from "@/components/HeroSection";
 import FeaturesSection from "@/components/FeaturesSection";
 import CtaSection from "@/components/CtaSection";
 import Footer from "@/components/Footer";
+import { SITE_URL } from "@/lib/appConfig";
 import { useDocumentMetadata, useI18n } from "@/lib/i18n";
+
+const pageTitle = "Collecta - Turn saved inspiration into content plans";
+const pageDescription =
+  "Collecta helps content creators turn saved posts, links and rough ideas into hooks, scripts, checklists and content plans so they can publish faster.";
 
 const Index = () => {
   const { t } = useI18n();
 
   useDocumentMetadata({
-    title: t("Collecta - Save social posts and turn them into content"),
-    description: t("Save posts from social media, organize them by topic, and turn them into content you can actually publish."),
-    imageAlt: t("Screenshot of the Collecta landing page hero with the app preview, App Store badge, and Product Hunt badge."),
+    title: t(pageTitle),
+    description: t(pageDescription),
+    imageAlt: t("Collecta mobile app showing a content plan generated from saved inspiration."),
+    canonical: SITE_URL,
   });
 
   return (

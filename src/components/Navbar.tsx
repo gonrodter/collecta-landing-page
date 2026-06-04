@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import AppStoreBadge from "@/components/AppStoreBadge";
 import AppleLogo from "@/components/AppleLogo";
 import { APP_STORE_URL, HAS_APP_STORE_URL } from "@/lib/appConfig";
+import { trackAppStoreClick } from "@/lib/attribution";
 import { useI18n } from "@/lib/i18n";
 
 const Navbar = () => {
@@ -28,8 +29,8 @@ const Navbar = () => {
         </a>
 
         <nav className="hidden items-center gap-8 text-sm font-extrabold text-[#111312] lg:flex">
-          <a href="/#proof" className="transition-opacity hover:opacity-65">
-            {t("Proof")}
+          <a href="/#who-for" className="transition-opacity hover:opacity-65">
+            {t("Who it is for")}
           </a>
           <a href="/#include" className="transition-opacity hover:opacity-65">
             {t("Features")}
@@ -38,7 +39,10 @@ const Navbar = () => {
             {t("Why Collecta")}
           </a>
           <a href="/#pipeline" className="transition-opacity hover:opacity-65">
-            {t("Pipeline")}
+            {t("How it works")}
+          </a>
+          <a href="/#faq" className="transition-opacity hover:opacity-65">
+            {t("FAQ")}
           </a>
         </nav>
 
@@ -50,6 +54,9 @@ const Navbar = () => {
           href={ctaHref}
           target={HAS_APP_STORE_URL ? "_blank" : undefined}
           rel={HAS_APP_STORE_URL ? "noreferrer" : undefined}
+          onClick={() => {
+            if (HAS_APP_STORE_URL) trackAppStoreClick(ctaHref);
+          }}
           className="inline-flex items-center gap-1.5 rounded-lg bg-[#111312] px-3.5 py-2 text-xs font-extrabold leading-none text-white sm:hidden"
         >
           <AppleLogo className="h-4 w-4 shrink-0" />

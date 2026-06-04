@@ -1,5 +1,6 @@
 import AppleLogo from "@/components/AppleLogo";
 import { APP_STORE_URL, HAS_APP_STORE_URL } from "@/lib/appConfig";
+import { trackAppStoreClick } from "@/lib/attribution";
 import { useI18n } from "@/lib/i18n";
 
 const CtaSection = () => {
@@ -24,6 +25,9 @@ const CtaSection = () => {
             href={ctaHref}
             target={HAS_APP_STORE_URL ? "_blank" : undefined}
             rel={HAS_APP_STORE_URL ? "noreferrer" : undefined}
+            onClick={() => {
+              if (HAS_APP_STORE_URL) trackAppStoreClick(ctaHref);
+            }}
             className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#56ABA0] px-6 py-3 text-base font-bold text-[#fbfcf7] shadow-[0_18px_34px_-18px_rgba(17,19,18,0.46)] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_28px_46px_-22px_rgba(17,19,18,0.56)]"
           >
             <AppleLogo className="h-5 w-5" />

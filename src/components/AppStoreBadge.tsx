@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { APP_NAME } from "@/lib/appConfig";
+import { trackAppStoreClick } from "@/lib/attribution";
 import { useI18n } from "@/lib/i18n";
 
 interface AppStoreBadgeProps {
@@ -14,6 +15,9 @@ const AppStoreBadge = ({ href, className }: AppStoreBadgeProps) => {
     <img
       src={language === "es" ? "/app-store-badge-es.svg" : "/app-store-badge.svg"}
       alt={t("Download on the App Store")}
+      width={language === "es" ? "135" : "120"}
+      height="40"
+      decoding="async"
       className={cn("h-14 w-auto", className)}
     />
   );
@@ -29,6 +33,9 @@ const AppStoreBadge = ({ href, className }: AppStoreBadgeProps) => {
       rel={isExternal ? "noreferrer" : undefined}
       aria-label={t(`Download ${APP_NAME} on the App Store`)}
       className="inline-flex shrink-0"
+      onClick={() => {
+        if (isExternal) trackAppStoreClick(href);
+      }}
     >
       {badge}
     </a>

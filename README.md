@@ -83,6 +83,50 @@ Notes:
 - Use `https://eu.i.posthog.com` if your PostHog project is in the EU region.
 - If `VITE_POSTHOG_KEY` is missing, PostHog stays disabled.
 
+## Attribution setup
+
+The landing page stores supported attribution URL params in `localStorage` and sends an `app_store_click` event to a Supabase Edge Function when an App Store link is clicked.
+
+Supported params:
+
+```txt
+source
+utm_source
+utm_medium
+utm_campaign
+utm_content
+utm_term
+```
+
+Required Supabase setup:
+
+```sh
+supabase db push
+supabase secrets set ATTRIBUTION_IP_SALT="<long-random-private-salt>"
+supabase functions deploy track-attribution --no-verify-jwt
+```
+
+Required frontend env:
+
+```sh
+VITE_SUPABASE_URL=https://your-project.supabase.co
+VITE_SUPABASE_ANON_KEY=your-anon-key
+```
+
+Optional frontend env if the function is hosted somewhere else:
+
+```sh
+VITE_ATTRIBUTION_ENDPOINT=https://your-domain.example/track-attribution
+```
+
+Local verification:
+
+1. Start the site with `npm run dev`.
+2. Open `http://localhost:8080/?source=tiktok&utm_campaign=launch_video_1`.
+3. Confirm `collecta_attribution` exists in browser localStorage.
+4. Click any App Store button.
+5. Confirm a row was inserted into `public.attribution_events` with `event_type = 'app_store_click'`, the expected source/UTM values, and a non-null `ip_hash` when `ATTRIBUTION_IP_SALT` is configured.
+
 ## How can I deploy this project?
 
 Simply open [Lovable](https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID) and click on Share -> Publish.

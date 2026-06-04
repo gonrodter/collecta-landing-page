@@ -1,6 +1,7 @@
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
+import AttributionCapture from "@/components/AttributionCapture";
 import { I18nProvider } from "@/lib/i18n";
 import posthog, { isPostHogEnabled } from "@/lib/posthog";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
@@ -37,6 +38,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <AttributionCapture />
           <PostHogPageView />
           <Routes>
             <Route path="/" element={<Index />} />

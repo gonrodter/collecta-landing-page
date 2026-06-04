@@ -1,4 +1,5 @@
 export const APP_NAME = "Collecta";
+export const SITE_URL = "https://trycollecta.com/";
 
 // Add the live App Store URL here to make all badges and CTA links clickable.
 export const APP_STORE_URL = "https://apps.apple.com/us/app/collecta-save-create-posts/id6758043604";
