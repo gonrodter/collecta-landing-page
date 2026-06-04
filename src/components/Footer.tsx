@@ -2,7 +2,6 @@ import { Instagram } from "lucide-react";
 
 import { NavLink } from "@/components/NavLink";
 import { useI18n } from "@/lib/i18n";
-import { getLocalizedSeoPages } from "@/pages/SeoPage";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg aria-hidden="true" viewBox="3.75 1 15.571 16.295" fill="currentColor" className={className}>
@@ -10,26 +9,31 @@ const TikTokIcon = ({ className }: { className?: string }) => (
   </svg>
 );
 
-const articleFooterLabels: Record<string, string> = {
-  "content-planning-app": "Planning app",
-  "saved-posts-to-content-plans": "Saved posts",
-  "content-ideas-app": "Content ideas",
-  "instagram-saved-posts-content": "Instagram saves",
-  "content-workflow-for-creators": "Creator workflow",
-};
-
-const spanishArticleFooterLabels: Record<string, string> = {
-  "content-planning-app": "Planificación",
-  "saved-posts-to-content-plans": "Posts guardados",
-  "content-ideas-app": "Ideas de contenido",
-  "instagram-saved-posts-content": "Guardados de Instagram",
-  "content-workflow-for-creators": "Flujo de creador",
-};
+const articleFooterLinks = [
+  {
+    slug: "content-planning-app",
+    label: { en: "Planning app", es: "Planificación" },
+  },
+  {
+    slug: "saved-posts-to-content-plans",
+    label: { en: "Saved posts", es: "Posts guardados" },
+  },
+  {
+    slug: "content-ideas-app",
+    label: { en: "Content ideas", es: "Ideas de contenido" },
+  },
+  {
+    slug: "instagram-saved-posts-content",
+    label: { en: "Instagram saves", es: "Guardados de Instagram" },
+  },
+  {
+    slug: "content-workflow-for-creators",
+    label: { en: "Creator workflow", es: "Flujo de creador" },
+  },
+];
 
 const Footer = () => {
   const { language, t } = useI18n();
-  const localizedSeoPages = getLocalizedSeoPages(language);
-  const localizedFooterLabels = language === "es" ? spanishArticleFooterLabels : articleFooterLabels;
 
   return (
     <footer className="bg-[#fbfcf7] px-4 pb-5 pt-10 text-[#fbfcf7] sm:px-5 sm:pt-14">
@@ -51,14 +55,14 @@ const Footer = () => {
               {language === "es" ? "Artículos" : "Articles"}
             </p>
             <ul className="mt-4 grid gap-3 text-sm font-extrabold uppercase leading-5 tracking-normal text-white">
-              {localizedSeoPages.map((page) => (
-                <li key={page.slug}>
+              {articleFooterLinks.map((link) => (
+                <li key={link.slug}>
                   <NavLink
-                    to={`/${page.slug}`}
+                    to={`/${link.slug}`}
                     className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]"
                     activeClassName="text-[#a9e0d8]"
                   >
-                    {localizedFooterLabels[page.slug]}
+                    {link.label[language]}
                   </NavLink>
                 </li>
               ))}
