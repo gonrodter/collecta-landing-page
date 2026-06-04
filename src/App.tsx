@@ -11,6 +11,7 @@ import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Privacy from "./pages/Privacy";
 import ResetPassword from "./pages/ResetPassword";
+import SeoPage, { seoPages } from "./pages/SeoPage";
 import Terms from "./pages/Terms";
 import { initialPasswordRecovery } from "./lib/passwordRecovery";
 
@@ -31,6 +32,16 @@ const PostHogPageView = () => {
   return null;
 };
 
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+  }, [pathname]);
+
+  return null;
+};
+
 const App = () => (
   <I18nProvider>
     <QueryClientProvider client={queryClient}>
@@ -39,12 +50,16 @@ const App = () => (
         <Sonner />
         <BrowserRouter>
           <AttributionCapture />
+          <ScrollToTop />
           <PostHogPageView />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/reset-password" element={<ResetPassword recovery={initialPasswordRecovery} />} />
             <Route path="/privacy" element={<Privacy />} />
             <Route path="/terms" element={<Terms />} />
+            {seoPages.map((page) => (
+              <Route key={page.slug} path={`/${page.slug}`} element={<SeoPage page={page} />} />
+            ))}
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
