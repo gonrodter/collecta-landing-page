@@ -37,91 +37,93 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#fbfcf7] px-4 pb-5 pt-10 text-[#fbfcf7] sm:px-5 sm:pt-14">
-      <div className="container mx-auto max-w-7xl overflow-hidden rounded-[28px] bg-[#111312] px-5 pb-0 pt-7 shadow-[0_28px_80px_-60px_rgba(17,19,18,0.75)] sm:px-8 sm:pt-9 lg:px-10">
-        <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[0.95fr_1fr_0.75fr_0.75fr]">
-          <div>
-            <NavLink to="/" className="inline-flex text-2xl font-extrabold tracking-normal transition-all duration-300 hover:-translate-y-0.5 hover:opacity-75">
-              collecta
-            </NavLink>
-            <p className="mt-4 max-w-[220px] text-sm font-medium leading-6 text-[#c7cdc8]">
-              {language === "es"
-                ? "Convierte inspiración guardada en planes de contenido que sí puedes publicar."
-                : "Turn saved inspiration into content plans you can actually publish."}
-            </p>
-          </div>
+      <div className="mx-auto w-full max-w-7xl overflow-hidden rounded-[28px] bg-[#111312] shadow-[0_28px_80px_-60px_rgba(17,19,18,0.75)] transition-[max-width] duration-300 ease-out lg:hover:max-w-[calc(100vw-2.5rem)]">
+        <div className="mx-auto max-w-7xl px-5 pb-0 pt-7 sm:px-8 sm:pt-9 lg:px-10">
+          <div className="grid gap-9 sm:grid-cols-2 lg:grid-cols-[0.95fr_1fr_0.75fr_0.75fr]">
+            <div>
+              <NavLink to="/" className="inline-flex text-2xl font-extrabold tracking-normal transition-all duration-300 hover:-translate-y-0.5 hover:opacity-75">
+                collecta
+              </NavLink>
+              <p className="mt-4 max-w-[220px] text-sm font-medium leading-6 text-[#c7cdc8]">
+                {language === "es"
+                  ? "Convierte inspiración guardada en planes de contenido que sí puedes publicar."
+                  : "Turn saved inspiration into content plans you can actually publish."}
+              </p>
+            </div>
 
-          <nav aria-label="Articles">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">
-              {language === "es" ? "Artículos" : "Articles"}
-            </p>
-            <ul className="mt-4 grid gap-3 text-sm font-extrabold uppercase leading-5 tracking-normal text-white">
-              {articleFooterLinks.map((link) => (
-                <li key={link.slug}>
-                  <NavLink
-                    to={`/${link.slug}`}
-                    className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]"
-                    activeClassName="text-[#a9e0d8]"
-                  >
-                    {link.label[language]}
+            <nav aria-label="Articles">
+              <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">
+                {language === "es" ? "Artículos" : "Articles"}
+              </p>
+              <ul className="mt-4 grid gap-3 text-sm font-extrabold uppercase leading-5 tracking-normal text-white">
+                {articleFooterLinks.map((link) => (
+                  <li key={link.slug}>
+                    <NavLink
+                      to={`/${link.slug}`}
+                      className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]"
+                      activeClassName="text-[#a9e0d8]"
+                    >
+                      {link.label[language]}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+
+            <nav aria-label="Legal">
+              <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">Legal</p>
+              <ul className="mt-4 grid gap-3 text-sm font-extrabold uppercase leading-5 tracking-normal text-white">
+                <li>
+                  <NavLink to="/privacy" className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]" activeClassName="text-[#a9e0d8]">
+                    {t("Privacy Policy")}
                   </NavLink>
                 </li>
-              ))}
-            </ul>
-          </nav>
+                <li>
+                  <NavLink to="/terms" className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]" activeClassName="text-[#a9e0d8]">
+                    {t("Terms of Use")}
+                  </NavLink>
+                </li>
+              </ul>
+            </nav>
 
-          <nav aria-label="Legal">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">Legal</p>
-            <ul className="mt-4 grid gap-3 text-sm font-extrabold uppercase leading-5 tracking-normal text-white">
-              <li>
-                <NavLink to="/privacy" className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]" activeClassName="text-[#a9e0d8]">
-                  {t("Privacy Policy")}
-                </NavLink>
-              </li>
-              <li>
-                <NavLink to="/terms" className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]" activeClassName="text-[#a9e0d8]">
-                  {t("Terms of Use")}
-                </NavLink>
-              </li>
-            </ul>
-          </nav>
-
-          <div className="lg:text-right">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">
-              {language === "es" ? "Redes" : "Social"}
-            </p>
-            <div className="mt-4 flex items-center gap-4 text-white lg:justify-end">
-              <a
-                href="https://www.instagram.com/usecollecta/"
-                target="_blank"
-                rel="noreferrer"
-                aria-label={t("Collecta on Instagram")}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#a9e0d8] hover:text-[#111312]"
-              >
-                <Instagram className="h-5 w-5" />
-              </a>
-              <a
-                href="https://www.tiktok.com/@collecta.app"
-                target="_blank"
-                rel="noreferrer"
-                aria-label={t("Collecta on TikTok")}
-                className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#a9e0d8] hover:text-[#111312]"
-              >
-                <TikTokIcon className="h-[18px] w-[18px]" />
-              </a>
+            <div className="lg:text-right">
+              <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">
+                {language === "es" ? "Redes" : "Social"}
+              </p>
+              <div className="mt-4 flex items-center gap-4 text-white lg:justify-end">
+                <a
+                  href="https://www.instagram.com/usecollecta/"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={t("Collecta on Instagram")}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#a9e0d8] hover:text-[#111312]"
+                >
+                  <Instagram className="h-5 w-5" />
+                </a>
+                <a
+                  href="https://www.tiktok.com/@collecta.app"
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={t("Collecta on TikTok")}
+                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-white/10 transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#a9e0d8] hover:text-[#111312]"
+                >
+                  <TikTokIcon className="h-[18px] w-[18px]" />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="relative mt-10 min-h-[76px] sm:mt-12 sm:min-h-[126px] md:min-h-[150px] lg:min-h-[184px] xl:min-h-[190px]">
-          <p className="absolute left-0 top-0 z-10 text-xs font-bold text-[#c7cdc8] sm:text-sm">
-            {t("© 2026 Collecta. All rights reserved.")}
-          </p>
-          <p
-            aria-hidden="true"
-            className="absolute -bottom-[0.18em] left-1/2 w-full -translate-x-1/2 select-none text-center text-[3.2rem] font-black uppercase leading-none tracking-normal text-white min-[390px]:text-[3.7rem] sm:text-[7rem] md:text-[8.7rem] lg:text-[11.5rem] xl:text-[14rem] 2xl:text-[15rem]"
-          >
-            collecta
-          </p>
+          <div className="relative mt-10 min-h-[76px] sm:mt-12 sm:min-h-[126px] md:min-h-[150px] lg:min-h-[184px] xl:min-h-[190px]">
+            <p className="absolute left-0 top-0 z-10 text-xs font-bold text-[#c7cdc8] sm:text-sm">
+              {t("© 2026 Collecta. All rights reserved.")}
+            </p>
+            <p
+              aria-hidden="true"
+              className="absolute -bottom-[0.18em] left-1/2 w-full -translate-x-1/2 select-none text-center text-[3.2rem] font-black uppercase leading-none tracking-normal text-white min-[390px]:text-[3.7rem] sm:text-[7rem] md:text-[8.7rem] lg:text-[11.5rem] xl:text-[14rem] 2xl:text-[15rem]"
+            >
+              collecta
+            </p>
+          </div>
         </div>
       </div>
     </footer>

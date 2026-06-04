@@ -805,9 +805,9 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
                 </Accordion>
               </section>
 
-              <section className="rounded-[8px] bg-[#111312] p-6 text-white sm:p-8">
+              <section className="rounded-[28px] bg-[#56ABA0] p-6 text-[#fbfcf7] shadow-[0_24px_70px_-52px_rgba(17,19,18,0.62)] sm:p-8">
                 <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{localizedPage.ctaTitle}</h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{localizedPage.ctaCopy}</p>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-[#fbfcf7]/85">{localizedPage.ctaCopy}</p>
                 <a
                   href={ctaHref}
                   target={HAS_APP_STORE_URL ? "_blank" : undefined}
@@ -815,7 +815,7 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
                   onClick={() => {
                     if (HAS_APP_STORE_URL) trackAppStoreClick(ctaHref);
                   }}
-                  className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#56ABA0] px-6 py-3 text-base font-bold text-[#fbfcf7] transition-all duration-300 hover:-translate-y-0.5"
+                  className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#111312] px-6 py-3 text-base font-bold text-white transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_18px_34px_-20px_rgba(17,19,18,0.56)]"
                 >
                   <AppleLogo className="h-5 w-5" />
                   {labels.downloadAppStore}
