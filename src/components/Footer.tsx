@@ -2,7 +2,7 @@ import { Instagram } from "lucide-react";
 
 import { NavLink } from "@/components/NavLink";
 import { useI18n } from "@/lib/i18n";
-import { seoPages } from "@/pages/SeoPage";
+import { getLocalizedSeoPages } from "@/pages/SeoPage";
 
 const TikTokIcon = ({ className }: { className?: string }) => (
   <svg aria-hidden="true" viewBox="3.75 1 15.571 16.295" fill="currentColor" className={className}>
@@ -18,8 +18,18 @@ const articleFooterLabels: Record<string, string> = {
   "content-workflow-for-creators": "Creator workflow",
 };
 
+const spanishArticleFooterLabels: Record<string, string> = {
+  "content-planning-app": "Planificación",
+  "saved-posts-to-content-plans": "Posts guardados",
+  "content-ideas-app": "Ideas de contenido",
+  "instagram-saved-posts-content": "Guardados de Instagram",
+  "content-workflow-for-creators": "Flujo de creador",
+};
+
 const Footer = () => {
-  const { t } = useI18n();
+  const { language, t } = useI18n();
+  const localizedSeoPages = getLocalizedSeoPages(language);
+  const localizedFooterLabels = language === "es" ? spanishArticleFooterLabels : articleFooterLabels;
 
   return (
     <footer className="bg-[#fbfcf7] px-4 pb-5 pt-10 text-[#fbfcf7] sm:px-5 sm:pt-14">
@@ -30,21 +40,25 @@ const Footer = () => {
               collecta
             </NavLink>
             <p className="mt-4 max-w-[220px] text-sm font-medium leading-6 text-[#c7cdc8]">
-              Turn saved inspiration into content plans you can actually publish.
+              {language === "es"
+                ? "Convierte inspiración guardada en planes de contenido que sí puedes publicar."
+                : "Turn saved inspiration into content plans you can actually publish."}
             </p>
           </div>
 
           <nav aria-label="Articles">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">Articles</p>
+            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">
+              {language === "es" ? "Artículos" : "Articles"}
+            </p>
             <ul className="mt-4 grid gap-3 text-sm font-extrabold uppercase leading-5 tracking-normal text-white">
-              {seoPages.map((page) => (
+              {localizedSeoPages.map((page) => (
                 <li key={page.slug}>
                   <NavLink
                     to={`/${page.slug}`}
                     className="inline-flex transition-all duration-300 hover:-translate-y-0.5 hover:text-[#a9e0d8]"
                     activeClassName="text-[#a9e0d8]"
                   >
-                    {articleFooterLabels[page.slug]}
+                    {localizedFooterLabels[page.slug]}
                   </NavLink>
                 </li>
               ))}
@@ -68,7 +82,9 @@ const Footer = () => {
           </nav>
 
           <div className="lg:text-right">
-            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">Social</p>
+            <p className="text-sm font-extrabold uppercase tracking-[0.16em] text-[#a9e0d8]">
+              {language === "es" ? "Redes" : "Social"}
+            </p>
             <div className="mt-4 flex items-center gap-4 text-white lg:justify-end">
               <a
                 href="https://www.instagram.com/usecollecta/"

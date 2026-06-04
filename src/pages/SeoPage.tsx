@@ -7,7 +7,7 @@ import Navbar from "@/components/Navbar";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { APP_STORE_URL, HAS_APP_STORE_URL, SITE_URL } from "@/lib/appConfig";
 import { trackAppStoreClick } from "@/lib/attribution";
-import { useDocumentMetadata } from "@/lib/i18n";
+import { useDocumentMetadata, useI18n, type Language } from "@/lib/i18n";
 
 type Faq = {
   question: string;
@@ -364,16 +364,355 @@ export const seoPages: SeoPageContent[] = [
   },
 ];
 
-export const getSeoPage = (slug: string) => seoPages.find((page) => page.slug === slug);
+const spanishSeoPages: SeoPageContent[] = [
+  {
+    slug: "content-planning-app",
+    title: "App de planificación de contenido para creadores | Collecta",
+    description:
+      "Collecta es una app de planificación de contenido para creadores que guardan posts, enlaces e ideas y quieren convertirlos en contenido publicable.",
+    eyebrow: "App de planificación",
+    h1: "Una app de planificación de contenido para creadores que guardan más ideas de las que publican",
+    intro: [
+      "Una buena app de planificación de contenido no debería pedirte que inventes todo desde cero cada lunes. La mayoría de creadores ya tienen material de sobra. Está en posts guardados, marcadores, notas, enlaces, ideas sueltas y pensamientos a medio escribir. El problema no suele ser encontrar inspiración. El problema es convertir esa inspiración en algo concreto que puedas crear.",
+      "Collecta está pensada para ese momento. Ayuda a creadores independientes a reunir las ideas que ya les interesan, organizarlas alrededor de temas reales y convertir inspiración seleccionada en hooks, estructuras, guiones, checklists y próximos pasos. El objetivo es simple: que sea más fácil pasar de idea guardada a post publicado.",
+    ],
+    problemTitle: "El problema no es la falta de ideas",
+    problem: [
+      "Muchos creadores culpan su falta de constancia a no tener suficientes ideas. En realidad, muchos tienen demasiadas. Guardan un post porque el ángulo es bueno, un Reel porque el ritmo funciona o un hilo porque la historia puede servirles. Luego todo eso desaparece dentro de carpetas pensadas para almacenar, no para crear.",
+      "Eso genera una acumulación silenciosa. Sabes que hay buen material en algún sitio, pero encontrarlo exige energía. Cuando llega el momento de crear, abres varias apps, revisas guardados antiguos, pierdes el pensamiento original y acabas otra vez frente a una página en blanco. El archivo crece, pero el hábito de publicar no.",
+    ],
+    oldWorkflowTitle: "Por qué falla el flujo antiguo",
+    oldWorkflow: [
+      "La mayoría de flujos de contenido están repartidos entre herramientas que no se conectan. Instagram guarda referencias visuales. Notas guarda pensamientos sueltos. Un calendario guarda fechas. Una app de escritura guarda borradores. Ninguno de esos lugares explica por qué guardaste algo o qué querías hacer con ello.",
+      "Eso obliga a reconstruir cada post desde cero. Tienes que recordar el contexto, elegir un ángulo, decidir el formato, escribir la apertura, ordenar las ideas y definir los pasos de ejecución. Un calendario puede decirte cuándo publicar, pero no convierte una pila de inspiración en un plan claro. Una app de notas puede guardar la idea, pero rara vez te ayuda a sacarla.",
+    ],
+    collectaTitle: "Cómo ayuda Collecta",
+    collecta: [
+      "Collecta empieza con la inspiración que ya guardaste. Puedes reunir referencias, enlaces e ideas en un solo lugar, agruparlas por tema, nicho o bucket de contenido y elegir desde qué guardados quieres trabajar. Esa selección convierte el archivo en punto de partida.",
+      "A partir de ahí, Collecta ayuda a crear un plan práctico: ángulos, hooks, estructuras, guiones, checklists y próximos pasos. En vez de pedirle ideas genéricas a una herramienta sin contexto, usas tu propio criterio y tus referencias como base.",
+      "Esto importa porque la ejecución suele ser donde los creadores pierden impulso. Un buen plan reduce la cantidad de decisiones entre idea y publicación. Tú sigues aportando criterio, historia y voz. Collecta pone estructura para que la idea no se quede atrapada en la carpeta de guardados.",
+    ],
+    forTitle: "Para quién es",
+    forItems: [
+      "Creadores independientes que guardan posts útiles cada día pero casi nunca vuelven a ellos.",
+      "Founders que construyen marca personal alrededor de aprendizajes, producto u observaciones del mercado.",
+      "Creadores en solitario que quieren sistemas repetibles sin convertir su flujo en una operación pesada.",
+      "Creadores que quieren publicar con más constancia sin empezar siempre desde un prompt vacío.",
+    ],
+    linksTitle: "Flujos relacionados",
+    links: [
+      { to: "/saved-posts-to-content-plans", label: "Convertir posts guardados en planes de contenido" },
+      { to: "/content-workflow-for-creators", label: "Crear un flujo de contenido para creadores" },
+      { to: "/content-ideas-app", label: "Evitar que tus ideas de contenido se pierdan" },
+    ],
+    faqs: [
+      {
+        question: "¿Qué diferencia a Collecta de un calendario de contenido?",
+        answer:
+          "Un calendario ayuda a programar. Collecta ayuda antes, cuando tus ideas aún están dispersas y necesitan convertirse en un post, guion o checklist.",
+      },
+      {
+        question: "¿Collecta sirve solo para una plataforma?",
+        answer:
+          "No. Collecta está pensada para el flujo del creador, así que puedes planificar ideas para Instagram, TikTok, LinkedIn, X y otros formatos.",
+      },
+      {
+        question: "¿Necesito una gran estrategia de contenido?",
+        answer:
+          "No. Collecta también sirve cuando tu estrategia aún está tomando forma, porque te ayuda a ver patrones en lo que guardas y convertirlos en publicaciones.",
+      },
+      {
+        question: "¿Collecta está disponible ahora?",
+        answer: "Sí. Collecta está disponible en la App Store.",
+      },
+    ],
+    ctaTitle: "Empieza a planificar desde las ideas que ya guardaste",
+    ctaCopy:
+      "Descarga Collecta en la App Store y convierte inspiración guardada en planes de contenido que puedas ejecutar.",
+  },
+  {
+    slug: "saved-posts-to-content-plans",
+    title: "Convierte posts guardados en planes de contenido | Collecta",
+    description:
+      "Descubre cómo Collecta ayuda a creadores a convertir posts guardados en planes de contenido con ángulos, hooks, guiones y próximos pasos.",
+    eyebrow: "Posts guardados",
+    h1: "Convierte posts guardados en planes de contenido que sí puedes crear",
+    intro: [
+      "Guardar un post es fácil. Convertirlo en contenido propio es la parte que normalmente se queda pendiente. Ves un ángulo fuerte, un formato útil o una manera clara de explicar una idea y lo guardas con buena intención. Una semana después está enterrado bajo más guardados y ya no recuerdas por qué te importaba.",
+      "Collecta ayuda a creadores a convertir posts guardados en planes de contenido. Es para cuando ya tienes inspiración, pero necesitas una forma práctica de decidir qué hacer con ella. El resultado no es otro elemento guardado. Es un ángulo, una estructura, una dirección de guion y una checklist que acerca la idea a la publicación.",
+    ],
+    problemTitle: "Guardar posts puede dar una falsa sensación de avance",
+    problem: [
+      "No hay nada malo en guardar inspiración. Muchas veces es así como los creadores desarrollan criterio. El problema es que guardar se siente como una acción aunque no produzca ningún resultado. La carpeta de guardados se convierte en un lugar donde se acumulan buenas intenciones.",
+      "Cuanto más crece esa carpeta, más difícil es usarla. Tienes que revisar referencias antiguas, recordar por qué importaba cada una y separar inspiración de distracción. Para cuando encuentras algo útil, puede que la energía para crear ya se haya ido.",
+    ],
+    oldWorkflowTitle: "Por qué el flujo habitual no funciona",
+    oldWorkflow: [
+      "El enfoque típico es guardar posts en cada plataforma y abrirlos más tarde mientras intentas escribir. Suena simple, pero depende demasiado de la memoria. Tienes que recordar la idea original, la audiencia que tenías en mente y el formato que querías probar. Además, las plataformas están diseñadas para mantenerte consumiendo, no creando.",
+      "Otra opción es pegar enlaces en una app de notas. Eso centraliza referencias, pero no resuelve el trabajo difícil. Una lista de links no es un plan. No te dice qué ángulo es más fuerte, cómo abrir el post, qué puntos cubrir ni qué pasos necesitas antes de publicar.",
+    ],
+    collectaTitle: "Cómo Collecta te ayuda a pasar de guardar a ejecutar",
+    collecta: [
+      "Collecta da a tus posts guardados un espacio de trabajo. Puedes reunir referencias e ideas, organizarlas por tema y elegir los guardados concretos desde los que quieres crear. Esa selección es importante: el buen contenido suele empezar eligiendo, no mirando un archivo infinito.",
+      "Después, Collecta ayuda a convertir esa inspiración seleccionada en un plan de contenido. Puedes usarlo para definir el ángulo, generar opciones de hook, estructurar el post o guion y crear una checklist de ejecución. El plan parte de lo que guardaste, pero está pensado para que hagas algo con tu propia voz.",
+      "La idea no es automatizar tu criterio. La idea es dejar de perderlo dentro de carpetas. Cuando tus referencias son fáciles de encontrar y de accionar, puedes pasar menos tiempo recuperando ideas antiguas y más tiempo publicando contenido nuevo.",
+    ],
+    forTitle: "Para quién es",
+    forItems: [
+      "Creadores con cientos de posts guardados y sin sistema claro para usarlos.",
+      "Creadores de Instagram y TikTok que guardan formatos, hooks e ideas de edición.",
+      "Founders que guardan buenos ejemplos pero necesitan convertirlos en posts originales.",
+      "Cualquiera que quiera que su inspiración guardada sea un pipeline de contenido y no solo almacenamiento.",
+    ],
+    linksTitle: "Sigue construyendo el flujo",
+    links: [
+      { to: "/content-planning-app", label: "Usar una app de planificación pensada para guardados" },
+      { to: "/instagram-saved-posts-content", label: "Usar guardados de Instagram como ideas de contenido" },
+      { to: "/content-ideas-app", label: "Organizar ideas antes de que desaparezcan" },
+    ],
+    faqs: [
+      {
+        question: "¿Un post guardado puede convertirse en contenido original?",
+        answer:
+          "Sí, si lo usas como referencia y no como plantilla para copiar. Collecta te ayuda a transformar la razón por la que guardaste algo en un ángulo y estructura propios.",
+      },
+      {
+        question: "¿Collecta publica por mí?",
+        answer:
+          "No. Collecta te ayuda a planificar y preparar el contenido. Tú sigues controlando el borrador final, la grabación y la publicación.",
+      },
+      {
+        question: "¿Qué debería guardar en Collecta?",
+        answer:
+          "Posts, enlaces, formatos, ideas sueltas y referencias que quieras convertir en contenido futuro.",
+      },
+      {
+        question: "¿Collecta está disponible para iPhone?",
+        answer: "Sí. Collecta está disponible en la App Store.",
+      },
+    ],
+    ctaTitle: "Haz que tus posts guardados vuelvan a ser útiles",
+    ctaCopy:
+      "Descarga Collecta y empieza a convertir posts guardados en planes de contenido con próximos pasos claros.",
+  },
+  {
+    slug: "content-ideas-app",
+    title: "App de ideas de contenido para inspiración y pensamientos | Collecta",
+    description:
+      "Collecta es una app de ideas de contenido que ayuda a creadores a guardar inspiración, enlaces y pensamientos sin que se pierdan.",
+    eyebrow: "Ideas de contenido",
+    h1: "Una app de ideas de contenido para creadores que pierden sus mejores pensamientos",
+    intro: [
+      "Las mejores ideas de contenido casi nunca aparecen cuando te sientas a escribir. Aparecen mientras haces scroll, caminas, lees, respondes a un cliente, ves a otro creador o piensas en un problema de tu propio trabajo. Guardas algo, escribes una nota rápida o te dices que volverás luego.",
+      "Luego llega ese luego, y la idea ya no está. Collecta es una app de ideas de contenido para creadores independientes que necesitan un lugar simple donde guardar inspiración, enlaces y pensamientos conectados al contenido que quieren crear. Está pensada para capturar, organizar y ejecutar, no solo para almacenar.",
+    ],
+    problemTitle: "Las ideas se pierden porque viven en demasiados sitios",
+    problem: [
+      "El sistema de ideas de un creador suele crecer por accidente. Algunas ideas están en Notas. Otras en guardados de Instagram. Otras en favoritos de TikTok, marcadores del navegador, mensajes a ti mismo o conversaciones. Cada lugar tenía sentido en el momento, pero el sistema completo deja de ser fiable.",
+      "Cuando no confías en el sistema, dejas de usarlo. Puede que sigas guardando cosas, pero ya no esperas que se conviertan en contenido. Ahí es cuando capturar ideas se convierte en acumular ideas. La colección crece, pero tu consistencia no.",
+    ],
+    oldWorkflowTitle: "Por qué una app de notas no siempre basta",
+    oldWorkflow: [
+      "Una app de notas sirve para apuntar pensamientos, pero suele ser demasiado abierta para ejecutar contenido. Una frase suelta, un enlace pegado y un hook a medias conviven con listas, reuniones y recordatorios. No hay un camino natural desde la nota hasta el post terminado.",
+      "Las hojas de cálculo y calendarios pueden ayudar a planificar, pero normalmente asumen que la idea ya está clara. Son menos útiles cuando la idea todavía es una referencia guardada, una reacción, una observación o un formato que quieres adaptar más adelante. Los creadores necesitan una capa intermedia entre capturar inspiración y programar contenido.",
+    ],
+    collectaTitle: "Cómo Collecta hace que las ideas sean utilizables",
+    collecta: [
+      "Collecta da a tus ideas y referencias un lugar conectado con la creación. Puedes mantenerlas juntas, categorizarlas por tema y volver a ellas cuando estés listo para crear. En vez de revisar notas mezcladas con todo lo demás, trabajas en un espacio pensado para contenido futuro.",
+      "Cuando una idea está lista para avanzar, Collecta ayuda a convertirla en un plan. Puedes crear hooks, esquemas, guiones, estructuras de post y checklists de ejecución desde las referencias y el contexto que aportas. La idea no tiene que estar perfecta antes de empezar; solo necesita suficiente señal para construir.",
+      "Esto hace que el flujo del creador sea más ligero. Puedes capturar ideas sin presión y volver después para convertir las más fuertes en algo concreto. El hábito deja de ser guardar todo y pasa a ser crear desde lo que ya llamó tu atención.",
+    ],
+    forTitle: "Para quién es",
+    forItems: [
+      "Creadores con ideas repartidas entre notas, guardados, marcadores y mensajes.",
+      "Founders que piensan en público pero pierden buenas observaciones antes de publicarlas.",
+      "Creadores en solitario que quieren un banco de ideas conectado a ejecución.",
+      "Cualquiera que quiera dejar de empezar desde cero cada vez que se sienta a crear.",
+    ],
+    linksTitle: "Páginas relacionadas",
+    links: [
+      { to: "/content-planning-app", label: "Planificar contenido desde ideas guardadas" },
+      { to: "/saved-posts-to-content-plans", label: "Convertir posts guardados en planes" },
+      { to: "/content-workflow-for-creators", label: "Construir un mejor flujo de creador" },
+    ],
+    faqs: [
+      {
+        question: "¿Collecta es solo un banco de ideas?",
+        answer:
+          "No. Collecta te ayuda a guardar y organizar ideas, pero también está pensada para convertir inspiración seleccionada en planes de contenido ejecutables.",
+      },
+      {
+        question: "¿Puedo usar Collecta para pensamientos sueltos?",
+        answer:
+          "Sí. Collecta sirve para posts y enlaces guardados, pero también para pensamientos que necesitan estructura antes de convertirse en contenido.",
+      },
+      {
+        question: "¿Y si mis ideas están desordenadas?",
+        answer:
+          "Es normal. Collecta está diseñada para ese punto intermedio entre detectar una idea y saber exactamente cómo publicarla.",
+      },
+      {
+        question: "¿Dónde puedo descargar Collecta?",
+        answer: "Collecta está disponible ahora en la App Store.",
+      },
+    ],
+    ctaTitle: "Mantén tus ideas cerca del trabajo",
+    ctaCopy:
+      "Descarga Collecta y da a tu inspiración guardada y pensamientos sueltos un lugar donde convertirse en contenido real.",
+  },
+  {
+    slug: "instagram-saved-posts-content",
+    title: "Usa guardados de Instagram como ideas de contenido | Collecta",
+    description:
+      "Deja de acumular guardados de Instagram para siempre. Collecta ayuda a creadores a convertir inspiración guardada en planes de contenido originales.",
+    eyebrow: "Guardados de Instagram",
+    h1: "Deja de dejar tus guardados de Instagram ahí para siempre",
+    intro: [
+      "Los guardados de Instagram pueden ser una mina para creadores. Guardas hooks, formatos, carruseles, captions, ideas visuales, ángulos y ejemplos de cómo otras personas explican cosas. El problema es que los guardados de Instagram son fáciles de acumular y difíciles de usar.",
+      "Collecta ayuda a convertir guardados de Instagram y otra inspiración en ideas de contenido que sí puedes crear. Da a esos guardados una salida: organizar la referencia, elegir desde qué quieres construir y convertirlo en un plan con hooks, estructura y próximos pasos.",
+    ],
+    problemTitle: "Los guardados de Instagram sirven para archivar, no para ejecutar",
+    problem: [
+      "Cuando guardas un post en Instagram, normalmente sabes por qué importa en ese momento. Quizá la primera frase es potente, el formato te interesa o el tema encaja con tu nicho. Pero el post guardado no captura tu razón.",
+      "Semanas después, recuerdas que guardaste algo útil, pero no dónde está ni qué querías hacer con ello. La carpeta se convierte en otro feed. Haces scroll por tu propio archivo, vuelves a consumir contenido y sales sin crear nada.",
+    ],
+    oldWorkflowTitle: "Por qué se rompe el flujo habitual de guardados",
+    oldWorkflow: [
+      "El flujo por defecto es pasivo: guardar primero y pensar después. Funciona si tienes pocas referencias, pero se rompe cuando guardar se vuelve un hábito diario. Un creador puede acumular cientos de posts entre formatos y temas sin una forma clara de elegir la siguiente idea.",
+      "Las colecciones ayudan, pero siguen viviendo dentro de Instagram. No se conectan de forma natural con tus notas, guiones, calendario o checklist de publicación. Tampoco te ayudan a traducir una referencia a tu propio punto de vista. Un carrusel guardado no es tu carrusel. Un Reel guardado no es tu guion.",
+    ],
+    collectaTitle: "Cómo ayuda Collecta con inspiración guardada de Instagram",
+    collecta: [
+      "Collecta está diseñada para usar inspiración guardada sin quedarte atrapado en modo consumo. Puedes llevar referencias e ideas a un espacio de trabajo, organizarlas por tema y usarlas como puntos de partida para nuevo contenido.",
+      "Cuando estás listo para crear, seleccionas la inspiración desde la que quieres trabajar. Collecta puede ayudar a convertir ese contexto en un plan: ángulos posibles, opciones de hook, estructura del post, dirección de guion y una checklist simple. Te ayuda a pasar de 'me gustó esto' a 'esto es lo que voy a crear a partir de ello'.",
+      "El resultado debe seguir sonando a ti. Collecta no está para copiar el post de otro creador. Está para ayudarte a entender por qué funcionó una referencia, conectarla con tu propia idea y hacer más fácil el siguiente paso.",
+    ],
+    forTitle: "Para quién es",
+    forItems: [
+      "Creadores de Instagram con carpetas llenas de formatos y hooks.",
+      "Founders que guardan ejemplos de storytelling, educación de producto o marca personal.",
+      "Creadores que usan Instagram para investigar pero necesitan salir de la app para crear.",
+      "Cualquiera que quiera que sus guardados se conviertan en ideas originales y no en marcadores permanentes.",
+    ],
+    linksTitle: "Convierte más inspiración en output",
+    links: [
+      { to: "/saved-posts-to-content-plans", label: "Convertir posts guardados en planes" },
+      { to: "/content-ideas-app", label: "Usar una app de ideas para pensamientos sueltos" },
+      { to: "/content-planning-app", label: "Planificar contenido desde inspiración guardada" },
+    ],
+    faqs: [
+      {
+        question: "¿Collecta me ayuda a copiar posts de Instagram?",
+        answer:
+          "No. Collecta sirve para transformar inspiración en planes de contenido originales, no para copiar el trabajo de otro creador.",
+      },
+      {
+        question: "¿Por qué no usar solo Colecciones de Instagram?",
+        answer:
+          "Las colecciones sirven para guardar posts, pero no te dan un flujo completo para convertir referencias en hooks, guiones y checklists.",
+      },
+      {
+        question: "¿Puedo usar Collecta con más plataformas?",
+        answer:
+          "Sí. Collecta sirve para inspiración de Instagram, TikTok, LinkedIn, X, enlaces y notas sueltas.",
+      },
+      {
+        question: "¿Collecta está disponible en la App Store?",
+        answer: "Sí. Collecta está disponible en la App Store.",
+      },
+    ],
+    ctaTitle: "Dale un siguiente paso a tus guardados de Instagram",
+    ctaCopy:
+      "Descarga Collecta y empieza a convertir inspiración guardada de Instagram en contenido que puedas crear.",
+  },
+  {
+    slug: "content-workflow-for-creators",
+    title: "Flujo de contenido para creadores con ideas dispersas | Collecta",
+    description:
+      "Construye un mejor flujo de contenido para creadores cuyas ideas, posts guardados e inspiración están repartidos en demasiados sitios.",
+    eyebrow: "Flujo de creador",
+    h1: "Un mejor flujo de contenido para creadores cuyas ideas están por todas partes",
+    intro: [
+      "Un buen flujo de contenido debería hacer que crear fuera más directo. Para muchos creadores independientes ocurre lo contrario. Las ideas viven en demasiados sitios, las referencias son difíciles de encontrar y cada post empieza buscando entre guardados, notas y enlaces antiguos.",
+      "Collecta ayuda a construir un camino más limpio desde inspiración hasta ejecución. Reúne posts guardados, enlaces y pensamientos en un solo lugar, y ayuda a convertir el mejor material en planes de contenido con hooks, guiones, estructuras y checklists. El flujo es simple: guarda lo importante, organízalo, elige desde qué crear y ejecuta.",
+    ],
+    problemTitle: "El flujo del creador suele romperse antes de escribir",
+    problem: [
+      "La mayoría de creadores no tienen problemas porque no tengan nada que decir. Tienen problemas porque sus inputs están dispersos. Una buena idea puede estar en una nota. Una referencia puede estar guardada en Instagram. Un post útil puede estar marcado en X. Una idea de guion puede estar enterrada en una nota de voz.",
+      "Cuando los inputs están dispersos, crear se vuelve pesado. Pasas la primera parte de cada sesión encontrando la idea en vez de desarrollarla. Repites las mismas decisiones: qué publico, qué ángulo uso, cómo empieza, qué formato encaja y qué tiene que pasar antes de publicar.",
+    ],
+    oldWorkflowTitle: "Por qué más herramientas no siempre arreglan el problema",
+    oldWorkflow: [
+      "Es tentador resolverlo añadiendo herramientas. Un calendario para programar. Una hoja para temas. Una app de notas para ideas. Una app de escritura para borradores. Una carpeta para referencias. Cada herramienta puede servir, pero juntas pueden crear más superficie de la que un creador en solitario puede mantener.",
+      "La pieza que falta suele ser el traspaso entre inspiración y ejecución. Capturar inspiración es un flujo. Publicar contenido es otro. Muchos creadores no tienen un puente claro entre ambos. Por eso un post guardado puede parecer valioso cuando lo encuentras y casi inútil cuando necesitas crear.",
+    ],
+    collectaTitle: "Cómo Collecta crea un flujo de ejecución más claro",
+    collecta: [
+      "Collecta se centra en ese puente. Te ayuda a reunir posts, enlaces e ideas que podrían convertirse en contenido, y a organizarlos alrededor de los temas sobre los que realmente hablas. Cuando llega el momento de crear, puedes seleccionar las referencias que encajan con el post que quieres hacer.",
+      "Desde ahí, Collecta ayuda a crear un plan práctico. Puede dar forma al ángulo, sugerir hooks, ordenar la estructura, orientar un guion y crear una checklist. Así cada idea tiene un siguiente paso en vez de quedarse en una carpeta.",
+      "El flujo está pensado para creadores. No exige un gran equipo, una operación compleja ni un documento perfecto de estrategia. Es para el proceso diario de detectar ideas, mantenerlas cerca y convertirlas en publicaciones con más constancia.",
+    ],
+    forTitle: "Para quién es",
+    forItems: [
+      "Creadores independientes que quieren una forma repetible de pasar de idea a post.",
+      "Founders y operadores en solitario que crean sobre su trabajo sin tener equipo de contenido.",
+      "Creadores que guardan más inspiración de la que publican.",
+      "Cualquiera que quiera menos sesiones frente a la página en blanco y más pasos claros de ejecución.",
+    ],
+    linksTitle: "Flujos relacionados",
+    links: [
+      { to: "/content-planning-app", label: "Elegir una app de planificación para creadores" },
+      { to: "/content-ideas-app", label: "Mantener ideas de contenido organizadas" },
+      { to: "/saved-posts-to-content-plans", label: "Convertir guardados en planes" },
+    ],
+    faqs: [
+      {
+        question: "¿Qué es un flujo de contenido para creadores?",
+        answer:
+          "Es el camino repetible desde detectar una idea hasta publicar contenido. Para creadores en solitario suele incluir capturar inspiración, organizarla, planificar el post y ejecutarlo.",
+      },
+      {
+        question: "¿Collecta reemplaza mi calendario de contenido?",
+        answer:
+          "No necesariamente. Collecta ayuda en la etapa anterior: convertir ideas dispersas y guardados en planes claros que luego puedes programar o publicar.",
+      },
+      {
+        question: "¿Funciona para creadores en solitario?",
+        answer:
+          "Sí. Collecta está pensada para creadores independientes, founders y creadores en solitario que necesitan un flujo ligero.",
+      },
+      {
+        question: "¿Puedo probar Collecta ahora?",
+        answer: "Sí. Collecta está disponible en la App Store.",
+      },
+    ],
+    ctaTitle: "Construye un flujo que termine en contenido publicado",
+    ctaCopy:
+      "Descarga Collecta y convierte ideas dispersas en planes de contenido con pasos claros de ejecución.",
+  },
+];
+
+export const getLocalizedSeoPages = (language: Language) => (language === "es" ? spanishSeoPages : seoPages);
+
+export const getSeoPage = (slug: string, language: Language = "en") => getLocalizedSeoPages(language).find((page) => page.slug === slug);
 
 const getCanonicalUrl = (slug: string) => `${SITE_URL.replace(/\/$/, "")}/${slug}`;
 
 const SeoPage = ({ page }: { page: SeoPageContent }) => {
+  const { language } = useI18n();
+  const localizedPage = getSeoPage(page.slug, language) ?? page;
+  const labels = {
+    backHome: language === "es" ? "Volver al inicio de Collecta" : "Back to Collecta home",
+    downloadCollecta: language === "es" ? "Descargar Collecta" : "Download Collecta",
+    downloadAppStore: language === "es" ? "Descargar en App Store" : "Download on the App Store",
+    faqs: language === "es" ? "Preguntas frecuentes" : "FAQs",
+  };
+
   useDocumentMetadata({
-    title: page.title,
-    description: page.description,
-    imageAlt: `${page.h1} - Collecta`,
-    canonical: getCanonicalUrl(page.slug),
+    title: localizedPage.title,
+    description: localizedPage.description,
+    imageAlt: `${localizedPage.h1} - Collecta`,
+    canonical: getCanonicalUrl(localizedPage.slug),
   });
 
   const ctaHref = HAS_APP_STORE_URL ? APP_STORE_URL : "/#download";
@@ -385,13 +724,13 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
         <article className="px-5 pb-16 pt-32 sm:pb-20 sm:pt-36">
           <header className="mx-auto max-w-4xl text-center">
             <p className="text-sm font-extrabold uppercase tracking-[0.18em] text-[#56ABA0]">
-              {page.eyebrow}
+              {localizedPage.eyebrow}
             </p>
             <h1 className="mx-auto mt-5 max-w-4xl text-4xl font-extrabold leading-[1.04] tracking-normal sm:text-5xl lg:text-6xl">
-              {page.h1}
+              {localizedPage.h1}
             </h1>
             <div className="mx-auto mt-7 max-w-3xl space-y-5 text-lg leading-8 text-[#646865]">
-              {page.intro.map((paragraph) => (
+              {localizedPage.intro.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
               ))}
             </div>
@@ -405,43 +744,43 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
               className="mt-8 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#111312] px-6 py-3 text-base font-bold text-white shadow-[0_18px_34px_-20px_rgba(17,19,18,0.56)] transition-all duration-300 hover:-translate-y-0.5"
             >
               <AppleLogo className="h-5 w-5" />
-              Download Collecta
+              {labels.downloadCollecta}
             </a>
           </header>
 
           <div className="mx-auto mt-16 grid max-w-6xl gap-8 lg:grid-cols-[minmax(0,1fr)_320px] lg:items-start">
             <div className="space-y-12">
               <section className="rounded-[8px] bg-white p-6 shadow-[0_20px_60px_-50px_rgba(17,19,18,0.55)] ring-1 ring-[#e8ebe4] sm:p-8">
-                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{page.problemTitle}</h2>
+                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{localizedPage.problemTitle}</h2>
                 <div className="mt-5 space-y-5 text-base leading-8 text-[#646865]">
-                  {page.problem.map((paragraph) => (
+                  {localizedPage.problem.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
               </section>
 
               <section>
-                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{page.oldWorkflowTitle}</h2>
+                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{localizedPage.oldWorkflowTitle}</h2>
                 <div className="mt-5 space-y-5 text-base leading-8 text-[#646865]">
-                  {page.oldWorkflow.map((paragraph) => (
+                  {localizedPage.oldWorkflow.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
               </section>
 
               <section>
-                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{page.collectaTitle}</h2>
+                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{localizedPage.collectaTitle}</h2>
                 <div className="mt-5 space-y-5 text-base leading-8 text-[#646865]">
-                  {page.collecta.map((paragraph) => (
+                  {localizedPage.collecta.map((paragraph) => (
                     <p key={paragraph}>{paragraph}</p>
                   ))}
                 </div>
               </section>
 
               <section>
-                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{page.forTitle}</h2>
+                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{localizedPage.forTitle}</h2>
                 <ul className="mt-5 grid gap-3 text-base leading-7 text-[#646865]">
-                  {page.forItems.map((item) => (
+                  {localizedPage.forItems.map((item) => (
                     <li key={item} className="flex gap-3">
                       <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#56ABA0]" />
                       <span>{item}</span>
@@ -451,9 +790,9 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
               </section>
 
               <section>
-                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">FAQs</h2>
+                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{labels.faqs}</h2>
                 <Accordion type="single" collapsible className="mt-5 overflow-hidden rounded-[24px] bg-white shadow-[0_20px_60px_-48px_rgba(17,19,18,0.55)] ring-1 ring-[#e8ebe4]">
-                  {page.faqs.map((faq) => (
+                  {localizedPage.faqs.map((faq) => (
                     <AccordionItem key={faq.question} value={faq.question} className="border-[#e3e6df] px-5 sm:px-7">
                       <AccordionTrigger className="py-5 text-left text-lg font-extrabold leading-tight tracking-normal text-[#111312] hover:no-underline sm:text-xl">
                         {faq.question}
@@ -467,8 +806,8 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
               </section>
 
               <section className="rounded-[8px] bg-[#111312] p-6 text-white sm:p-8">
-                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{page.ctaTitle}</h2>
-                <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{page.ctaCopy}</p>
+                <h2 className="text-2xl font-extrabold tracking-normal sm:text-3xl">{localizedPage.ctaTitle}</h2>
+                <p className="mt-4 max-w-2xl text-base leading-7 text-white/75">{localizedPage.ctaCopy}</p>
                 <a
                   href={ctaHref}
                   target={HAS_APP_STORE_URL ? "_blank" : undefined}
@@ -479,7 +818,7 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
                   className="mt-6 inline-flex min-h-12 items-center justify-center gap-2 rounded-xl bg-[#56ABA0] px-6 py-3 text-base font-bold text-[#fbfcf7] transition-all duration-300 hover:-translate-y-0.5"
                 >
                   <AppleLogo className="h-5 w-5" />
-                  Download on the App Store
+                  {labels.downloadAppStore}
                 </a>
               </section>
             </div>
@@ -487,15 +826,15 @@ const SeoPage = ({ page }: { page: SeoPageContent }) => {
             <aside className="lg:sticky lg:top-28">
               <nav aria-label="Related SEO pages" className="rounded-[8px] bg-white p-5 ring-1 ring-[#e8ebe4]">
                 <p className="text-sm font-extrabold uppercase tracking-[0.14em] text-[#56ABA0]">
-                  {page.linksTitle}
+                  {localizedPage.linksTitle}
                 </p>
                 <ul className="mt-4 space-y-3 text-sm font-bold leading-6">
                   <li>
                     <Link to="/" className="text-[#111312] underline decoration-[#c8ddd8] underline-offset-4 hover:text-[#56ABA0]">
-                      Back to Collecta home
+                      {labels.backHome}
                     </Link>
                   </li>
-                  {page.links.map((link) => (
+                  {localizedPage.links.map((link) => (
                     <li key={link.to}>
                       <Link to={link.to} className="text-[#111312] underline decoration-[#c8ddd8] underline-offset-4 hover:text-[#56ABA0]">
                         {link.label}
