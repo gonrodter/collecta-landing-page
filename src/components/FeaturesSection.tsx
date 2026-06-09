@@ -137,16 +137,16 @@ const pipelineSteps = [
 
 const audienceItems = [
   {
-    title: "Independent creators",
-    copy: "Save useful content every day but need a system for turning references into posts.",
+    title: "Content creators",
+    copy: "Want hooks, scripts, checklists and clear next steps without starting from a blank prompt.",
   },
   {
     title: "Founders",
     copy: "Have ideas scattered across platforms and need repeatable content workflows.",
   },
   {
-    title: "Solo creators",
-    copy: "Want hooks, scripts, checklists and clear next steps without starting from a blank prompt.",
+    title: "Marketing agency creators",
+    copy: "Manage references for multiple clients and need to turn saved ideas into usable content faster.",
   },
 ];
 
@@ -536,8 +536,8 @@ const AudienceItem = ({ item, index }: { item: (typeof audienceItems)[number]; i
 
   return (
     <li className="py-3 sm:py-3 lg:py-3">
-      <div className="grid min-w-0 grid-cols-[auto_minmax(0,1fr)] gap-x-2 text-[#56ABA0] sm:gap-x-4">
-        <span className="shrink-0 text-[1.85rem] font-extrabold leading-none tracking-normal sm:text-[2.05rem] lg:text-[2.25rem] xl:text-[2.45rem]">
+      <div className="grid min-w-0 grid-cols-[3.6rem_minmax(0,1fr)] gap-x-2 text-[#56ABA0] sm:grid-cols-[4rem_minmax(0,1fr)] sm:gap-x-4 lg:grid-cols-[4.35rem_minmax(0,1fr)] xl:grid-cols-[4.75rem_minmax(0,1fr)]">
+        <span className="shrink-0 text-[1.85rem] font-extrabold leading-none tracking-normal tabular-nums sm:text-[2.05rem] lg:text-[2.25rem] xl:text-[2.45rem]">
           ({index + 1})
         </span>
         <div className="min-w-0">
