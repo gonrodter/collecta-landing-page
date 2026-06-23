@@ -97,13 +97,6 @@ const benefits = [
   },
 ];
 
-const pipelineStats = [
-  { label: "Saved inspiration", value: "42" },
-  { label: "Ready ideas", value: "12" },
-  { label: "Drafts generated", value: "5" },
-  { label: "Ready to publish", value: "3" },
-];
-
 const pipelineSteps = [
   {
     title: "Save your inspiration",
@@ -157,7 +150,7 @@ const faqs = [
   },
   {
     question: "Who is Collecta for?",
-    answer: "Collecta is for independent creators, founders and solo creators who save a lot of content but struggle to turn it into posts.",
+    answer: "Collecta is for content creators, founders and marketing agency creators who save more ideas than they publish and need a practical way to move from collection to execution.",
   },
   {
     question: "How does Collecta help me create content?",
@@ -520,17 +513,6 @@ const BenefitCard = ({ benefit }: { benefit: (typeof benefits)[number] }) => {
   );
 };
 
-const PipelineStatCard = ({ stat }: { stat: (typeof pipelineStats)[number] }) => {
-  const { t } = useI18n();
-
-  return (
-    <div className="h-full rounded-[24px] bg-white p-5 shadow-[0_16px_48px_-38px_rgba(17,19,18,0.5)] ring-1 ring-[#e8ebe4] transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_64px_-42px_rgba(17,19,18,0.62)]">
-      <p className="text-4xl font-extrabold tracking-normal text-[#56ABA0]">{stat.value}</p>
-      <p className="mt-1 text-sm font-bold text-[#646865]">{t(stat.label)}</p>
-    </div>
-  );
-};
-
 const AudienceItem = ({ item, index }: { item: (typeof audienceItems)[number]; index: number }) => {
   const { t } = useI18n();
 
@@ -680,6 +662,50 @@ const FeaturesSection = () => {
         </div>
       </section>
 
+      <section id="pipeline" className="scroll-mt-6 px-5 py-14 sm:py-20">
+        <div className="sm:container mx-auto max-w-7xl">
+          <SectionHeading
+            title={t("How Collecta works")}
+            copy={t("Collecta helps your inspiration move forward, from saved references to hooks, scripts, checklists and posts ready to publish.")}
+          />
+
+          <div className="relative mt-12">
+            <div className="hidden min-h-[620px] lg:block">
+              <svg
+                aria-hidden="true"
+                className="absolute inset-x-0 top-12 h-[520px] w-full"
+                viewBox="0 0 1200 520"
+                fill="none"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M24 350 C170 350 210 150 360 150 C515 150 485 380 635 380 C780 380 750 155 920 155 C1065 155 1050 300 1176 300"
+                  stroke="#d9eee9"
+                  strokeWidth="24"
+                  strokeLinecap="round"
+                />
+              </svg>
+
+              {pipelineSteps.map((step) => (
+                <div key={step.title} className={`absolute ${step.desktopClassName}`}>
+                  <PipelineStepContent step={step} />
+                </div>
+              ))}
+            </div>
+
+            <div className="relative grid gap-10 pl-8 lg:hidden">
+              <div className="absolute bottom-12 left-3 top-6 w-3 rounded-full bg-[#d9eee9]" />
+              {pipelineSteps.map((step) => (
+                <div key={step.title} className="relative">
+                  <span className="absolute -left-[34px] top-24 h-6 w-6 rounded-full border-4 border-[#fbfcf7] bg-[#56ABA0]" />
+                  <PipelineStepContent step={step} />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       <section id="include" className="scroll-mt-6 px-5 sm:px-0 py-14 sm:py-20">
         <div className="sm:container mx-auto max-w-7xl">
           <SectionHeading title={t("What does Collecta include")} />
@@ -781,56 +807,6 @@ const FeaturesSection = () => {
                 <BenefitCard benefit={benefit} />
               </div>
             ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="pipeline" className="scroll-mt-6 px-5 py-14 sm:py-20">
-        <div className="sm:container mx-auto max-w-7xl">
-          <SectionHeading
-            title={t("How Collecta works")}
-            copy={t("Collecta helps your inspiration move forward, from saved references to hooks, scripts, checklists and posts ready to publish.")}
-          />
-
-          <div className="mt-8 hidden gap-4 sm:grid sm:grid-cols-2 lg:grid-cols-4">
-            {pipelineStats.map((stat) => (
-              <PipelineStatCard key={stat.label} stat={stat} />
-            ))}
-          </div>
-
-          <div className="relative mt-12">
-            <div className="hidden min-h-[620px] lg:block">
-              <svg
-                aria-hidden="true"
-                className="absolute inset-x-0 top-12 h-[520px] w-full"
-                viewBox="0 0 1200 520"
-                fill="none"
-                preserveAspectRatio="none"
-              >
-                <path
-                  d="M24 350 C170 350 210 150 360 150 C515 150 485 380 635 380 C780 380 750 155 920 155 C1065 155 1050 300 1176 300"
-                  stroke="#d9eee9"
-                  strokeWidth="24"
-                  strokeLinecap="round"
-                />
-              </svg>
-
-              {pipelineSteps.map((step) => (
-                <div key={step.title} className={`absolute ${step.desktopClassName}`}>
-                  <PipelineStepContent step={step} />
-                </div>
-              ))}
-            </div>
-
-            <div className="relative grid gap-10 pl-8 lg:hidden">
-              <div className="absolute bottom-12 left-3 top-6 w-3 rounded-full bg-[#d9eee9]" />
-              {pipelineSteps.map((step) => (
-                <div key={step.title} className="relative">
-                  <span className="absolute -left-[34px] top-24 h-6 w-6 rounded-full border-4 border-[#fbfcf7] bg-[#56ABA0]" />
-                  <PipelineStepContent step={step} />
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>

@@ -54,7 +54,7 @@ const spanishCopy: Record<string, string> = {
   "What is Collecta?": "¿Qué es Collecta?",
   "Collecta is a mobile app that helps creators turn saved inspiration, links and rough ideas into executable content plans.": "Collecta es una app móvil que ayuda a creadores a convertir inspiración guardada, enlaces e ideas sueltas en planes de contenido ejecutables.",
   "Who is Collecta for?": "¿Para quién es Collecta?",
-  "Collecta is for independent creators, founders and solo creators who save a lot of content but struggle to turn it into posts.": "Collecta es para creadores independientes, founders y creadores en solitario que guardan mucho contenido pero tienen dificultades para convertirlo en publicaciones.",
+  "Collecta is for content creators, founders and marketing agency creators who save more ideas than they publish and need a practical way to move from collection to execution.": "Collecta es para creadores de contenido, founders y creadores en agencias de marketing que guardan más ideas de las que publican y necesitan una forma práctica de pasar de recopilar ideas a ejecutarlas.",
   "How does Collecta help me create content?": "¿Cómo me ayuda Collecta a crear contenido?",
   "Collecta can generate hooks, post structures, scripts, checklists and clear next steps based on the inspiration and context you provide.": "Collecta puede generar ganchos, estructuras de posts, guiones, checklists y próximos pasos claros basados en la inspiración y el contexto que aportas.",
   "Is Collecta just another AI writing tool?": "¿Collecta es solo otra herramienta de escritura con IA?",
